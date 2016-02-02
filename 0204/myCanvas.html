@@ -1,0 +1,53 @@
+<!doctype html>
+
+<!-- This has virtually the same code as canvas-template; all of
+     the action is in the JavaScript code. -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Misa's Canvas</title>
+  </head>
+  <body>
+    <!-- No further elements here; strictly minimalist.
+         But of course you may resize your canvas as needed. -->
+    <canvas id="canvas" width="1500" height="1500">
+      Sorry, but you need a web browser that supports the
+      <code>canvas</code> element.
+    </canvas>
+
+    <!-- Let's add jQuery, even if you might not always use it. -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="rose.js"></script>
+    <script src="bachelorBen.js"></script>
+
+    <script>
+    (function () {
+      var canvas = document.getElementById("canvas");
+      var renderingContext = canvas.getContext("2d");
+
+      var drawScene = function(){
+        
+        renderingContext.save();
+        renderingContext.translate(500,0);
+        renderingContext.scale(0.5, 0.5);
+        SpriteLibrary.rose({
+          renderingContext: renderingContext
+        });
+
+        renderingContext.restore();
+        renderingContext.save();
+        renderingContext.scale(0.75, 0.75);
+        renderingContext.translate(100, 50);
+        SpriteLibrary.bachelorBen({
+          renderingContext: renderingContext
+        });
+       renderingContext.restore();
+        window.requestAnimationFrame(drawScene);  
+      };
+
+      window.requestAnimationFrame(drawScene);
+    }())
+      
+    </script>
+  </body>
+</html>
