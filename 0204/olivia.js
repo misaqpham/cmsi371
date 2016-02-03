@@ -23,7 +23,7 @@
 	dressImage.addEventListener("load", function() {
 		dressLoaded = true;
 	}, false)
-	dressImage.src ="olivias-dress.png";
+	dressImage.src ="olivia-dress.png";
 
 	var drawArm = function(renderingContext, armOffset, armAngle) {
 		renderingContext.save();
@@ -46,21 +46,26 @@
 		var rightArmAngle = oliviaSpecification.rightArmAngle || (-Math.PI / 4);
 
 		renderingContext.save();
-		renderingContext.translate(oliviaImage.width / 6, oliviaImage.height);
+		renderingContext.translate(oliviaImage.width / 6 - 20, oliviaImage.height - 20);
 		renderingContext.rotate(rightArmAngle);
 		renderingContext.fillStyle = "#E2B98F";
 		renderingContext.fillRect(oliviaImage.width / 2, oliviaImage.height / 4 , ARM_WIDTH, ARM_HEIGHT);
+		
+		renderingContext.beginPath();
+		var fistRadius = ARM_WIDTH / 2;
+		renderingContext.arc(0, ARM_HEIGHT, fistRadius, 0 , 2 * Math.PI, true);
+		renderingContext.fill();
 		renderingContext.restore();
 
 		renderingContext.save();
-		renderingContext.translate(-oliviaImage.width / 6 + 50, oliviaImage.height / 2.5);
+		renderingContext.translate(dressImage.width / 6 - 30, dressImage.height / 6);
 		renderingContext.rotate(leftArmAngle);
 		renderingContext.fillStyle = "#E2B98F";
 		renderingContext.fillRect(oliviaImage.width / 2, oliviaImage.height / 4 , ARM_WIDTH, ARM_HEIGHT);
 		renderingContext.restore();
 		
 		if(dressLoaded) {
-			renderingContext.drawImage(dressImage, -oliviaImage.width / 8 + 10, oliviaImage.height / 2 + 40);
+			renderingContext.drawImage(dressImage, oliviaImage.width / 6 - 40, oliviaImage.height / 2 + 15);
 		}
 
 		if (oliviaLoaded || oliviaMadLoaded) {

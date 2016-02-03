@@ -51,7 +51,6 @@
 
 			renderingContext.drawImage(bachelorImage, bachelorImage.width * 2, 0);
 			
-			renderingContext.fillStyle ="black";
 			renderingContext.fillRect(bachelorImage.width * 2 + 5, bachelorImage.height, BODY_WIDTH, BODY_HEIGHT);
 
 			drawArm(renderingContext, bachelorImage.width * 1.25, leftArmAngle);

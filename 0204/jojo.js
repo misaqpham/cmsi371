@@ -46,7 +46,7 @@
 		}
 
 		if(dressLoaded) {
-			renderingContext.drawImage(dressImage, jojoImage.width / 8 - 10, jojoImage.height / 2 + 30);
+			renderingContext.drawImage(dressImage, jojoImage.width / 8 - 10, jojoImage.height / 2 + 10);
 		}
 
 	}
