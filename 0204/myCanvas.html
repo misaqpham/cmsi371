@@ -19,6 +19,8 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="rose.js"></script>
     <script src="bachelorBen.js"></script>
+    <script src= "olivia.js"></script>
+    <script src="jojo.js"></script>
 
     <script>
     (function () {
@@ -28,20 +30,37 @@
       var drawScene = function(){
         
         renderingContext.save();
-        renderingContext.translate(500,0);
+        renderingContext.translate(1200,150);
         renderingContext.scale(0.5, 0.5);
         SpriteLibrary.rose({
           renderingContext: renderingContext
         });
-
         renderingContext.restore();
+
         renderingContext.save();
         renderingContext.scale(0.75, 0.75);
         renderingContext.translate(100, 50);
         SpriteLibrary.bachelorBen({
           renderingContext: renderingContext
         });
-       renderingContext.restore();
+        renderingContext.restore();
+
+        renderingContext.save();
+        renderingContext.scale(0.5, 0.5);
+        renderingContext.translate(1050, 150);
+        SpriteLibrary.olivia({
+          renderingContext: renderingContext
+        });
+        renderingContext.restore();
+
+        renderingContext.save();
+        renderingContext.scale(0.5, 0.5);
+        renderingContext.translate(1450, 150);
+        SpriteLibrary.jojo({
+          renderingContext: renderingContext
+        });
+        renderingContext.restore();
+
         window.requestAnimationFrame(drawScene);  
       };
 

@@ -4,14 +4,10 @@
 
 	var BODY_WIDTH = 125;
 	var BODY_HEIGHT = 175;
-	var ARM_WIDTH = BODY_WIDTH / 4;
-	var ARM_HEIGHT = 150;
-	var LEG_WIDTH = 40;
+	var ARM_WIDTH = 30;
+	var ARM_HEIGHT = 125;
+	var LEG_WIDTH = 50;
 	var LEG_HEIGHT = 150;
-
-	var leftArmAngle = -Math.PI / 4;
-	var rightArmAngle = Math.PI / 4;
-
 
 	var bachelorImage = new Image();
 	var bachelorLoaded = false;
@@ -31,7 +27,7 @@
 
 	var drawArm = function(renderingContext, armOffset, armAngle) {
 		renderingContext.save();
-		renderingContext.translate(armOffset *2, bachelorImage.height - 30);
+		renderingContext.translate(armOffset * 2, bachelorImage.height - 30);
 		renderingContext.rotate(armAngle);
 		renderingContext.fillRect(-ARM_WIDTH / 2.5, BODY_WIDTH / 2 , ARM_WIDTH, ARM_HEIGHT);
 		
@@ -66,8 +62,7 @@
 
 			renderingContext.fillStyle ="black";
 			renderingContext.fillRect(bachelorImage.width * 2 + 15, bachelorImage.height + BODY_HEIGHT, LEG_WIDTH, LEG_HEIGHT);
-
-			renderingContext.fillRect(bachelorImage.width * 3 - 35, bachelorImage.height + BODY_HEIGHT, LEG_WIDTH, LEG_HEIGHT);
+			renderingContext.fillRect(bachelorImage.width * 3 - 40, bachelorImage.height + BODY_HEIGHT, LEG_WIDTH, LEG_HEIGHT);
 
 
 		}
