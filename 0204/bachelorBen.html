@@ -20,12 +20,35 @@
       var drawScene = function(){
       
         renderingContext.save();
-        renderingContext.translate(500, 300);
+        renderingContext.translate(300, 200);
         renderingContext.scale(.8,.8);
         SpriteLibrary.bachelorBen({
           renderingContext: renderingContext,
-          leftArmAngle: Math.PI / 2,
-          rightArmAngle: - Math.PI / 4
+          leftArmAngle: Math.PI / 4,
+          rightArmAngle: - Math.PI / 4,
+          headTilt: "left"
+        });
+        renderingContext.restore();
+
+        renderingContext.save();
+        renderingContext.translate(500, 200);
+        renderingContext.scale(.8,.8);
+        SpriteLibrary.bachelorBen({
+          renderingContext: renderingContext,
+          leftArmAngle: Math.PI / 4,
+          rightArmAngle: - Math.PI / 4,
+          headTilt: "straight"
+        });
+        renderingContext.restore();
+
+        renderingContext.save();
+        renderingContext.translate(700, 200);
+        renderingContext.scale(.8,.8);
+        SpriteLibrary.bachelorBen({
+          renderingContext: renderingContext,
+          leftArmAngle: Math.PI / 4,
+          rightArmAngle: - Math.PI / 4,
+          headTilt: "right"
         });
         renderingContext.restore();
 
