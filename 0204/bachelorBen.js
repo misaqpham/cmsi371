@@ -2,11 +2,11 @@
 	
 	window.SpriteLibrary = window.SpriteLibrary || {}; //do this instead using OR
 
-	var BODY_WIDTH = 125;
-	var BODY_HEIGHT = 175;
-	var ARM_WIDTH = 30;
-	var ARM_HEIGHT = 125;
-	var LEG_WIDTH = 50;
+	var BODY_WIDTH = 140;
+	var BODY_HEIGHT = 185;
+	var ARM_WIDTH = 35;
+	var ARM_HEIGHT = 145;
+	var LEG_WIDTH = 45;
 	var LEG_HEIGHT = 150;
 
 	var bachelorImage = new Image();
@@ -25,17 +25,17 @@
 	tuxImage.src ="tux.png";
 
 
-	var drawArm = function(renderingContext, armOffset, armAngle) {
+	var drawArm = function(renderingContext, armAngle, armXOffset, armYOffSet) {
 		renderingContext.save();
-		renderingContext.translate(armOffset * 2, bachelorImage.height - 30);
+		renderingContext.translate(-BODY_WIDTH / 2 + armXOffset, -tuxImage.height / 2 + armYOffSet);
 		renderingContext.rotate(armAngle);
-		renderingContext.fillRect(-ARM_WIDTH / 2.5, BODY_WIDTH / 2 , ARM_WIDTH, ARM_HEIGHT);
+		renderingContext.fillRect(-ARM_WIDTH / 2, 0, ARM_WIDTH, ARM_HEIGHT);
 		
-		renderingContext.fillStyle = "rgb{206, 172, 158}";
+		/*renderingContext.fillStyle = "rgb{206, 172, 158}";
 		renderingContext.beginPath();
 		var fistRadius = ARM_WIDTH / 2;
 		renderingContext.arc(0, ARM_HEIGHT + fistRadius, fistRadius, 0 , 2 * Math.PI, true);
-		renderingContext.fill();
+		renderingContext.fill();*/
 		renderingContext.restore();
 	}
 
@@ -47,21 +47,37 @@
 		var renderingContext = bachelorSpecification.renderingContext;
 
 		renderingContext.save();
-		if (bachelorLoaded) {
+		if (bachelorLoaded && tuxLoaded) {
 
-			renderingContext.drawImage(bachelorImage, bachelorImage.width * 2, 0);
+			var bodyOffset = 25;
+			var tuxOffset = 25;
 			
-			renderingContext.fillRect(bachelorImage.width * 2 + 5, bachelorImage.height, BODY_WIDTH, BODY_HEIGHT);
-
-			drawArm(renderingContext, bachelorImage.width * 1.25, leftArmAngle);
+			var rightLegOffset = 75;
+			var leftLegOffset = 25;
+			var legPositionOffset = 15;
 			
-			drawArm(renderingContext, bachelorImage.width * 1.25, rightArmAngle);
+			var leftArmXPositionOffset = 40;
+			var rightArmXPositionOffset = 90;
+			var leftArmYPositionOffset= 70;
+			var rightArmYPositionOffset = 70;
 
-			renderingContext.drawImage(tuxImage, bachelorImage.width * 2 - 5, bachelorImage.height - 20);
+			//draw head image and position body
+			renderingContext.drawImage(bachelorImage, -bachelorImage.width, -bachelorImage.height);
+			renderingContext.fillRect(-BODY_WIDTH + bodyOffset, bachelorImage.height / 10 - bodyOffset, 
+										BODY_WIDTH, BODY_HEIGHT);
 
+			//draw arms
+			//renderingContext.fillStyle = "blue";
+			drawArm(renderingContext, leftArmAngle, -leftArmXPositionOffset, leftArmYPositionOffset);
+			drawArm(renderingContext, rightArmAngle, rightArmXPositionOffset, rightArmYPositionOffset);
+
+			//draw tux image
+			renderingContext.drawImage(tuxImage, -bachelorImage.width, -bachelorImage.height / 4 + tuxOffset);
+
+			//draw legs
 			renderingContext.fillStyle ="black";
-			renderingContext.fillRect(bachelorImage.width * 2 + 15, bachelorImage.height + BODY_HEIGHT, LEG_WIDTH, LEG_HEIGHT);
-			renderingContext.fillRect(bachelorImage.width * 3 - 40, bachelorImage.height + BODY_HEIGHT, LEG_WIDTH, LEG_HEIGHT);
+			renderingContext.fillRect(-bachelorImage.width + rightLegOffset, BODY_HEIGHT - legPositionOffset , LEG_WIDTH, LEG_HEIGHT);
+			renderingContext.fillRect(-bachelorImage.width + leftLegOffset, BODY_HEIGHT - legPositionOffset, LEG_WIDTH, LEG_HEIGHT);
 
 
 		}
