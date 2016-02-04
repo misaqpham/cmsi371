@@ -20,7 +20,7 @@
       var drawScene = function(){
       
         renderingContext.save();
-        renderingContext.translate(500, 400);
+        renderingContext.translate(500, 300);
         renderingContext.scale(.6,.6);
         SpriteLibrary.jojo({
           renderingContext: renderingContext
@@ -28,11 +28,12 @@
         renderingContext.restore();
 
         renderingContext.save();
-        renderingContext.translate(800, 400);
-        renderingContext.scale(.75,.8);
+        renderingContext.translate(800, 300);
+        renderingContext.scale(.6,.6);
         SpriteLibrary.jojo({
           renderingContext: renderingContext,
-          leftArmAngle: 3*Math.PI / 4
+          leftArmAngle: 3*Math.PI / 4,
+          rightArmAngle: 4*Math.PI / 3
         });
         renderingContext.restore();
 
