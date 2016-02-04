@@ -22,8 +22,6 @@
 	var BODY_HEIGHT = dressImage.height;
 
 	var drawArm = function(renderingContext, armAngle, armXOffset, armYOffset) {
-		
-
 		renderingContext.save();
 		renderingContext.translate(-BODY_WIDTH / 2 + armXOffset, -BODY_HEIGHT / 2 + armYOffset);
 		renderingContext.rotate(armAngle);
@@ -44,11 +42,11 @@
 		}
 
 		var renderingContext = jojoSpecification.renderingContext;
-		var leftArmAngle = jojoSpecification.leftArmAngle || (Math.PI / 6);
-		var rightArmAngle = jojoSpecification.rightArmAngle || (-Math.PI / 6);
+		var leftArmAngle = jojoSpecification.leftArmAngle || (15*Math.PI/180);
+		var rightArmAngle = jojoSpecification.rightArmAngle || (-15*Math.PI/180);
 
 		var dressOffset = 35;
-		var armYOffset = 150;
+		var armYOffset = 160;
 		var rightArmXOffset = 30;
 		var leftArmXOffset = 100;
 		
@@ -64,7 +62,7 @@
 		
 		renderingContext.save();
 		if(dressLoaded && jojoLoaded) {
-			renderingContext.drawImage(dressImage, -BODY_WIDTH - dressOffset, -jojoImage.height/2 + 60);
+			renderingContext.drawImage(dressImage, -BODY_WIDTH - dressOffset, -jojoImage.height/2 + dressOffset*2);
 		}
 		renderingContext.restore();
 	}

@@ -20,20 +20,30 @@
       var drawScene = function(){
       
         renderingContext.save();
-        renderingContext.translate(500, 300);
+        renderingContext.translate(350, 250);
         renderingContext.scale(.6,.6);
         SpriteLibrary.jojo({
           renderingContext: renderingContext
         });
         renderingContext.restore();
-
+  
         renderingContext.save();
-        renderingContext.translate(800, 300);
+        renderingContext.translate(600, 250);
         renderingContext.scale(.6,.6);
         SpriteLibrary.jojo({
           renderingContext: renderingContext,
-          leftArmAngle: 3*Math.PI / 4,
-          rightArmAngle: 4*Math.PI / 3
+          rightArmAngle: -115*Math.PI/180,
+          leftArmAngle: 115*Math.PI/180
+        });
+        renderingContext.restore();
+
+        renderingContext.save();
+        renderingContext.translate(850, 250);
+        renderingContext.scale(.6,.6);
+        SpriteLibrary.jojo({
+          renderingContext: renderingContext,
+          rightArmAngle: -5*Math.PI/180,
+          leftArmAngle: 15*Math.PI/180
         });
         renderingContext.restore();
 

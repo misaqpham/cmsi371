@@ -58,8 +58,8 @@
 
 		var renderingContext = oliviaSpecification.renderingContext;
 		var mood = oliviaSpecification.mood || "happy";
-		var leftArmAngle = oliviaSpecification.leftArmAngle || (Math.PI / 6);
-		var rightArmAngle = oliviaSpecification.rightArmAngle || (-Math.PI / 6);
+		var leftArmAngle = oliviaSpecification.leftArmAngle || (15*Math.PI/180);
+		var rightArmAngle = oliviaSpecification.rightArmAngle || (-15*Math.PI/180);
 		
 		var dressOffset = 45;
 		var imageOffset1 = 30;

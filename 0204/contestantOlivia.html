@@ -21,8 +21,8 @@
         renderingContext.clearRect(0,0, canvas.width, canvas.height);
 
         renderingContext.save();
-        renderingContext.translate(200, 300);
-        renderingContext.scale(.75,.75);
+        renderingContext.translate(300, 200);
+        renderingContext.scale(.5,.5);
         SpriteLibrary.olivia({
           renderingContext: renderingContext,
           mood: "happy"
@@ -30,20 +30,24 @@
         renderingContext.restore();
 
         renderingContext.save();
-        renderingContext.translate(370, 300);
-        renderingContext.scale(.75,.75);
+        renderingContext.translate(500, 200);
+        renderingContext.scale(.5,.5);
         SpriteLibrary.olivia({
           renderingContext: renderingContext,
-          mood: "shock"
+          mood: "shock",
+          rightArmAngle: -140*Math.PI / 180,
+          leftArmAngle: 140*Math.PI / 180
         });
         renderingContext.restore();
 
         renderingContext.save();
-        renderingContext.translate(600, 300);
-        renderingContext.scale(.75,.75);
+        renderingContext.translate(700, 200);
+        renderingContext.scale(.5,.5);
         SpriteLibrary.olivia({
           renderingContext: renderingContext,
-          mood: "mad"
+          mood: "mad",
+          rightArmAngle: -25*Math.PI/180,
+          leftArmAngle: 65*Math.PI/180
         });
         renderingContext.restore();
 
