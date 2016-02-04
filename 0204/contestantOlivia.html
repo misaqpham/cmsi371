@@ -17,23 +17,40 @@
       var canvas = document.getElementById("canvas");
       var renderingContext = canvas.getContext("2d");
 
-      var drawScene = function(){
-      
+      var drawScene = function () {
+        renderingContext.clearRect(0,0, canvas.width, canvas.height);
+
         renderingContext.save();
-        renderingContext.translate(500, 100);
-        renderingContext.scale(.7,.7);
+        renderingContext.translate(200, 300);
+        renderingContext.scale(.75,.75);
         SpriteLibrary.olivia({
           renderingContext: renderingContext,
           mood: "happy"
         });
         renderingContext.restore();
 
+        renderingContext.save();
+        renderingContext.translate(370, 300);
+        renderingContext.scale(.75,.75);
+        SpriteLibrary.olivia({
+          renderingContext: renderingContext,
+          mood: "shock"
+        });
+        renderingContext.restore();
+
+        renderingContext.save();
+        renderingContext.translate(600, 300);
+        renderingContext.scale(.75,.75);
+        SpriteLibrary.olivia({
+          renderingContext: renderingContext,
+          mood: "mad"
+        });
+        renderingContext.restore();
+
         window.requestAnimationFrame(drawScene);  
       };
-
       window.requestAnimationFrame(drawScene);
-    }())
-      
+    }())   
     </script>
   </body>
 </html>
