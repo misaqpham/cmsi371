@@ -7,7 +7,7 @@
 	var ARM_WIDTH = 35;
 	var ARM_HEIGHT = 145;
 	var LEG_WIDTH = 45;
-	var LEG_HEIGHT = 150;
+	var LEG_HEIGHT = 225;
 
 	var bachelorImage = new Image();
 	var bachelorLoaded = false;
@@ -31,11 +31,11 @@
 		renderingContext.rotate(armAngle);
 		renderingContext.fillRect(-ARM_WIDTH / 2, 0, ARM_WIDTH, ARM_HEIGHT);
 		
-		/*renderingContext.fillStyle = "rgb{206, 172, 158}";
+		renderingContext.fillStyle = "#E2B98F";
 		renderingContext.beginPath();
 		var fistRadius = ARM_WIDTH / 2;
 		renderingContext.arc(0, ARM_HEIGHT + fistRadius, fistRadius, 0 , 2 * Math.PI, true);
-		renderingContext.fill();*/
+		renderingContext.fill();
 		renderingContext.restore();
 	}
 
@@ -61,13 +61,17 @@
 			var leftArmYPositionOffset= 70;
 			var rightArmYPositionOffset = 70;
 
-			//draw head image and position body
+			//draw head image
+			renderingContext.save();
+			renderingContext.scale(.9,.9);
 			renderingContext.drawImage(bachelorImage, -bachelorImage.width, -bachelorImage.height);
+			renderingContext.restore();
+
+			//position body
 			renderingContext.fillRect(-BODY_WIDTH + bodyOffset, bachelorImage.height / 10 - bodyOffset, 
 										BODY_WIDTH, BODY_HEIGHT);
 
 			//draw arms
-			//renderingContext.fillStyle = "blue";
 			drawArm(renderingContext, leftArmAngle, -leftArmXPositionOffset, leftArmYPositionOffset);
 			drawArm(renderingContext, rightArmAngle, rightArmXPositionOffset, rightArmYPositionOffset);
 
@@ -76,8 +80,10 @@
 
 			//draw legs
 			renderingContext.fillStyle ="black";
-			renderingContext.fillRect(-bachelorImage.width + rightLegOffset, BODY_HEIGHT - legPositionOffset , LEG_WIDTH, LEG_HEIGHT);
-			renderingContext.fillRect(-bachelorImage.width + leftLegOffset, BODY_HEIGHT - legPositionOffset, LEG_WIDTH, LEG_HEIGHT);
+			renderingContext.fillRect(-bachelorImage.width + rightLegOffset, BODY_HEIGHT - legPositionOffset, 
+										LEG_WIDTH, LEG_HEIGHT);
+			renderingContext.fillRect(-bachelorImage.width + leftLegOffset, BODY_HEIGHT - legPositionOffset, 
+										LEG_WIDTH, LEG_HEIGHT);
 
 
 		}

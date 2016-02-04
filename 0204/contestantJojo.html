@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Tonight on The "Most Dramatic" Bachelor Finale...</title>
+    <title>Jojo</title>
   </head>
   <body>
     <canvas id="canvas" width="1500" height="1500">
@@ -10,9 +10,6 @@
       <code>canvas</code> element.
     </canvas>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="rose.js"></script>
-    <script src="bachelorBen.js"></script>
-    <script src= "olivia.js"></script>
     <script src="jojo.js"></script>
 
     <script>
@@ -21,38 +18,23 @@
       var renderingContext = canvas.getContext("2d");
 
       var drawScene = function(){
-        
+      
         renderingContext.save();
-        renderingContext.scale(0.75, 0.75);
-        renderingContext.translate(400, 250);
-        SpriteLibrary.bachelorBen({
+        renderingContext.translate(500, 400);
+        renderingContext.scale(.6,.6);
+        SpriteLibrary.jojo({
           renderingContext: renderingContext
         });
         renderingContext.restore();
-        
+
         renderingContext.save();
-        renderingContext.scale(0.5, 0.5);
-        renderingContext.translate(1200, 550);
+        renderingContext.translate(800, 400);
+        renderingContext.scale(.75,.8);
         SpriteLibrary.jojo({
           renderingContext: renderingContext,
+          leftArmAngle: 3*Math.PI / 4
         });
         renderingContext.restore();
-        
-        renderingContext.save();
-        renderingContext.translate(350,230);
-        renderingContext.scale(0.5, 0.5);
-        SpriteLibrary.rose({
-          renderingContext: renderingContext
-        });
-        renderingContext.restore();
-        /*renderingContext.save();
-        renderingContext.scale(0.5, 0.5);
-        renderingContext.translate(1550, 750);
-        SpriteLibrary.olivia({
-          renderingContext: renderingContext,
-          mood: "mad"
-        });
-        renderingContext.restore();*/
 
         window.requestAnimationFrame(drawScene);  
       };
