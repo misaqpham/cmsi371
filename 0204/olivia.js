@@ -2,7 +2,8 @@
 	
 	window.SpriteLibrary = window.SpriteLibrary || {}; 
 	var ARM_WIDTH = 35;
-	var ARM_HEIGHT = 160;
+	var ARM_HEIGHT = 70;
+	var FOREARM_HEIGHT = 80; 
 
 	var oliviaImage = new Image();
 	var oliviaLoaded = false;
@@ -36,17 +37,31 @@
 	var BODY_WIDTH = dressImage.width;
 	var BODY_HEIGHT = dressImage.height;
 
-	var drawArm = function(renderingContext, armAngle, armXOffset, armYOffset) {
+	var drawArm = function(renderingContext, armAngle, elbowAngle, armXOffset, armYOffset) {
 		renderingContext.save();
+
+		//upper arm
 		renderingContext.translate(-BODY_WIDTH / 2 + armXOffset, -BODY_HEIGHT / 2 + armYOffset);
 		renderingContext.rotate(armAngle);
 		renderingContext.fillStyle = "#EAD3A9";
 		renderingContext.fillRect(-ARM_WIDTH / 2, 0, ARM_WIDTH, ARM_HEIGHT);
 		
+		//elbow
+		var elbowRadius = ARM_WIDTH / 2;
 		renderingContext.beginPath();
-		var fistRadius = ARM_WIDTH / 2;
-		var fistPosition = ARM_HEIGHT + fistRadius - 5;
-		renderingContext.arc(0, fistPosition, fistRadius, 0 , 2 * Math.PI, true);		
+		renderingContext.arc(0, ARM_HEIGHT, elbowRadius, 0 , 2 * Math.PI, true);
+		renderingContext.fill();
+
+		//forearm
+		renderingContext.translate(0, ARM_HEIGHT);
+		renderingContext.rotate(elbowAngle);
+		renderingContext.fillRect(-elbowRadius, 0, ARM_WIDTH, FOREARM_HEIGHT);
+        
+        //hand
+		var handRadius = ARM_WIDTH / 2;
+		var handPosition = FOREARM_HEIGHT + handRadius / 2;
+		renderingContext.beginPath();
+		renderingContext.arc(0, handPosition, handRadius, 0 , 2 * Math.PI, true);		
 		renderingContext.fill();
 		renderingContext.restore();
 	}
@@ -60,23 +75,29 @@
 		var mood = oliviaSpecification.mood || "happy";
 		var leftArmAngle = oliviaSpecification.leftArmAngle || (15*Math.PI/180);
 		var rightArmAngle = oliviaSpecification.rightArmAngle || (-15*Math.PI/180);
+
+		var leftElbowAngle = oliviaSpecification.leftElbowAngle || (15*Math.PI/180);
+		var rightElbowAngle = oliviaSpecification.rightElbowAngle || (-15*Math.PI/180);
+
 		
 		var dressOffset = 45;
 		var imageOffset1 = 30;
 		var imageOffset2 = 10;
 
 		var armXOffset = 50;
+		var rightArmXOffset = 75;
 		var armYOffset = 250;
 		
-		drawArm(renderingContext, rightArmAngle, armXOffset, armYOffset);
-		drawArm(renderingContext, leftArmAngle, -armXOffset, armYOffset);
 		
 		renderingContext.save();
 		if(dressLoaded || oliviaImageLoaded) {
 			renderingContext.drawImage(dressImage, -BODY_WIDTH, -oliviaImage.height/2 + dressOffset);
 		}
 		renderingContext.restore();
-
+		
+		drawArm(renderingContext, rightArmAngle, rightElbowAngle, rightArmXOffset, armYOffset);
+		drawArm(renderingContext, leftArmAngle, leftElbowAngle, -armXOffset, armYOffset);
+		
 		renderingContext.save();
 		//if (oliviaLoaded || oliviaMadLoaded || oliviaShockLoaded) {
 			if (mood == "happy" && oliviaLoaded) {

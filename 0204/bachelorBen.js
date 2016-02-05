@@ -22,7 +22,6 @@
 	}, false);
 	bachelorImage.src ="ben-higgins.png";
 
-
 	var tuxImage = new Image();
 	var tuxLoaded = false;
 	tuxImage.addEventListener("load", function() {
@@ -75,7 +74,6 @@
 
 			var bodyOffset = 25;
 			var tuxOffset = 25;
-
 			var headOffset = 10;
 			
 			var rightLegOffset = 75;
