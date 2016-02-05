@@ -2,8 +2,8 @@
 	
 	window.SpriteLibrary = window.SpriteLibrary || {}; 
 	var ARM_WIDTH = 35;
-	var ARM_HEIGHT = 70;
-	var FOREARM_HEIGHT = 80; 
+	var ARM_HEIGHT = 100;
+	var FOREARM_HEIGHT = 90; 
 
 	var oliviaImage = new Image();
 	var oliviaLoaded = false;
@@ -63,6 +63,7 @@
 		renderingContext.beginPath();
 		renderingContext.arc(0, handPosition, handRadius, 0 , 2 * Math.PI, true);		
 		renderingContext.fill();
+
 		renderingContext.restore();
 	}
 
@@ -75,11 +76,9 @@
 		var mood = oliviaSpecification.mood || "happy";
 		var leftArmAngle = oliviaSpecification.leftArmAngle || (15*Math.PI/180);
 		var rightArmAngle = oliviaSpecification.rightArmAngle || (-15*Math.PI/180);
-
 		var leftElbowAngle = oliviaSpecification.leftElbowAngle || (15*Math.PI/180);
 		var rightElbowAngle = oliviaSpecification.rightElbowAngle || (-15*Math.PI/180);
 
-		
 		var dressOffset = 45;
 		var imageOffset1 = 30;
 		var imageOffset2 = 10;
@@ -87,7 +86,6 @@
 		var armXOffset = 50;
 		var rightArmXOffset = 75;
 		var armYOffset = 250;
-		
 		
 		renderingContext.save();
 		if(dressLoaded || oliviaImageLoaded) {
@@ -99,26 +97,23 @@
 		drawArm(renderingContext, leftArmAngle, leftElbowAngle, -armXOffset, armYOffset);
 		
 		renderingContext.save();
-		//if (oliviaLoaded || oliviaMadLoaded || oliviaShockLoaded) {
-			if (mood == "happy" && oliviaLoaded) {
-				renderingContext.save();
-				renderingContext.scale(.9, .9);
-				renderingContext.drawImage(oliviaImage, -oliviaImage.width, -oliviaImage.height);
-				renderingContext.restore();
-			} else if (mood == "mad" && oliviaMadImage) {
-				renderingContext.save();
-				renderingContext.scale(.8, .8);
-				renderingContext.drawImage(oliviaMadImage, -oliviaMadImage.width, -oliviaMadImage.height + imageOffset1);
-				renderingContext.restore();
-			} else if (mood == "shock" && oliviaShockImage) {
-				renderingContext.save();
-				renderingContext.scale(1.2,1.2);
-				renderingContext.drawImage(oliviaShockImage, -oliviaShockImage.width - imageOffset2, -oliviaShockImage.height + imageOffset2);
-				renderingContext.restore();
-			}
+		if (mood == "happy" && oliviaLoaded) {
+			renderingContext.save();
+			renderingContext.scale(.9, .9);
+			renderingContext.drawImage(oliviaImage, -oliviaImage.width, -oliviaImage.height);
 			renderingContext.restore();
-		//}
-		
+		} else if (mood == "mad" && oliviaMadImage) {
+			renderingContext.save();
+			renderingContext.scale(.8, .8);
+			renderingContext.drawImage(oliviaMadImage, -oliviaMadImage.width, -oliviaMadImage.height + imageOffset1);
+			renderingContext.restore();
+		} else if (mood == "shock" && oliviaShockImage) {
+			renderingContext.save();
+			renderingContext.scale(1.2,1.2);
+			renderingContext.drawImage(oliviaShockImage, -oliviaShockImage.width - imageOffset2, -oliviaShockImage.height + imageOffset2);
+			renderingContext.restore();
+		}
+		renderingContext.restore();
 	}
 
 }());

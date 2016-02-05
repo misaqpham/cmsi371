@@ -21,12 +21,14 @@
       var renderingContext = canvas.getContext("2d");
 
       var drawScene = function(){
-        
+        renderingContext.clearRect(0, 0, canvas.width, canvas.height);
+
         renderingContext.save();
         renderingContext.scale(0.75, 0.75);
         renderingContext.translate(400, 250);
         SpriteLibrary.bachelorBen({
-          renderingContext: renderingContext
+          renderingContext: renderingContext,
+          leftArmAngle: 97*Math.PI/180
         });
         renderingContext.restore();
         
@@ -35,6 +37,8 @@
         renderingContext.translate(1200, 550);
         SpriteLibrary.jojo({
           renderingContext: renderingContext,
+          leftArmAngle: 30*Math.PI/180,
+          leftElbowAngle: 45*Math.PI/180
         });
         renderingContext.restore();
         
@@ -45,21 +49,24 @@
           renderingContext: renderingContext
         });
         renderingContext.restore();
-        /*renderingContext.save();
-        renderingContext.scale(0.5, 0.5);
-        renderingContext.translate(1550, 750);
+        
+        renderingContext.save();
+        renderingContext.translate(850, 230);
+        renderingContext.scale(.55,.55);
         SpriteLibrary.olivia({
           renderingContext: renderingContext,
-          mood: "mad"
+          mood: "shock",
+          leftArmAngle: 50*Math.PI/180,
+          rightElbowAngle: -100 * Math.PI / 180,
+          leftElbowAngle: 100*Math.PI / 180
         });
-        renderingContext.restore();*/
+        renderingContext.restore();
 
         window.requestAnimationFrame(drawScene);  
       };
 
       window.requestAnimationFrame(drawScene);
-    }())
-      
+    }())    
     </script>
   </body>
 </html>

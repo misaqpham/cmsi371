@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Bachelor</title>
+    <title>The Bachelor</title>
   </head>
   <body>
     <canvas id="canvas" width="1500" height="1500">
@@ -11,7 +11,7 @@
     </canvas>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="bachelorBen.js"></script>
-
+    
     <script>
     (function () {
       var canvas = document.getElementById("canvas");
@@ -20,8 +20,9 @@
       var leftElbowAngle = 0;
       var drawScene = function(){
         renderingContext.clearRect(0, 0, canvas.width, canvas.height);
-        /*renderingContext.save();
-        renderingContext.translate(300, 200);
+        
+        renderingContext.save();
+        renderingContext.translate(250, 200);
         renderingContext.scale(.8,.8);
         SpriteLibrary.bachelorBen({
           renderingContext: renderingContext,
@@ -30,24 +31,25 @@
         renderingContext.restore();
 
         renderingContext.save();
-        renderingContext.translate(500, 200);
+        renderingContext.translate(600, 200);
         renderingContext.scale(.8,.8);
         SpriteLibrary.bachelorBen({
           renderingContext: renderingContext,
-          headTilt: "straight"
+          headTilt: "straight",
+          leftElbowAngle: -40*Math.PI/180,
+          rightElbowAngle: 40*Math.PI/180
         });
-        renderingContext.restore();*/
+        renderingContext.restore();
 
         renderingContext.save();
-        //renderingContext.translate(700, 200);
-        renderingContext.translate(1000,200);
+        renderingContext.translate(900, 200);
         renderingContext.scale(.8,.8);
         SpriteLibrary.bachelorBen({
           renderingContext: renderingContext,
-          leftArmAngle: 45*Math.PI / 180,
-          rightArmAngle: -45* Math.PI/180,
+          leftArmAngle: 90*Math.PI / 180,
+          rightArmAngle: -90* Math.PI/180,
           rightElbowAngle: -95*Math.PI/180,
-          leftElbowAngle: leftElbowAngle*Math.PI/180,
+          //leftElbowAngle: leftElbowAngle*Math.PI/180,
           headTilt: "right"
         });
         renderingContext.restore();
@@ -56,12 +58,12 @@
         if (leftElbowAngle > 360) {
             leftElbowAngle = 0;
         }
+
         window.requestAnimationFrame(drawScene);  
       };
-
+      
       window.requestAnimationFrame(drawScene);
     }())
-      
     </script>
   </body>
 </html>

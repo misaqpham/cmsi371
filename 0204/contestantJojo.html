@@ -16,43 +16,49 @@
     (function () {
       var canvas = document.getElementById("canvas");
       var renderingContext = canvas.getContext("2d");
+      var leftElbowAngle = 0;
 
-      var drawScene = function(){
-      
+      var drawScene = function() {
+        renderingContext.clearRect(0, 0, canvas.width, canvas.height);
+
         renderingContext.save();
-        renderingContext.translate(350, 250);
-        renderingContext.scale(.6,.6);
+        renderingContext.translate(250, 250);
+        renderingContext.scale(.5,.5);
         SpriteLibrary.jojo({
-          renderingContext: renderingContext
+          renderingContext: renderingContext,
+          leftElbowAngle: -45*Math.PI/180,
+          rightElbowAngle: 45*Math.PI/180,
         });
         renderingContext.restore();
   
         renderingContext.save();
-        renderingContext.translate(600, 250);
-        renderingContext.scale(.6,.6);
+        renderingContext.translate(500, 250);
+        renderingContext.scale(.5,.5);
         SpriteLibrary.jojo({
           renderingContext: renderingContext,
-          rightArmAngle: -115*Math.PI/180,
-          leftArmAngle: 115*Math.PI/180
+          rightArmAngle: -145*Math.PI/180,
+          leftArmAngle: 145*Math.PI/180,
         });
         renderingContext.restore();
 
         renderingContext.save();
-        renderingContext.translate(850, 250);
-        renderingContext.scale(.6,.6);
+        renderingContext.translate(750, 250);
+        renderingContext.scale(.5,.5);
         SpriteLibrary.jojo({
           renderingContext: renderingContext,
-          rightArmAngle: -5*Math.PI/180,
-          leftArmAngle: 15*Math.PI/180
+          rightArmAngle: -55*Math.PI/180,
+          rightElbowAngle: 105*Math.PI/180
         });
         renderingContext.restore();
 
+        leftElbowAngle += 1;
+        if (leftElbowAngle > 360) {
+            leftElbowAngle = 0;
+        }
         window.requestAnimationFrame(drawScene);  
       };
-
       window.requestAnimationFrame(drawScene);
-    }())
-      
+    }())     
     </script>
   </body>
 </html>

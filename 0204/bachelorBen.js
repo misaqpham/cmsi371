@@ -29,9 +29,9 @@
 	}, false);
 	tuxImage.src ="tux.png";
 
-
-	var drawArm = function(renderingContext, armAngle, elbowAngle, armXOffset, armYOffSet) {
+	var drawArm = function (renderingContext, armAngle, elbowAngle, armXOffset, armYOffSet) {
 		renderingContext.save();
+
 		//upper arm
 		renderingContext.translate(-BODY_WIDTH / 2 + armXOffset, -tuxImage.height / 2 + armYOffSet);
 		renderingContext.fillStyle = "black";
@@ -57,6 +57,7 @@
 		renderingContext.beginPath();
 		renderingContext.arc(0, FOREARM_HEIGHT + handRadius, handRadius, 0 , 2 * Math.PI, true);
 		renderingContext.fill();
+		
         renderingContext.restore();
 	}
 
@@ -75,7 +76,7 @@
 			var bodyOffset = 25;
 			var tuxOffset = 25;
 			var headOffset = 10;
-			
+
 			var rightLegOffset = 75;
 			var leftLegOffset = 25;
 			var legPositionOffset = 15;

@@ -25,7 +25,9 @@
         renderingContext.scale(.5,.5);
         SpriteLibrary.olivia({
           renderingContext: renderingContext,
-          mood: "happy"
+          mood: "happy",
+          leftElbowAngle: -95*Math.PI/180,
+          leftArmAngle: 55*Math.PI / 180,
         });
         renderingContext.restore();
 
@@ -53,6 +55,7 @@
 
         window.requestAnimationFrame(drawScene);  
       };
+      
       window.requestAnimationFrame(drawScene);
     }())   
     </script>
