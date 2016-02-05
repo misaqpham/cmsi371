@@ -17,15 +17,14 @@
       var canvas = document.getElementById("canvas");
       var renderingContext = canvas.getContext("2d");
 
+      var leftElbowAngle = 0;
       var drawScene = function(){
-      
-        renderingContext.save();
+        renderingContext.clearRect(0, 0, canvas.width, canvas.height);
+        /*renderingContext.save();
         renderingContext.translate(300, 200);
         renderingContext.scale(.8,.8);
         SpriteLibrary.bachelorBen({
           renderingContext: renderingContext,
-          leftArmAngle: Math.PI / 4,
-          rightArmAngle: - Math.PI / 4,
           headTilt: "left"
         });
         renderingContext.restore();
@@ -35,23 +34,28 @@
         renderingContext.scale(.8,.8);
         SpriteLibrary.bachelorBen({
           renderingContext: renderingContext,
-          leftArmAngle: Math.PI / 4,
-          rightArmAngle: - Math.PI / 4,
           headTilt: "straight"
         });
-        renderingContext.restore();
+        renderingContext.restore();*/
 
         renderingContext.save();
-        renderingContext.translate(700, 200);
+        //renderingContext.translate(700, 200);
+        renderingContext.translate(1000,200);
         renderingContext.scale(.8,.8);
         SpriteLibrary.bachelorBen({
           renderingContext: renderingContext,
-          leftArmAngle: Math.PI / 4,
-          rightArmAngle: - Math.PI / 4,
+          leftArmAngle: 45*Math.PI / 180,
+          rightArmAngle: -45* Math.PI/180,
+          rightElbowAngle: -95*Math.PI/180,
+          leftElbowAngle: leftElbowAngle*Math.PI/180,
           headTilt: "right"
         });
         renderingContext.restore();
 
+        leftElbowAngle += 1;
+        if (leftElbowAngle > 360) {
+            leftElbowAngle = 0;
+        }
         window.requestAnimationFrame(drawScene);  
       };
 
