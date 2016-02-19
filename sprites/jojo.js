@@ -10,17 +10,19 @@
 	jojoImage.addEventListener("load", function() {
 		jojoLoaded = true;
 	}, false)
-	jojoImage.src ="bachelor-jojo.png";
+	jojoImage.src ="../sprites/bachelor-jojo.png";
 
 	var dressImage = new Image();
 	var dressLoaded = false;
 	dressImage.addEventListener("load", function() {
 		dressLoaded = true;
 	}, false)
-	dressImage.src ="jojo-dress.png";
+	dressImage.src ="../sprites/jojo-dress.png";
 
 	var BODY_WIDTH = dressImage.width;
 	var BODY_HEIGHT = dressImage.height;
+
+	window.SpriteLibrary.jojo = (function () {
 
 	var drawArm = function (renderingContext, armAngle, elbowAngle, armXOffset, armYOffset) {
 		renderingContext.save();
@@ -52,7 +54,7 @@
 		renderingContext.restore();
 	}
 
-	SpriteLibrary.jojo = function (jojoSpecification) {
+	var drawJojo = function (jojoSpecification) {
 		if (!jojoLoaded || !dressLoaded) {
 			return;
 		}
@@ -87,5 +89,7 @@
 		}
 		renderingContext.restore();	
 	}
+		return {draw: drawJojo};
+	}());
 
 }());

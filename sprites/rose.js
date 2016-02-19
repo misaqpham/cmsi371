@@ -9,7 +9,10 @@
 	}, false)
 	roseImage.src ="rose.png";
 	
-	SpriteLibrary.rose = function (roseSpecification){
+	window.SpriteLibrary.rose = (function (){
+
+		var drawRose = function(roseSpecification) {
+		
 		var renderingContext = roseSpecification.renderingContext;
 
 		renderingContext.save()
@@ -18,5 +21,10 @@
 			renderingContext.drawImage(roseImage, 0, 0);
 		}
 		renderingContext.restore();
-	}
+		}
+		
+		return {draw: drawRose};
+	
+	}());
+
 }());

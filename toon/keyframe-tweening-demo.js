@@ -27,7 +27,7 @@
         // has a drawing function and an array of keyframes.
         sprites = [
             {
-                draw: SpriteLibrary.bachelorBen.draw,
+                draw: SpriteLibrary.olivia.draw,
                 keyframes: [
                     {
                         frame: 0,

@@ -1,6 +1,8 @@
 (function () {
 	
 	window.SpriteLibrary = window.SpriteLibrary || {}; 
+	window.SpriteLibrary.olivia = (function () {
+		
 	var ARM_WIDTH = 35;
 	var ARM_HEIGHT = 100;
 	var FOREARM_HEIGHT = 90; 
@@ -10,21 +12,21 @@
 	oliviaImage.addEventListener("load", function() {
 		oliviaLoaded = true;
 	}, false)
-	oliviaImage.src ="olivia-bach.png";
+	oliviaImage.src ="../sprites/olivia-bach.png";
 	
 	var oliviaMadImage = new Image();
 	var oliviaMadLoaded = false;
 	oliviaMadImage.addEventListener("load", function() {
 		oliviaMadLoaded = true;
 	}, false)
-	oliviaMadImage.src ="olivia2-bach.png";
+	oliviaMadImage.src ="../sprites/olivia2-bach.png";
 
 	var oliviaShockImage = new Image();
 	var oliviaShockLoaded = false;
 	oliviaShockImage.addEventListener("load", function() {
 		oliviaShockLoaded = true;
 	}, false)
-	oliviaShockImage.src ="olivia-scream.png";
+	oliviaShockImage.src ="../sprites/olivia-scream.png";
 
 	var dressImage = new Image();
 	var dressLoaded = false;
@@ -32,7 +34,7 @@
 	dressImage.addEventListener("load", function() {
 		dressLoaded = true;
 	}, false)
-	dressImage.src ="olivia-dress.png";
+	dressImage.src ="../sprites/olivia-dress.png";
 
 	var BODY_WIDTH = dressImage.width;
 	var BODY_HEIGHT = dressImage.height;
@@ -67,7 +69,7 @@
 		renderingContext.restore();
 	}
 
-	SpriteLibrary.olivia = function (oliviaSpecification) {
+	var drawOlivia = function (oliviaSpecification) {
 		if (!oliviaLoaded || !oliviaMadLoaded || !oliviaShockLoaded || !dressLoaded) {
 			return;
 		}
@@ -115,5 +117,6 @@
 		}
 		renderingContext.restore();
 	}
-
+		return {draw: drawOlivia};
+	}());
 }());
