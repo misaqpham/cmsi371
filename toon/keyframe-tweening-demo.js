@@ -8,12 +8,14 @@
         // First, a selection of "drawing functions" from which we
         // can choose.  Their common trait: they all accept a single
         // renderingContext argument.
-        square = function (renderingContext) {
+        square = function (parameters) {
+            var renderingContext = parameters.renderingContext;
             renderingContext.fillStyle = "blue";
             renderingContext.fillRect(-20, -20, 40, 40);
         },
 
-        circle = function (renderingContext) {
+        circle = function (parameters) {
+            var renderingContext = parameters.renderingContext;
             renderingContext.strokeStyle = "red";
             renderingContext.beginPath();
             renderingContext.arc(0, 0, 50, 0, Math.PI * 2);
