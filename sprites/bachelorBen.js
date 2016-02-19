@@ -20,49 +20,51 @@
 	bachelorImage.addEventListener("load", function() {
 		bachelorLoaded = true;
 	}, false);
-	bachelorImage.src ="ben-higgins.png";
+	bachelorImage.src ="../sprites/ben-higgins.png";
 
 	var tuxImage = new Image();
 	var tuxLoaded = false;
 	tuxImage.addEventListener("load", function() {
 		tuxLoaded = true;
 	}, false);
-	tuxImage.src ="tux.png";
-
-	var drawArm = function (renderingContext, armAngle, elbowAngle, armXOffset, armYOffSet) {
-		renderingContext.save();
-
-		//upper arm
-		renderingContext.translate(-BODY_WIDTH / 2 + armXOffset, -tuxImage.height / 2 + armYOffSet);
-		renderingContext.fillStyle = "black";
-		renderingContext.rotate(armAngle);
-		renderingContext.fillRect(-ARM_WIDTH / 2, 0, ARM_WIDTH, ARM_HEIGHT);
-		
-		//elbow
-		var elbowRadius = ARM_WIDTH / 2;
-		renderingContext.fillStyle = "black";
-		renderingContext.beginPath();
-		renderingContext.arc(0, ARM_HEIGHT, elbowRadius, 0 , 2 * Math.PI, true);
-		renderingContext.fill();
+	tuxImage.src ="../sprites/tux.png";
 	
-		//forearm
-		renderingContext.fillStyle = "black";
-		renderingContext.translate(0, ARM_HEIGHT);
-		renderingContext.rotate(elbowAngle);
-		renderingContext.fillRect(-elbowRadius, 0, ARM_WIDTH, FOREARM_HEIGHT);
-        
-        //hand
-        var handRadius = ARM_WIDTH / 2;
-        renderingContext.fillStyle = "#E2B98F";
-		renderingContext.beginPath();
-		renderingContext.arc(0, FOREARM_HEIGHT + handRadius, handRadius, 0 , 2 * Math.PI, true);
-		renderingContext.fill();
-		
-        renderingContext.restore();
-	}
+	window.SpriteLibrary.bachelorBen = (function() {
+	
+		var drawArm = function (renderingContext, armAngle, elbowAngle, armXOffset, armYOffSet) {
+			renderingContext.save();
 
-	SpriteLibrary.bachelorBen = function(bachelorSpecification) {
+			//upper arm
+			renderingContext.translate(-BODY_WIDTH / 2 + armXOffset, -tuxImage.height / 2 + armYOffSet);
+			renderingContext.fillStyle = "black";
+			renderingContext.rotate(armAngle);
+			renderingContext.fillRect(-ARM_WIDTH / 2, 0, ARM_WIDTH, ARM_HEIGHT);
+			
+			//elbow
+			var elbowRadius = ARM_WIDTH / 2;
+			renderingContext.fillStyle = "black";
+			renderingContext.beginPath();
+			renderingContext.arc(0, ARM_HEIGHT, elbowRadius, 0 , 2 * Math.PI, true);
+			renderingContext.fill();
 		
+			//forearm
+			renderingContext.fillStyle = "black";
+			renderingContext.translate(0, ARM_HEIGHT);
+			renderingContext.rotate(elbowAngle);
+			renderingContext.fillRect(-elbowRadius, 0, ARM_WIDTH, FOREARM_HEIGHT);
+	        
+	        //hand
+	        var handRadius = ARM_WIDTH / 2;
+	        renderingContext.fillStyle = "#E2B98F";
+			renderingContext.beginPath();
+			renderingContext.arc(0, FOREARM_HEIGHT + handRadius, handRadius, 0 , 2 * Math.PI, true);
+			renderingContext.fill();
+			
+	        renderingContext.restore();
+		}
+		
+		var drawBen = function(bachelorSpecification) {
+
 		var renderingContext = bachelorSpecification.renderingContext;
 		var leftArmAngle = bachelorSpecification.leftArmAngle || ((30*Math.PI/180));
 		var rightArmAngle = bachelorSpecification.rightArmAngle || (-30*Math.PI/180);
@@ -126,6 +128,7 @@
 										LEG_WIDTH, LEG_HEIGHT);
 		}
 		renderingContext.restore()
-	};
-	
+		}
+		return {draw: drawBen};
+	})();
 }());
