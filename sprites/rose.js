@@ -2,15 +2,15 @@
 	
 	window.SpriteLibrary = window.SpriteLibrary || {}; //do this instead using OR
 	
-	var roseImage = new Image();
-	var roseLoaded = false;
-	roseImage.addEventListener("load", function() {
-		roseLoaded = true;
-	}, false)
-	roseImage.src ="rose.png";
-	
 	window.SpriteLibrary.rose = (function (){
-
+	
+		var roseImage = new Image();
+		var roseLoaded = false;
+		roseImage.addEventListener("load", function() {
+			roseLoaded = true;
+		}, false)
+		roseImage.src ="../sprites/rose.png";
+	
 		var drawRose = function(roseSpecification) {
 		
 		var renderingContext = roseSpecification.renderingContext;

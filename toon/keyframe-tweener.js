@@ -58,6 +58,7 @@
                 // Clear the canvas.
                 renderingContext.clearRect(0, 0, width, height);
 
+
                 // For every sprite, go to the current pair of keyframes.
                 // Then, draw the sprite based on the current frame.
                 for (var i = 0, maxI = sprites.length; i < maxI; i += 1) {
@@ -110,7 +111,7 @@
 
                             // Draw the sprite.
                             sprites[i].draw({
-                                renderingContext: renderingContext
+                                renderingContext: renderingContext,
                             });
 
                             // Clean up.
