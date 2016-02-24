@@ -109,10 +109,43 @@
                                 ease(currentTweenFrame, rotateStart, rotateDistance, duration)
                             );
 
+                            //Draw sprite based of given parameters
+
+                            // var leftArmAngle = startKeyframe.leftArmAngle;
+
+                            // var leftElbowAngle = startKeyframe.leftElbowAngle;
+
+                            // var rightArmAngle = startKeyframe.rightArmAngle;
+
+                            // var rightElbowAngle = startKeyframe.rightElbowAngle;
+
+                            // var mood = startKeyframe.mood;
+
+                            // var headTilt = startKeyframe.headTilt;
+
+
+                            // var objectParameters = {renderingContext: renderingContext,
+                            //                         mood: mood,
+                            //                         leftArmAngle: leftArmAngle,
+                            //                         rightArmAngle: rightArmAngle,
+                            //                         leftElbowAngle: leftElbowAngle,
+                            //                         rightElbowAngle: rightElbowAngle,
+                            //                         headTilt: headTilt,
+                            //                         }
+
+                            var objectParameters = {renderingContext: renderingContext,
+                                                    mood: startKeyframe.mood,
+                                                    headTilt: startKeyframe.headTilt};
+
+                            for (var property in startKeyframe) {
+                                var start = startKeyframe[property];
+                                var distance = endKeyframe[property] - start;
+                                objectParameters[property] = ease(currentTweenFrame, start, distance, duration);
+                            }
+
+
                             // Draw the sprite.
-                            sprites[i].draw({
-                                renderingContext: renderingContext,
-                            });
+                            sprites[i].draw(objectParameters);
 
                             // Clean up.
                             renderingContext.restore();
@@ -155,4 +188,6 @@
 
         initialize: initializeAnimation
     };
+
+     
 }());
