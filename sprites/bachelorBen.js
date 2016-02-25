@@ -94,13 +94,13 @@
 				//draw head image
 				renderingContext.save();
 				renderingContext.scale(.9,.9);
-				if (headTilt == "straight") {
+				if (headTilt == "straight" || 0) {
 					renderingContext.rotate(5*Math.PI/180);
 					renderingContext.drawImage(bachelorImage, -bachelorImage.width, -bachelorImage.height - headOffset);
-				} else if (headTilt == "right") {
+				} else if (headTilt == "right" || 1) {
 					renderingContext.rotate(20*Math.PI/180);
 					renderingContext.drawImage(bachelorImage, -bachelorImage.width, -bachelorImage.height + headOffset/2);
-				} else if (headTilt == "left") {
+				} else if (headTilt == "left" || 2) {
 					renderingContext.rotate(350*Math.PI/180);
 					renderingContext.drawImage(bachelorImage, -bachelorImage.width, -bachelorImage.height - headOffset*2);
 				}

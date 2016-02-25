@@ -119,9 +119,9 @@
 
                             // var rightElbowAngle = startKeyframe.rightElbowAngle;
 
-                            // var mood = startKeyframe.mood;
+                            var mood = startKeyframe.mood;
 
-                            // var headTilt = startKeyframe.headTilt;
+                            var headTilt = startKeyframe.headTilt;
 
 
                             // var objectParameters = {renderingContext: renderingContext,
@@ -133,9 +133,10 @@
                             //                         headTilt: headTilt,
                             //                         }
 
+                            
                             var objectParameters = {renderingContext: renderingContext,
-                                                    mood: startKeyframe.mood,
-                                                    headTilt: startKeyframe.headTilt};
+                                                    mood: mood,
+                                                    headTilt: headTilt};
 
                             for (var property in startKeyframe) {
                                 var start = startKeyframe[property];

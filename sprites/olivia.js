@@ -76,7 +76,7 @@
 			}
 
 			var renderingContext = oliviaSpecification.renderingContext;
-			var mood = oliviaSpecification.mood || "happy";
+			var mood = oliviaSpecification.mood || "happy" ;
 			var leftArmAngle = oliviaSpecification.leftArmAngle || (15*Math.PI/180);
 			var rightArmAngle = oliviaSpecification.rightArmAngle || (-15*Math.PI/180);
 			var leftElbowAngle = oliviaSpecification.leftElbowAngle || (15*Math.PI/180);
@@ -100,17 +100,17 @@
 			drawArm(renderingContext, leftArmAngle, leftElbowAngle, -armXOffset, armYOffset);
 			
 			renderingContext.save();
-			if (mood == "happy" && oliviaLoaded) {
+			if (mood == "happy" || 0 && oliviaLoaded) {
 				renderingContext.save();
 				renderingContext.scale(.9, .9);
 				renderingContext.drawImage(oliviaImage, -oliviaImage.width, -oliviaImage.height);
 				renderingContext.restore();
-			} else if (mood == "mad" && oliviaMadImage) {
+			} else if (mood == "mad" || 1 && oliviaMadImage) {
 				renderingContext.save();
 				renderingContext.scale(.8, .8);
 				renderingContext.drawImage(oliviaMadImage, -oliviaMadImage.width, -oliviaMadImage.height + imageOffset1);
 				renderingContext.restore();
-			} else if (mood == "shock" && oliviaShockImage) {
+			} else if (mood == "shock" || 2 && oliviaShockImage) {
 				renderingContext.save();
 				renderingContext.scale(1.2,1.2);
 				renderingContext.drawImage(oliviaShockImage, -oliviaShockImage.width - imageOffset2, -oliviaShockImage.height + imageOffset2);

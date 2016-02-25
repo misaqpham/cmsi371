@@ -42,7 +42,7 @@
                         sy: .5,
                         ease: KeyframeTweener.linear,
                         rightElbowAngle: Math.PI/180 * 90,
-                        //mood: "mad"
+                        mood: 0
                     },
 
                     {
@@ -52,8 +52,7 @@
                         sx: .5, 
                         sy: .5,
                         rightElbowAngle: Math.PI/180 * 40,
-                        //rightArmAngle: Math.PI/180 * 70,
-                        //mood: "mad"
+                        rightArmAngle: Math.PI/180 * 70,
                     },
                     
                     {
@@ -62,6 +61,7 @@
                         ty: 345,
                         sx: .5, 
                         sy: .5,
+                        mood: 0
                     },
 
                     {
@@ -71,7 +71,7 @@
                         sx: .5, 
                         sy: .5,
                         rightArmAngle: Math.PI/180 * 70,
-
+                        mood: 3
                     },
 
                     {
@@ -142,7 +142,7 @@
                         sx: .65, 
                         sy: .65,
                         ease: KeyframeTweener.linear,
-                        //headTilt: "left"
+                        headTilt: 2
                     },
 
                     {
@@ -151,7 +151,7 @@
                         ty: 325,
                         sx: .65, 
                         sy: .65,
-                        //headTilt: "straight"
+                        headTilt: 0
                     },
                     
                     {
@@ -160,7 +160,7 @@
                         ty: 325,
                         sx: .65, 
                         sy: .65,
-                        //headTilt: "right"
+                        headTilt: 1
                     },
 
                     {
