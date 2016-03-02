@@ -24,14 +24,44 @@
             renderingContext.fill();
         },
 
+        title = function(parameters) {
+            var renderingContext = parameters.renderingContext;
+            renderingContext.font = "48px zapfino";
+            renderingContext.fillStyle = "white";
+            renderingContext.fillText("Tonight, on the \"most dramatic\" final rose ceremony...", 10, 50);
+        }
+
         // Then, we have "easing functions" that determine how
         // intermediate frames are computed.
 
         // Now, to actually define the animated sprites.  Each sprite
         // has a drawing function and an array of keyframes.
         sprites = [
-            {
-//OLIVIA
+                {
+        //title
+                        draw: title,
+                        keyframes: [
+                            {
+                                frame: 0,
+                                tx: 100,
+                                ty: 50,
+                                sx: .5, 
+                                sy: .5,
+                                ease: KeyframeTweener.linear,
+                            },
+
+                            {
+                                frame: 100,
+                                tx: 75,
+                                ty: 50,
+                                sx: .5, 
+                                sy: .5,
+                            }
+                        ]
+                },
+
+                {
+    //olivia
                 draw: SpriteLibrary.olivia.draw,
                 keyframes: [
                     {
@@ -41,8 +71,6 @@
                         sx: .5, 
                         sy: .5,
                         ease: KeyframeTweener.linear,
-                        rightElbowAngle: Math.PI/180 * 90,
-                        mood: 0
                     },
 
                     {
@@ -51,8 +79,8 @@
                         ty: 345,
                         sx: .5, 
                         sy: .5,
-                        rightElbowAngle: Math.PI/180 * 40,
-                        rightArmAngle: Math.PI/180 * 70,
+                        leftElbowAngle: -15*Math.PI/180,
+                        rightElbowAngle: 15*Math.PI/180,
                     },
                     
                     {
@@ -61,7 +89,8 @@
                         ty: 345,
                         sx: .5, 
                         sy: .5,
-                        mood: 0
+                        leftElbowAngle: -25*Math.PI/180,
+                        rightElbowAngle: 25*Math.PI/180,
                     },
 
                     {
@@ -70,16 +99,18 @@
                         ty: 345,
                         sx: .5, 
                         sy: .5,
-                        rightArmAngle: Math.PI/180 * 70,
-                        mood: 3
+                        leftElbowAngle: -25*Math.PI/180,
+                        rightElbowAngle: 45*Math.PI/180,
                     },
 
                     {
                         frame: 500,
-                        tx: 950,
+                        tx: 1000,
                         ty: 345,
                         sx: .5, 
                         sy: .5,
+                        leftElbowAngle: -25*Math.PI/180,
+                        rightElbowAngle: 45*Math.PI/180,
                     }
                 ]
             },
@@ -93,41 +124,65 @@
                         ty: 390,
                         sx: .45, 
                         sy: .45,
-                        rightArmAngle: Math.PI/180 * 70,
                         ease: KeyframeTweener.linear
                     },
 
                     {
-                        frame: 50,
+                        frame: 25,
                         tx: 950,
                         ty: 390,
                         sx: .45, 
                         sy: .45,
-                        rightArmAngle: Math.PI/180 * 20,
+                        leftElbowAngle: -15*Math.PI/180,
+                        rightElbowAngle: 15*Math.PI/180,
                     },
-                    
+
+
                     {
-                        frame: 100,
+                        frame: 50,
                         tx: 900,
                         ty: 390,
                         sx: .45, 
                         sy: .45,
+                        leftElbowAngle: -25*Math.PI/180,
+                        rightElbowAngle: 25*Math.PI/180,
                     },
-
+                    
                     {
-                        frame: 150,
+                        frame: 100,
                         tx: 850,
                         ty: 390,
                         sx: .45, 
                         sy: .45,
+                        leftArmAngle: 10*Math.PI/180,
+                        rightArmAngle: -10*Math.PI/180,
+                        leftElbowAngle: -35*Math.PI/180,
+                        rightElbowAngle: 35*Math.PI/180,
                     },
 
                     {
-                        frame: 500,
+                        frame: 150,
                         tx: 825,
                         ty: 390,
                         sx: .45, 
                         sy: .45,
+                        leftArmAngle: 5*Math.PI/180,
+                        rightArmAngle: -5*Math.PI/180,
+                        leftElbowAngle: -45*Math.PI/180,
+                        rightElbowAngle: 45*Math.PI/180,
+                        ease: KeyframeTweener.quadEaseOut
+                    },
+
+                    {
+                        frame: 200,
+                        tx: 825,
+                        ty: 390,
+                        sx: .45, 
+                        sy: .45,
+                        leftArmAngle: 5*Math.PI/180,
+                        rightArmAngle: -5*Math.PI/180,
+                        leftElbowAngle: -55*Math.PI/180,
+                        rightElbowAngle: 55*Math.PI/180,
                     }
                 ]
             },
@@ -141,8 +196,7 @@
                         ty: 325,
                         sx: .65, 
                         sy: .65,
-                        ease: KeyframeTweener.linear,
-                        headTilt: 2
+                        ease: KeyframeTweener.quadEaseOut,
                     },
 
                     {
@@ -151,21 +205,22 @@
                         ty: 325,
                         sx: .65, 
                         sy: .65,
-                        headTilt: 0
+                        headTilt: 2,
+            
                     },
                     
                     {
                         frame: 100,
-                        tx: 400,
+                        tx: 350,
                         ty: 325,
                         sx: .65, 
                         sy: .65,
-                        headTilt: 1
+                       
                     },
 
                     {
                         frame: 150,
-                        tx: 500,
+                        tx: 400,
                         ty: 325,
                         sx: .65, 
                         sy: .65,
@@ -173,7 +228,7 @@
 
                     {
                         frame: 550,
-                        tx: 500,
+                        tx: 400,
                         ty: 325,
                         sx: .65, 
                         sy: .65,
@@ -190,7 +245,7 @@
                         ty: 350,
                         sx: .75, 
                         sy: .75,
-                        ease: KeyframeTweener.quadEaseInAndOut
+                        ease: KeyframeTweener.quadEaseOut
                     },
 
                     {
@@ -218,7 +273,33 @@
                     }
                 ]
             },
+//dialogue
+            {
+                draw: SpriteLibrary.dialogue.draw,
+                keyframes: [
+                    {
+                        frame: 150,
+                        tx: 400,
+                        ty: 100,
+                        ease: KeyframeTweener.linear
+                    },
 
+                    {
+                        frame: 200,
+                        tx: 400,
+                        ty: 100,
+                    },
+
+                    {
+                        frame: 250,
+                        tx: 400,
+                        ty: 100,
+                    }
+                ]
+            },
+
+
+//heart
             {
                 draw: heart,
                 keyframes: [

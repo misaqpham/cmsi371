@@ -76,11 +76,11 @@
 			}
 
 			var renderingContext = oliviaSpecification.renderingContext;
-			var mood = oliviaSpecification.mood || "happy" ;
+			var mood = oliviaSpecification.mood || "happy" || 0;
 			var leftArmAngle = oliviaSpecification.leftArmAngle || (15*Math.PI/180);
-			var rightArmAngle = oliviaSpecification.rightArmAngle || (-15*Math.PI/180);
-			var leftElbowAngle = oliviaSpecification.leftElbowAngle || (15*Math.PI/180);
-			var rightElbowAngle = oliviaSpecification.rightElbowAngle || (-15*Math.PI/180);
+			var rightArmAngle = oliviaSpecification.rightArmAngle || (-10*Math.PI/180);
+			var leftElbowAngle = oliviaSpecification.leftElbowAngle || (5*Math.PI/180);
+			var rightElbowAngle = oliviaSpecification.rightElbowAngle || (-5*Math.PI/180);
 
 			var dressOffset = 45;
 			var imageOffset1 = 30;

@@ -65,10 +65,10 @@
 		var drawBen = function(bachelorSpecification) {
 
 			var renderingContext = bachelorSpecification.renderingContext;
-			var leftArmAngle = bachelorSpecification.leftArmAngle || ((30*Math.PI/180));
-			var rightArmAngle = bachelorSpecification.rightArmAngle || (-30*Math.PI/180);
-			var leftElbowAngle = bachelorSpecification.leftElbowAngle || ((30*Math.PI/180));
-			var rightElbowAngle = bachelorSpecification.rightElbowAngle || (-30*Math.PI/180);
+			var leftArmAngle = bachelorSpecification.leftArmAngle || ((25*Math.PI/180));
+			var rightArmAngle = bachelorSpecification.rightArmAngle || (-25*Math.PI/180);
+			var leftElbowAngle = bachelorSpecification.leftElbowAngle || ((-25*Math.PI/180));
+			var rightElbowAngle = bachelorSpecification.rightElbowAngle || (25*Math.PI/180);
 			var headTilt = bachelorSpecification.headTilt || "straight";
 			
 			renderingContext.save();

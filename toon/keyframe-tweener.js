@@ -110,38 +110,29 @@
                             );
 
                             //Draw sprite based of given parameters
-
-                            // var leftArmAngle = startKeyframe.leftArmAngle;
-
-                            // var leftElbowAngle = startKeyframe.leftElbowAngle;
-
-                            // var rightArmAngle = startKeyframe.rightArmAngle;
-
-                            // var rightElbowAngle = startKeyframe.rightElbowAngle;
-
-                            var mood = startKeyframe.mood;
-
-                            var headTilt = startKeyframe.headTilt;
-
-
-                            // var objectParameters = {renderingContext: renderingContext,
-                            //                         mood: mood,
-                            //                         leftArmAngle: leftArmAngle,
-                            //                         rightArmAngle: rightArmAngle,
-                            //                         leftElbowAngle: leftElbowAngle,
-                            //                         rightElbowAngle: rightElbowAngle,
-                            //                         headTilt: headTilt,
-                            //                         }
-
                             
-                            var objectParameters = {renderingContext: renderingContext,
-                                                    mood: mood,
-                                                    headTilt: headTilt};
+                            var objectParameters = {renderingContext: renderingContext};
 
                             for (var property in startKeyframe) {
-                                var start = startKeyframe[property];
-                                var distance = endKeyframe[property] - start;
-                                objectParameters[property] = ease(currentTweenFrame, start, distance, duration);
+
+                                // if(property = "mood") {
+                                //     var mood;
+                                //     if(startKeyframe[property] == "happy") {
+                                //         property = 0;
+                                //     } else if(startKeyframe[property] == "mad") {
+                                //         property = 1;
+                                //     } else if(startKeyframe[property] == "shocked") {
+                                //          property = 2;
+                                //     }
+                                // }
+                                //     var start = startKeyframe[mood];
+                                //     var distance = endKeyframe[mood] - start;
+                                //     objectParameters[mood] = ease(currentTweenFrame, start, distance, duration);
+                                // } else {
+                                    var start = startKeyframe[property];
+                                    var distance = endKeyframe[property] - start;
+                                    objectParameters[property] = ease(currentTweenFrame, start, distance, duration);
+                                //}
                             }
 
 

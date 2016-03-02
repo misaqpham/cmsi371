@@ -16,7 +16,10 @@
                 renderingContext.quadraticCurveTo(225,100,225,62.5);
                 renderingContext.quadraticCurveTo(225,25,175,25.5);
                 renderingContext.lineTo(75,25);
+                renderingContext.fillStyle = "black";
                 renderingContext.stroke();
+                renderingContext.fillStyle ="white";
+                renderingContext.fill();
             } else if (size == "medium") {
                 renderingContext.beginPath();
                 renderingContext.moveTo(75,25);
@@ -28,7 +31,10 @@
                 renderingContext.quadraticCurveTo(325,100,325,62.5);
                 renderingContext.quadraticCurveTo(325,25,275,25.5);
                 renderingContext.lineTo(75,25);
+                renderingContext.fillStyle = "black";
                 renderingContext.stroke();
+                renderingContext.fillStyle ="white";
+                renderingContext.fill();
             } else if (size == "large") {
                 renderingContext.beginPath();
                 renderingContext.moveTo(75,25);
@@ -40,7 +46,10 @@
                 renderingContext.quadraticCurveTo(425,100,425,62.5);
                 renderingContext.quadraticCurveTo(425,25,375,25.5);
                 renderingContext.lineTo(75,25);
+                renderingContext.fillStyle = "black";
                 renderingContext.stroke();
+                renderingContext.fillStyle ="white";
+                renderingContext.fill();
             }
           }
 
@@ -64,7 +73,9 @@
                 renderingContext.restore();
                 writeText(renderingContext, text, font, xPosition); 
             } else {
+                renderingContext.save();
                 drawBubble(renderingContext, size);
+                renderingContext.restore();
                 writeText(renderingContext, text, font, xPosition);
             }  
         }

@@ -62,8 +62,8 @@
 			var renderingContext = jojoSpecification.renderingContext;
 			var leftArmAngle = jojoSpecification.leftArmAngle || (15*Math.PI/180);
 			var rightArmAngle = jojoSpecification.rightArmAngle || (-15*Math.PI/180);
-			var leftElbowAngle = jojoSpecification.leftElbowAngle || (15*Math.PI/180);
-			var rightElbowAngle = jojoSpecification.rightElbowAngle || (-15*Math.PI/180);
+			var leftElbowAngle = jojoSpecification.leftElbowAngle || (-5*Math.PI/180);
+			var rightElbowAngle = jojoSpecification.rightElbowAngle || (5*Math.PI/180);
 
 			var dressOffset = 35;
 			var armYOffset = 160;
