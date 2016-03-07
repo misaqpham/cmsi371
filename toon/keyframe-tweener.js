@@ -115,24 +115,14 @@
 
                             for (var property in startKeyframe) {
 
-                                // if(property = "mood") {
-                                //     var mood;
-                                //     if(startKeyframe[property] == "happy") {
-                                //         property = 0;
-                                //     } else if(startKeyframe[property] == "mad") {
-                                //         property = 1;
-                                //     } else if(startKeyframe[property] == "shocked") {
-                                //          property = 2;
-                                //     }
-                                // }
-                                //     var start = startKeyframe[mood];
-                                //     var distance = endKeyframe[mood] - start;
-                                //     objectParameters[mood] = ease(currentTweenFrame, start, distance, duration);
-                                // } else {
-                                    var start = startKeyframe[property];
-                                    var distance = endKeyframe[property] - start;
-                                    objectParameters[property] = ease(currentTweenFrame, start, distance, duration);
-                                //}
+                                    if (typeof(startKeyframe[property]) == 'string') {
+                                        objectParameters[property] = startKeyframe[property];
+                                        console.log(property + ": " + objectParameters[property]);
+                                    } else {
+                                        var start = startKeyframe[property];
+                                        var distance = endKeyframe[property] - start;
+                                        objectParameters[property] = ease(currentTweenFrame, start, distance, duration);
+                                    }
                             }
 
 

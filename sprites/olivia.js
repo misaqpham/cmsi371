@@ -100,17 +100,17 @@
 			drawArm(renderingContext, leftArmAngle, leftElbowAngle, -armXOffset, armYOffset);
 			
 			renderingContext.save();
-			if (mood == "happy" || 0 && oliviaLoaded) {
+			if (mood == "happy" && oliviaLoaded) {
 				renderingContext.save();
 				renderingContext.scale(.9, .9);
 				renderingContext.drawImage(oliviaImage, -oliviaImage.width, -oliviaImage.height);
 				renderingContext.restore();
-			} else if (mood == "mad" || 1 && oliviaMadImage) {
+			} else if (mood == "mad" && oliviaMadLoaded) {
 				renderingContext.save();
 				renderingContext.scale(.8, .8);
 				renderingContext.drawImage(oliviaMadImage, -oliviaMadImage.width, -oliviaMadImage.height + imageOffset1);
 				renderingContext.restore();
-			} else if (mood == "shock" || 2 && oliviaShockImage) {
+			} else if (mood == "shocked" && oliviaShockLoaded ) {
 				renderingContext.save();
 				renderingContext.scale(1.2,1.2);
 				renderingContext.drawImage(oliviaShockImage, -oliviaShockImage.width - imageOffset2, -oliviaShockImage.height + imageOffset2);

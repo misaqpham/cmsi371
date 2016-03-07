@@ -48,21 +48,23 @@
                 renderingContext.lineTo(75,25);
                 renderingContext.fillStyle = "black";
                 renderingContext.stroke();
-                renderingContext.fillStyle ="white";
+                renderingContext.fillStyle = "white";
                 renderingContext.fill();
             }
           }
 
-        var writeText = function(renderingContext, text, font, xPosition) {
+        var writeText = function(renderingContext, text, font, xPosition, yPosition) {
             renderingContext.font = font;
-            renderingContext.fillText(text, xPosition, 75);
+            renderingContext.fillStyle = "black";
+            renderingContext.fillText(text, xPosition, yPosition/2 + 20);
         }
         
         var drawDialogue = function(dialogueSpecification) { 
             var renderingContext = dialogueSpecification.renderingContext;
             var text = dialogueSpecification.text;
-            var font = dialogueSpecification.font || "32px calibri";
-            var xPosition = dialogueSpecification.textPosition;
+            var font = dialogueSpecification.font || "28px calibri";
+            var xPosition = dialogueSpecification.tx;
+            var yPosition = dialogueSpecification.ty;
             var size = dialogueSpecification.bubbleSize || "medium";
             var speakerPosition = dialogueSpecification.speakerPosition || "left";
 
@@ -71,12 +73,12 @@
                 renderingContext.scale(-1,1); 
                 drawBubble(renderingContext, size);
                 renderingContext.restore();
-                writeText(renderingContext, text, font, xPosition); 
+                writeText(renderingContext, text, font, -xPosition + 500, yPosition); 
             } else {
                 renderingContext.save();
                 drawBubble(renderingContext, size);
                 renderingContext.restore();
-                writeText(renderingContext, text, font, xPosition);
+                writeText(renderingContext, text, font, xPosition - 350, yPosition);
             }  
         }
         return {draw: drawDialogue};

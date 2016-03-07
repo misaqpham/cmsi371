@@ -65,7 +65,7 @@
                 draw: SpriteLibrary.olivia.draw,
                 keyframes: [
                     {
-                        frame: 100,
+                        frame: 80,
                         tx: 1100,
                         ty: 345,
                         sx: .5, 
@@ -106,7 +106,7 @@
                     },
 
                     {
-                        frame: 500,
+                        frame: 450,
                         tx: 1000,
                         ty: 345,
                         sx: .5, 
@@ -115,19 +115,29 @@
                         rightElbowAngle: 45*Math.PI/180,
                     },
 
-                    {
-                        frame: 550,
-                        tx: 1000,
-                        ty: 345,
-                        sx: .5, 
-                        sy: .5,
-                        leftElbowAngle: -35*Math.PI/180,
-                        leftArmAngle: 55*Math.PI / 180,
-                    },
+                    // {
+                    //     frame: 500,
+                    //     tx: 1000,
+                    //     ty: 345,
+                    //     sx: .5, 
+                    //     sy: .5,
+                    //     leftElbowAngle: -25*Math.PI/180,
+                    //     rightElbowAngle: 45*Math.PI/180,
+                    // },
+
+                    // {
+                    //     frame: 550,
+                    //     tx: 1000,
+                    //     ty: 345,
+                    //     sx: .5, 
+                    //     sy: .5,
+                    //     leftElbowAngle: -35*Math.PI/180,
+                    //     leftArmAngle: 55*Math.PI / 180,
+                    // },
 
                     //arms to heart
                     {
-                        frame: 650,
+                        frame: 525,
                         tx: 1000,
                         ty: 345,
                         sx: .5, 
@@ -140,7 +150,7 @@
 
                     //arms to sky
                     {
-                        frame: 750,
+                        frame: 550,
                         tx: 1000,
                         ty: 345,
                         sx: .5, 
@@ -152,9 +162,9 @@
                     },
 
                     {
-                        frame: 775,
+                        frame: 575,
                         tx: 1000,
-                        ty: 345,
+                        ty: 300,
                         sx: .5, 
                         sy: .5,
                         rightArmAngle: -140*Math.PI / 180,
@@ -164,7 +174,7 @@
                     },
 
                     {
-                        frame: 800,
+                        frame: 600,
                         tx: 1000,
                         ty: 345,
                         sx: .5, 
@@ -173,7 +183,83 @@
                         leftArmAngle: 140*Math.PI / 180,
                         rightElbowAngle: -40*Math.PI / 180,
                         leftElbowAngle: 40*Math.PI / 180,
-                    }
+                    },
+
+                    {
+                        frame: 625,
+                        tx: 1000,
+                        ty: 300,
+                        sx: .5, 
+                        sy: .5,
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -30*Math.PI / 180,
+                        leftElbowAngle: 30*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 650,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -40*Math.PI / 180,
+                        leftElbowAngle: 40*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 675,
+                        tx: 1000,
+                        ty: 300,
+                        sx: .5, 
+                        sy: .5,
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -30*Math.PI / 180,
+                        leftElbowAngle: 30*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 700,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -15*Math.PI/180,
+                        rightElbowAngle: 140*Math.PI/180,
+                        leftArmAngle: 15*Math.PI/180,
+                        leftElbowAngle: -140*Math.PI/180,
+                    },
+
+                    {
+                        frame: 725,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -15*Math.PI/180,
+                        rightElbowAngle: 140*Math.PI/180,
+                        leftArmAngle: 15*Math.PI/180,
+                        leftElbowAngle: -10*Math.PI/180,
+                    },
+
+                    {
+                        frame: 800,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -15*Math.PI/180,
+                        rightElbowAngle: 140*Math.PI/180,
+                        leftArmAngle: 15*Math.PI/180,
+                        leftElbowAngle: -10*Math.PI/180,
+                    },
+
                 ]
             },
 //JOJO
@@ -181,7 +267,7 @@
                 draw: SpriteLibrary.jojo.draw,
                 keyframes: [
                     {
-                        frame: 100,
+                        frame: 80,
                         tx: 950,
                         ty: 390,
                         sx: .45, 
@@ -249,7 +335,7 @@
                     },
 
                     {
-                        frame: 550,
+                        frame: 775,
                         tx: 850,
                         ty: 390,
                         sx: .45, 
@@ -276,7 +362,7 @@
 
                     {
                         frame: 300,
-                        tx: 225,
+                        tx: 325,
                         ty: 325,
                         sx: .65, 
                         sy: .65,
@@ -286,7 +372,7 @@
                     
                     {
                         frame: 350,
-                        tx: 275,
+                        tx: 375,
                         ty: 325,
                         sx: .65, 
                         sy: .65,
@@ -295,14 +381,6 @@
 
                     {
                         frame: 400,
-                        tx: 325,
-                        ty: 325,
-                        sx: .65, 
-                        sy: .65,
-                    },
-
-                    {
-                        frame: 450,
                         tx: 400,
                         ty: 325,
                         sx: .65, 
@@ -310,77 +388,227 @@
                     },
 
                     {
-                        frame: 550,
+                        frame: 725,
                         tx: 400,
                         ty: 325,
                         sx: .65, 
                         sy: .65,
-                    }
+                        rightElbowAngle: 55*Math.PI/180,
+                    },
+
+                    {
+                        frame: 800,
+                        tx: 400,
+                        ty: 325,
+                        sx: .65, 
+                        sy: .65,
+                    },
                 ]
             },
 //ROSE
-            // {
-            //     draw: SpriteLibrary.rose.draw,
-            //     keyframes: [
-            //         {
-            //             frame: 0,
-            //             tx: 500,
-            //             ty: 350,
-            //             sx: .75, 
-            //             sy: .75,
-            //             ease: KeyframeTweener.quadEaseOut
-            //         },
+            {
+                draw: SpriteLibrary.rose.draw,
+                keyframes: [
+                    {
+                        frame: 440,
+                        tx: 525,
+                        ty: 350,
+                        sx: .75, 
+                        sy: .75,
+                        ease: KeyframeTweener.quadEaseOut
+                    },
 
-            //         {
-            //             frame: 50,
-            //             tx: 500,
-            //             ty: 300,
-            //             sx: .5, 
-            //             sy: .5,
-            //         },
+                    {
+                        frame: 450,
+                        tx: 525,
+                        ty: 300,
+                        sx: .75, 
+                        sy: .75,
+                    },
                     
-            //         {
-            //             frame: 100,
-            //             tx: 500,
-            //             ty: 250,
-            //             sx: .75, 
-            //             sy: .75,
-            //         },
+                    {
+                        frame: 500,
+                        tx: 525,
+                        ty: 250,
+                        sx: .5, 
+                        sy: .5,
+                    },
 
-            //         {
-            //             frame: 150,
-            //             tx: 500,
-            //             ty: 200,
-            //             sx: .5, 
-            //             sy: .5,
-            //         }
-            //     ]
-            // },
+                    {
+                        frame: 550,
+                        tx: 425,
+                        ty: 350,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    {
+                        frame: 775,
+                        tx: 425,
+                        ty: 350,
+                        sx: .5, 
+                        sy: .5,
+                    },
+                ]
+            },
 //dialogue
             {
                 draw: SpriteLibrary.dialogue.draw,
-                keyframes: [
+                keyframes: [ 
+                //Ben talking
+
+                    {
+                        frame: 400,
+                        tx: 400,
+                        ty: 100,
+                        ease: KeyframeTweener.linear,
+                        text: "Ladies...",
+                        bubbleSize: "small"
+
+                        //textPosition: 400
+                    },
+
+                    {
+                        frame: 425,
+                        tx: 400,
+                        ty: 100,
+                        text: "this has been a difficult decision",
+                        bubbleSize: "large",
+                        //textPosition: 410
+                    },
+
                     {
                         frame: 450,
                         tx: 400,
                         ty: 100,
-                        ease: KeyframeTweener.linear
+                        text: "as there is only ONE rose tonight",
+                        bubbleSize: "large",
+
                     },
 
                     {
-                        frame: 500,
+                        frame: 475,
                         tx: 400,
                         ty: 100,
+                        text: "* pauses for dramatic effect *",
+                        bubbleSize: "large",
+
+                    },
+
+                    {
+                        frame: 525,
+                        tx: 400,
+                        ty: 100,
+                        text: "Olivia...",
+                        bubbleSize: "small"
                     },
 
                     {
                         frame: 550,
                         tx: 400,
                         ty: 100,
-                    }
+                        text: "Olivia...",
+                        bubbleSize: "small"
+
+                    },
                 ]
             },
 
+            {
+                draw: SpriteLibrary.dialogue.draw,
+                keyframes: [ 
+                
+                    {
+                        frame: 690,
+                        tx: 400,
+                        ty: 100,
+                        text: "I'm sorry...",
+                        bubbleSize: "medium"
+                    },
+
+                    {
+                        frame: 700,
+                        tx: 400,
+                        ty: 100,
+                        text: "but I can't give you this rose",
+                        bubbleSize: "large"
+                    },
+
+                    {
+                        frame: 700,
+                        tx: 400,
+                        ty: 100,
+                        text: "My heart just isn't there",
+                        bubbleSize: "large"
+                    },
+
+                    {
+                        frame: 725,
+                        tx: 400,
+                        ty: 100,
+                        text: "Jojo...",
+                        bubbleSize: "small"
+                    },
+
+                    {
+                        frame: 775,
+                        tx: 400,
+                        ty: 100,
+                        text: "Jojo, will you accept this rose?",
+                        bubbleSize: "small"
+                    },
+
+                ]
+            },
+//Olivia dialogue
+            {
+                draw: SpriteLibrary.dialogue.draw,
+                keyframes: [ 
+                
+                    {
+                        frame: 560,
+                        tx: 900,
+                        ty: 100,
+                        text: "Yessss! Yes I accept this rose!!",
+                        speakerPosition: "right",
+                        bubbleSize: "large"
+                    },
+
+                    {
+                        frame: 650,
+                        tx: 900,
+                        ty: 100,
+                        text: "Yessss! Yes I accept this rose!!",
+                        speakerPosition: "right",
+                        bubbleSize: "large"
+
+                    },
+                ]
+            },
+//Jojo dialogue
+            {
+                draw: SpriteLibrary.dialogue.draw,
+                keyframes: [ 
+                
+                    {
+                        frame: 750,
+                        tx: 825,
+                        ty: 100,
+                        text: "Yes?",
+                        bubbleSize: "small",
+                        speakerPosition: "right"
+                    },
+
+
+                    {
+                        frame: 775,
+                        tx: 825,
+                        ty: 100,
+                        text: "Of course I will!",
+                        speakerPosition: "right"
+                    },
+                ]
+            },
 
 //heart
             // {
