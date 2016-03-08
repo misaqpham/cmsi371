@@ -228,7 +228,7 @@
                     },
 
                     {
-                        frame: 970,
+                        frame: 1000,
                         tx: 1000,
                         ty: 345,
                         sx: .5, 
@@ -254,18 +254,84 @@
                         leftElbowAngle: -110*Math.PI/180,
                     },
 
+                    //throws fit 
                     {
-                        frame: 1500,
+                        frame: 1060,
                         tx: 1000,
                         ty: 345,
                         sx: .5, 
                         sy: .5,
-                        mood: "mad",
+                        mood: "shocked",
                         rightArmAngle: -5*Math.PI/180,
                         rightElbowAngle: 110*Math.PI/180,
                         leftArmAngle: 10*Math.PI/180,
                         leftElbowAngle: -110*Math.PI/180,
                     },
+
+                    {
+                        frame: 1080,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -40*Math.PI / 180,
+                        leftElbowAngle: 40*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 1100,
+                        tx: 1000,
+                        ty: 400,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -50*Math.PI / 180,
+                        leftElbowAngle: 50*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 1120,
+                        tx: 1000,
+                        ty: 400,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -40*Math.PI / 180,
+                        leftElbowAngle: 40*Math.PI / 180,
+                    },
+                    //enlarged mad olivia
+                    // {
+                    //     frame: 1100,
+                    //     tx: 1000,
+                    //     ty: 400,
+                    //     sx: 1.5, 
+                    //     sy: 1.5,
+                    //     mood: "shocked",
+                    //     rightArmAngle: -140*Math.PI / 180,
+                    //     leftArmAngle: 140*Math.PI / 180,
+                    //     rightElbowAngle: -50*Math.PI / 180,
+                    //     leftElbowAngle: 50*Math.PI / 180,
+                    // },
+
+                    // {
+                    //     frame: 2020,
+                    //     tx: 1000,
+                    //     ty: 400,
+                    //     sx: 1.5, 
+                    //     sy: 1.5,
+                    //     mood: "shocked",
+                    //     rightArmAngle: -140*Math.PI / 180,
+                    //     leftArmAngle: 140*Math.PI / 180,
+                    //     rightElbowAngle: -40*Math.PI / 180,
+                    //     leftElbowAngle: 40*Math.PI / 180,
+                    // },
 
                 ]
             },
@@ -388,7 +454,6 @@
                         sy: .45,
                         leftElbowAngle: 45*Math.PI/180,
                         leftArmAngle: 25*Math.PI/180,
-                        rightArmAngle: 15*Math.PI/180,
                     },
 
                     //lower arm to take rose
@@ -667,7 +732,7 @@
                         rightElbowAngle: -20*Math.PI/180,
                         rightArmAngle: -20*Math.PI/180
                     },
-
+                    //jump up and down to celebrate
                     {
                         frame: 1200,
                         tx: 420,
@@ -783,9 +848,17 @@
                         sx: .5, 
                         sy: .5,
                     },
+
+                    {
+                        frame: 1000,
+                        tx: 450,
+                        ty: 370,
+                        sx: .5, 
+                        sy: .5,
+                    },
                     //move rose up with jojo's arm
                     {
-                        frame: 1100,
+                        frame: 1090,
                         tx: 450,
                         ty: 370,
                         sx: .5, 
@@ -825,8 +898,82 @@
                     },
 
                     {
-                        frame: 1240,
+                        frame: 1150,
                         tx: 595,
+                        ty: 360,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    {
+                        frame: 1170,
+                        tx: 595,
+                        ty: 360,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    
+                    //move rose with jumping
+                    {
+                        frame: 1180,
+                        tx: 590,
+                        ty: 360,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    {
+                        frame: 1200,
+                        tx: 585,
+                        ty: 290,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    {
+                        frame: 1220,
+                        tx: 585,
+                        ty: 360,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    {
+                        frame: 1240,
+                        tx: 585,
+                        ty: 290,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    {
+                        frame: 1260,
+                        tx: 585,
+                        ty: 360,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    // {
+                    //     frame: 1280,
+                    //     tx: 580,
+                    //     ty: 290,
+                    //     sx: .5, 
+                    //     sy: .5,
+                    // },
+
+                    {
+                        frame: 1300,
+                        tx: 585,
+                        ty: 360,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    {
+                        frame: 1480,
+                        tx: 585,
                         ty: 360,
                         sx: .5, 
                         sy: .5,
@@ -1039,6 +1186,46 @@
                         ty: 100,
                         text: "I love you too Jojo!",
                         bubbleSize: "medium"
+                    },
+
+                ]
+            },
+//olivia
+            {
+                draw: SpriteLibrary.dialogue.draw,
+                keyframes: [ 
+
+                    {
+                        frame: 1220,
+                        tx: 900,
+                        ty: 100,
+                        text: "NOOOOO!!!",
+                        bubbleSize: "small",
+                        speakerPosition: "right",
+                        xRightOffset: 700
+
+                    },
+
+                    {
+                        frame: 1260,
+                        tx: 900,
+                        ty: 100,
+                        text: "Ben is suppose to be mine",
+                        bubbleSize: "large",
+                        speakerPosition: "right",
+                        //xRightOffset: 600
+
+                    },
+
+                    {
+                        frame: 1300,
+                        tx: 900,
+                        ty: 100,
+                        text: "Ben is suppose to be mine",
+                        bubbleSize: "large",
+                        speakerPosition: "right",
+                        //xRightOffset: 600
+
                     },
 
                 ]
