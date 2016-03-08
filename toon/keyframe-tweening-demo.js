@@ -137,7 +137,7 @@
 
                     //arms to heart
                     {
-                        frame: 525,
+                        frame: 600,
                         tx: 1000,
                         ty: 345,
                         sx: .5, 
@@ -149,54 +149,6 @@
                     },
 
                     //arms to sky
-                    {
-                        frame: 550,
-                        tx: 1000,
-                        ty: 345,
-                        sx: .5, 
-                        sy: .5,
-                        rightArmAngle: -140*Math.PI / 180,
-                        leftArmAngle: 140*Math.PI / 180,
-                        rightElbowAngle: -40*Math.PI / 180,
-                        leftElbowAngle: 40*Math.PI / 180,
-                    },
-
-                    {
-                        frame: 575,
-                        tx: 1000,
-                        ty: 300,
-                        sx: .5, 
-                        sy: .5,
-                        rightArmAngle: -140*Math.PI / 180,
-                        leftArmAngle: 140*Math.PI / 180,
-                        rightElbowAngle: -30*Math.PI / 180,
-                        leftElbowAngle: 30*Math.PI / 180,
-                    },
-
-                    {
-                        frame: 600,
-                        tx: 1000,
-                        ty: 345,
-                        sx: .5, 
-                        sy: .5,
-                        rightArmAngle: -140*Math.PI / 180,
-                        leftArmAngle: 140*Math.PI / 180,
-                        rightElbowAngle: -40*Math.PI / 180,
-                        leftElbowAngle: 40*Math.PI / 180,
-                    },
-
-                    {
-                        frame: 625,
-                        tx: 1000,
-                        ty: 300,
-                        sx: .5, 
-                        sy: .5,
-                        rightArmAngle: -140*Math.PI / 180,
-                        leftArmAngle: 140*Math.PI / 180,
-                        rightElbowAngle: -30*Math.PI / 180,
-                        leftElbowAngle: 30*Math.PI / 180,
-                    },
-
                     {
                         frame: 650,
                         tx: 1000,
@@ -227,6 +179,44 @@
                         ty: 345,
                         sx: .5, 
                         sy: .5,
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -40*Math.PI / 180,
+                        leftElbowAngle: 40*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 725,
+                        tx: 1000,
+                        ty: 300,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -30*Math.PI / 180,
+                        leftElbowAngle: 30*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 750,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -40*Math.PI / 180,
+                        leftElbowAngle: 40*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 775,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
                         mood: "shocked",
                         rightArmAngle: -15*Math.PI/180,
                         rightElbowAngle: 140*Math.PI/180,
@@ -235,12 +225,12 @@
                     },
 
                     {
-                        frame: 725,
+                        frame: 820,
                         tx: 1000,
                         ty: 345,
                         sx: .5, 
                         sy: .5,
-                        mood: "shocked",
+                        mood: "mad",
                         rightArmAngle: -15*Math.PI/180,
                         rightElbowAngle: 140*Math.PI/180,
                         leftArmAngle: 15*Math.PI/180,
@@ -248,16 +238,43 @@
                     },
 
                     {
-                        frame: 800,
+                        frame: 870,
                         tx: 1000,
                         ty: 345,
                         sx: .5, 
                         sy: .5,
-                        mood: "shocked",
+                        mood: "mad",
                         rightArmAngle: -15*Math.PI/180,
-                        rightElbowAngle: 140*Math.PI/180,
+                        rightElbowAngle: 10*Math.PI/180,
                         leftArmAngle: 15*Math.PI/180,
                         leftElbowAngle: -10*Math.PI/180,
+                    },
+
+                    //cosses arm
+                    {
+                        frame: 1050,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "mad",
+                        rightArmAngle: -5*Math.PI/180,
+                        rightElbowAngle: 110*Math.PI/180,
+                        leftArmAngle: 10*Math.PI/180,
+                        leftElbowAngle: -110*Math.PI/180,
+                    },
+
+                    {
+                        frame: 1500,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "mad",
+                        rightArmAngle: -5*Math.PI/180,
+                        rightElbowAngle: 110*Math.PI/180,
+                        leftArmAngle: 10*Math.PI/180,
+                        leftElbowAngle: -110*Math.PI/180,
                     },
 
                 ]
@@ -335,7 +352,7 @@
                     },
 
                     {
-                        frame: 775,
+                        frame: 850,
                         tx: 850,
                         ty: 390,
                         sx: .45, 
@@ -344,7 +361,75 @@
                         rightArmAngle: -5*Math.PI/180,
                         leftElbowAngle: -55*Math.PI/180,
                         rightElbowAngle: 55*Math.PI/180,
-                    }
+                    },
+                    //walk to ben
+                    {
+                        frame: 870,
+                        tx: 640,
+                        ty: 390,
+                        sx: .45, 
+                        sy: .45,
+                        leftArmAngle: 10*Math.PI/180,
+                        rightArmAngle: -5*Math.PI/180,
+                        leftElbowAngle: -45*Math.PI/180,
+                        rightElbowAngle: 45*Math.PI/180,
+                    },
+
+                    // {
+                    //     frame: 870,
+                    //     tx: 650,
+                    //     ty: 390,
+                    //     sx: .45, 
+                    //     sy: .45,
+                    //     leftArmAngle: 5*Math.PI/180,
+                    //     rightArmAngle: -5*Math.PI/180,
+                    //     leftElbowAngle: -55*Math.PI/180,
+                    //     rightElbowAngle: 55*Math.PI/180,
+                    // },
+
+                    //grab rose
+
+                    {
+                        frame: 900,
+                        tx: 640,
+                        ty: 390,
+                        sx: .45, 
+                        sy: .45,
+                        leftElbowAngle: 45*Math.PI/180,
+                        leftArmAngle: 25*Math.PI/180
+                    },
+
+                    {
+                        frame: 975,
+                        tx: 640,
+                        ty: 390,
+                        sx: .45, 
+                        sy: .45,
+                        leftElbowAngle: 45*Math.PI/180,
+                        leftArmAngle: 25*Math.PI/180
+                    },
+
+                    //lower arm
+
+                    {
+                        frame: 1040,
+                        tx: 640,
+                        ty: 390,
+                        sx: .45, 
+                        sy: .45,
+                        leftElbowAngle: 25*Math.PI/180,
+                        leftArmAngle: 15*Math.PI/180
+                    },
+
+                     {
+                        frame: 1240,
+                        tx: 640,
+                        ty: 390,
+                        sx: .45, 
+                        sy: .45,
+                        leftElbowAngle: 25*Math.PI/180,
+                        leftArmAngle: 15*Math.PI/180
+                    },
                 ]
             },
 //BEN
@@ -393,7 +478,16 @@
                         ty: 325,
                         sx: .65, 
                         sy: .65,
-                        rightElbowAngle: 55*Math.PI/180,
+                    },
+                    //ben grabs rose
+                    {
+                        frame: 770,
+                        tx: 400,
+                        ty: 325,
+                        sx: .65, 
+                        sy: .65,
+                        rightArmAngle: -20*Math.PI/180,
+                        rightElbowAngle: -10*Math.PI/180
                     },
 
                     {
@@ -402,6 +496,49 @@
                         ty: 325,
                         sx: .65, 
                         sy: .65,
+                        rightArmAngle: -20*Math.PI/180,
+                        rightElbowAngle: -20*Math.PI/180,
+                    },
+
+                    {
+                        frame: 820,
+                        tx: 400,
+                        ty: 325,
+                        sx: .65, 
+                        sy: .65,
+                        rightArmAngle: -20*Math.PI/180,
+                        rightElbowAngle: -45*Math.PI/180,
+                    },
+
+                    {
+                        frame: 920,
+                        tx: 400,
+                        ty: 325,
+                        sx: .65, 
+                        sy: .65,
+                        rightArmAngle: -20*Math.PI/180,
+                        rightElbowAngle: -45*Math.PI/180,
+                    },
+                    //releases rose
+
+                    {
+                        frame: 920,
+                        tx: 400,
+                        ty: 325,
+                        sx: .65, 
+                        sy: .65,
+                        rightArmAngle: -15*Math.PI/180,
+                        rightElbowAngle: -5*Math.PI/180,
+                    },
+                    //keep ben on page
+                    {
+                        frame: 1500,
+                        tx: 400,
+                        ty: 325,
+                        sx: .65, 
+                        sy: .65,
+                        rightArmAngle: -15*Math.PI/180,
+                        rightElbowAngle: -5*Math.PI/180,
                     },
                 ]
             },
@@ -410,24 +547,24 @@
                 draw: SpriteLibrary.rose.draw,
                 keyframes: [
                     {
-                        frame: 440,
+                        frame: 520,
                         tx: 525,
-                        ty: 350,
-                        sx: .75, 
-                        sy: .75,
+                        ty: 320,
+                        sx: 1, 
+                        sy: 1,
                         ease: KeyframeTweener.quadEaseOut
                     },
 
                     {
-                        frame: 450,
+                        frame: 540,
                         tx: 525,
                         ty: 300,
-                        sx: .75, 
-                        sy: .75,
+                        sx: 1, 
+                        sy: 1,
                     },
                     
                     {
-                        frame: 500,
+                        frame: 580,
                         tx: 525,
                         ty: 250,
                         sx: .5, 
@@ -435,7 +572,7 @@
                     },
 
                     {
-                        frame: 550,
+                        frame: 600,
                         tx: 425,
                         ty: 350,
                         sx: .5, 
@@ -443,9 +580,25 @@
                     },
 
                     {
-                        frame: 775,
+                        frame: 1000,
                         tx: 425,
                         ty: 350,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    {
+                        frame: 1020,
+                        tx: 450,
+                        ty: 370,
+                        sx: .5, 
+                        sy: .5,
+                    },
+
+                    {
+                        frame: 1500,
+                        tx: 450,
+                        ty: 370,
                         sx: .5, 
                         sy: .5,
                     },
@@ -464,39 +617,42 @@
                         ease: KeyframeTweener.linear,
                         text: "Ladies...",
                         bubbleSize: "small"
-
-                        //textPosition: 400
-                    },
-
-                    {
-                        frame: 425,
-                        tx: 400,
-                        ty: 100,
-                        text: "this has been a difficult decision",
-                        bubbleSize: "large",
-                        //textPosition: 410
                     },
 
                     {
                         frame: 450,
                         tx: 400,
                         ty: 100,
-                        text: "as there is only ONE rose tonight",
+                        text: "this has been an amazing journey",
                         bubbleSize: "large",
-
                     },
 
                     {
-                        frame: 475,
+                        frame: 490,
+                        tx: 400,
+                        ty: 100,
+                        text: "but as you both know",
+                        bubbleSize: "medium",
+                    },
+
+                    {
+                        frame: 520,
+                        tx: 400,
+                        ty: 100,
+                        text: "there is only ONE rose tonight",
+                        bubbleSize: "large",
+                    },
+
+                    {
+                        frame: 560,
                         tx: 400,
                         ty: 100,
                         text: "* pauses for dramatic effect *",
                         bubbleSize: "large",
-
                     },
 
                     {
-                        frame: 525,
+                        frame: 610,
                         tx: 400,
                         ty: 100,
                         text: "Olivia...",
@@ -504,7 +660,7 @@
                     },
 
                     {
-                        frame: 550,
+                        frame: 630,
                         tx: 400,
                         ty: 100,
                         text: "Olivia...",
@@ -523,27 +679,27 @@
                         tx: 400,
                         ty: 100,
                         text: "I'm sorry...",
+                        bubbleSize: "small"
+                    },
+
+                    {
+                        frame: 700,
+                        tx: 400,
+                        ty: 100,
+                        text: "but I can't give you the rose",
+                        bubbleSize: "large"
+                    },
+
+                    {
+                        frame: 750,
+                        tx: 400,
+                        ty: 100,
+                        text: "I love someone else",
                         bubbleSize: "medium"
                     },
 
                     {
-                        frame: 700,
-                        tx: 400,
-                        ty: 100,
-                        text: "but I can't give you this rose",
-                        bubbleSize: "large"
-                    },
-
-                    {
-                        frame: 700,
-                        tx: 400,
-                        ty: 100,
-                        text: "My heart just isn't there",
-                        bubbleSize: "large"
-                    },
-
-                    {
-                        frame: 725,
+                        frame: 800,
                         tx: 400,
                         ty: 100,
                         text: "Jojo...",
@@ -551,11 +707,19 @@
                     },
 
                     {
-                        frame: 775,
+                        frame: 870,
                         tx: 400,
                         ty: 100,
                         text: "Jojo, will you accept this rose?",
-                        bubbleSize: "small"
+                        bubbleSize: "large"
+                    },
+
+                    {
+                        frame: 900,
+                        tx: 400,
+                        ty: 100,
+                        text: "Jojo, will you accept this rose?",
+                        bubbleSize: "large"
                     },
 
                 ]
@@ -566,7 +730,7 @@
                 keyframes: [ 
                 
                     {
-                        frame: 560,
+                        frame: 630,
                         tx: 900,
                         ty: 100,
                         text: "Yessss! Yes I accept this rose!!",
@@ -575,7 +739,7 @@
                     },
 
                     {
-                        frame: 650,
+                        frame: 690,
                         tx: 900,
                         ty: 100,
                         text: "Yessss! Yes I accept this rose!!",
@@ -589,24 +753,65 @@
             {
                 draw: SpriteLibrary.dialogue.draw,
                 keyframes: [ 
-                
-                    {
-                        frame: 750,
-                        tx: 825,
-                        ty: 100,
-                        text: "Yes?",
-                        bubbleSize: "small",
-                        speakerPosition: "right"
-                    },
-
 
                     {
-                        frame: 775,
-                        tx: 825,
+                        frame: 910,
+                        tx: 600,
                         ty: 100,
-                        text: "Of course I will!",
-                        speakerPosition: "right"
+                        xOffset: 550,
+                        text: "Yes, of course I will!",
+                        bubbleSize: "medium"
                     },
+
+                    {
+                        frame: 960,
+                        tx: 600,
+                        ty: 100,
+                        xOffset: 550,
+                        text: "Yes, of course I will!",
+                        bubbleSize: "medium"
+                    },
+
+                    {
+                        frame: 1060,
+                        tx: 600,
+                        ty: 100,
+                        xOffset: 550,
+                        text: "I love you Ben!",
+                        bubbleSize: "medium"
+                    },
+
+                    {
+                        frame: 1080,
+                        tx: 600,
+                        ty: 100,
+                        xOffset: 550,
+                        text: "I love you Ben!",
+                        bubbleSize: "medium"
+                    },
+                ]
+            },
+//ben replies
+            {
+                draw: SpriteLibrary.dialogue.draw,
+                keyframes: [ 
+
+                    {
+                        frame: 1080,
+                        tx: 400,
+                        ty: 100,
+                        text: "I love you too Jojo!",
+                        bubbleSize: "medium"
+                    },
+
+                    {
+                        frame: 1100,
+                        tx: 400,
+                        ty: 100,
+                        text: "I love you too Jojo!",
+                        bubbleSize: "medium"
+                    },
+
                 ]
             },
 

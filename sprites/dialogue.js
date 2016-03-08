@@ -62,23 +62,26 @@
         var drawDialogue = function(dialogueSpecification) { 
             var renderingContext = dialogueSpecification.renderingContext;
             var text = dialogueSpecification.text;
-            var font = dialogueSpecification.font || "28px calibri";
+            var font = dialogueSpecification.font || "26px calibri";
             var xPosition = dialogueSpecification.tx;
             var yPosition = dialogueSpecification.ty;
             var size = dialogueSpecification.bubbleSize || "medium";
             var speakerPosition = dialogueSpecification.speakerPosition || "left";
+            var xOffset = dialogueSpecification.xOffset || 350;
+            var xRightOffset = dialogueSpecification.xRightOffset || 500;
+
 
             if(speakerPosition == "right") {
                 renderingContext.save();
                 renderingContext.scale(-1,1); 
                 drawBubble(renderingContext, size);
                 renderingContext.restore();
-                writeText(renderingContext, text, font, -xPosition + 500, yPosition); 
+                writeText(renderingContext, text, font, -xPosition + xRightOffset, yPosition); 
             } else {
                 renderingContext.save();
                 drawBubble(renderingContext, size);
                 renderingContext.restore();
-                writeText(renderingContext, text, font, xPosition - 350, yPosition);
+                writeText(renderingContext, text, font, xPosition - xOffset, yPosition);
             }  
         }
         return {draw: drawDialogue};

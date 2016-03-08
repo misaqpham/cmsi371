@@ -117,7 +117,7 @@
 
                                     if (typeof(startKeyframe[property]) == 'string') {
                                         objectParameters[property] = startKeyframe[property];
-                                        console.log(property + ": " + objectParameters[property]);
+                                        //console.log(property + ": " + objectParameters[property]);
                                     } else {
                                         var start = startKeyframe[property];
                                         var distance = endKeyframe[property] - start;
