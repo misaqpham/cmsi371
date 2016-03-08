@@ -27,8 +27,10 @@
         renderingContext.scale(.5,.5);
         SpriteLibrary.jojo.draw({
           renderingContext: renderingContext,
-          leftElbowAngle: 45*Math.PI/180,
-          rightElbowAngle: 45*Math.PI/180,
+          leftElbowAngle: 10*Math.PI/180,
+          leftArmAngle: 5*Math.PI/180,
+          rightArmAngle: -110*Math.PI/180,
+          rightElbowAngle: -45*Math.PI/180,
         });
         renderingContext.restore();
   
@@ -38,7 +40,8 @@
         SpriteLibrary.jojo.draw({
           renderingContext: renderingContext,
           rightArmAngle: -145*Math.PI/180,
-          leftArmAngle: 145*Math.PI/180,
+          leftArmAngle: 110*Math.PI/180,
+          leftElbowAngle: 35*Math.PI/180,
         });
         renderingContext.restore();
 
