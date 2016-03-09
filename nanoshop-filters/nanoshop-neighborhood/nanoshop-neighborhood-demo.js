@@ -7,7 +7,6 @@
         renderingContext = canvas.getContext("2d"),
         gradient;
 
-    // Some edge lines to test for wraparound bleeding.
         renderingContext.save();
         renderingContext.translate(250, 250);
         renderingContext.scale(.5,.5);
