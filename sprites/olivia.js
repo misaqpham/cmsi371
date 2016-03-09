@@ -13,21 +13,21 @@
 		oliviaImage.addEventListener("load", function() {
 			oliviaLoaded = true;
 		}, false)
-		oliviaImage.src ="../sprites/olivia-bach.png";
+		oliviaImage.src ="../../sprites/olivia-bach.png";
 		
 		var oliviaMadImage = new Image();
 		var oliviaMadLoaded = false;
 		oliviaMadImage.addEventListener("load", function() {
 			oliviaMadLoaded = true;
 		}, false)
-		oliviaMadImage.src ="../sprites/olivia2-bach.png";
+		oliviaMadImage.src ="../../sprites/olivia2-bach.png";
 
 		var oliviaShockImage = new Image();
 		var oliviaShockLoaded = false;
 		oliviaShockImage.addEventListener("load", function() {
 			oliviaShockLoaded = true;
 		}, false)
-		oliviaShockImage.src ="../sprites/olivia-scream.png";
+		oliviaShockImage.src ="../../sprites/olivia-scream.png";
 
 		var dressImage = new Image();
 		var dressLoaded = false;
@@ -35,7 +35,7 @@
 		dressImage.addEventListener("load", function() {
 			dressLoaded = true;
 		}, false)
-		dressImage.src ="../sprites/olivia-dress.png";
+		dressImage.src ="../../sprites/olivia-dress.png";
 
 		var BODY_WIDTH = dressImage.width;
 		var BODY_HEIGHT = dressImage.height;

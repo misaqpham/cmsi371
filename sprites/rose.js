@@ -9,7 +9,7 @@
 		roseImage.addEventListener("load", function() {
 			roseLoaded = true;
 		}, false)
-		roseImage.src ="../sprites/rose.png";
+		roseImage.src ="../../sprites/rose.png";
 	
 		var drawRose = function(roseSpecification) {
 		

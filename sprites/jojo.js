@@ -12,14 +12,14 @@
 		jojoImage.addEventListener("load", function() {
 			jojoLoaded = true;
 		}, false)
-		jojoImage.src ="../sprites/bachelor-jojo.png";
+		jojoImage.src ="../../sprites/bachelor-jojo.png";
 
 		var dressImage = new Image();
 		var dressLoaded = false;
 		dressImage.addEventListener("load", function() {
 			dressLoaded = true;
 		}, false)
-		dressImage.src ="../sprites/jojo-dress.png";
+		dressImage.src ="../../sprites/jojo-dress.png";
 
 		var BODY_WIDTH = dressImage.width;
 		var BODY_HEIGHT = dressImage.height;

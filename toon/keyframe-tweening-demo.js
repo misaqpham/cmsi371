@@ -284,7 +284,7 @@
                     {
                         frame: 1100,
                         tx: 1000,
-                        ty: 400,
+                        ty: 345,
                         sx: .5, 
                         sy: .5,
                         mood: "shocked",
@@ -295,9 +295,9 @@
                     },
 
                     {
-                        frame: 1120,
+                        frame: 1320,
                         tx: 1000,
-                        ty: 400,
+                        ty: 345,
                         sx: .5, 
                         sy: .5,
                         mood: "shocked",
@@ -1158,7 +1158,7 @@
                     },
 
                     {
-                        frame: 1040,
+                        frame: 1030,
                         tx: 600,
                         ty: 100,
                         xOffset: 550,
@@ -1197,20 +1197,20 @@
 
                     {
                         frame: 1220,
-                        tx: 900,
-                        ty: 100,
-                        text: "NOOOOO!!!",
-                        bubbleSize: "small",
+                        tx: 990,
+                        ty: 90,
+                        text: "NOO! This can't be happening!!",
+                        bubbleSize: "large",
                         speakerPosition: "right",
-                        xRightOffset: 700
+                        //RightOffset: 5000
 
                     },
 
                     {
                         frame: 1260,
-                        tx: 900,
-                        ty: 100,
-                        text: "Ben is suppose to be mine",
+                        tx: 990,
+                        ty: 90,
+                        text: "Ben is suppose to be mine!!",
                         bubbleSize: "large",
                         speakerPosition: "right",
                         //xRightOffset: 600
@@ -1219,8 +1219,8 @@
 
                     {
                         frame: 1300,
-                        tx: 900,
-                        ty: 100,
+                        tx: 990,
+                        ty: 90,
                         text: "Ben is suppose to be mine",
                         bubbleSize: "large",
                         speakerPosition: "right",

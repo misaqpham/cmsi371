@@ -21,14 +21,14 @@
 		bachelorImage.addEventListener("load", function() {
 			bachelorLoaded = true;
 		}, false);
-		bachelorImage.src ="../sprites/ben-higgins.png";
+		bachelorImage.src ="../../sprites/ben-higgins.png";
 
 		var tuxImage = new Image();
 		var tuxLoaded = false;
 		tuxImage.addEventListener("load", function() {
 			tuxLoaded = true;
 		}, false);
-		tuxImage.src ="../sprites/tux.png";
+		tuxImage.src ="../../sprites/tux.png";
 		
 		var drawArm = function (renderingContext, armAngle, elbowAngle, armXOffset, armYOffSet) {
 			renderingContext.save();
