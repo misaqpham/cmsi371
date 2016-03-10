@@ -87,6 +87,8 @@
 			}
 			renderingContext.restore();	
 		};
-		return {draw: drawJojo};
+		return {draw: drawJojo,
+				loaded: function () { return jojoLoaded && dressLoaded; }
+		};
 	})();
 })();

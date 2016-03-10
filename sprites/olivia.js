@@ -118,6 +118,8 @@
 			}
 			renderingContext.restore();
 		}
-		return {draw: drawOlivia};
+		return {draw: drawOlivia,
+				loaded: function () { return oliviaShockLoaded && oliviaMadLoaded && oliviaLoaded && dressLoaded; }
+		};
 	}());
 }());

@@ -9,10 +9,10 @@ var NanoshopNeighborhood = {
      */
     darkener: function (x, y, rgbaNeighborhood) {
         return [
-            rgbaNeighborhood[4].r / 2,
-            rgbaNeighborhood[4].g / 2,
-            rgbaNeighborhood[4].b / 2,
-            rgbaNeighborhood[4].a
+            rgbaNeighborhood[4].r / 1.5,
+            rgbaNeighborhood[4].g * 0,
+            rgbaNeighborhood[4].b / 1.5,
+            rgbaNeighborhood[4].a * 2
         ];
     },
 

@@ -1181,7 +1181,7 @@
                     },
 
                     {
-                        frame: 1100,
+                        frame: 1090,
                         tx: 400,
                         ty: 100,
                         text: "I love you too Jojo!",
@@ -1199,10 +1199,10 @@
                         frame: 1220,
                         tx: 990,
                         ty: 90,
-                        text: "NOO! This can't be happening!!",
+                        text: "This isn't happening, its not real!",
                         bubbleSize: "large",
                         speakerPosition: "right",
-                        //RightOffset: 5000
+                        RightOffset: 1000
 
                     },
 
@@ -1213,7 +1213,7 @@
                         text: "Ben is suppose to be mine!!",
                         bubbleSize: "large",
                         speakerPosition: "right",
-                        //xRightOffset: 600
+                        xRightOffset: 600
 
                     },
 
@@ -1221,10 +1221,10 @@
                         frame: 1300,
                         tx: 990,
                         ty: 90,
-                        text: "Ben is suppose to be mine",
+                        text: "Ben is suppose to be mine!!",
                         bubbleSize: "large",
                         speakerPosition: "right",
-                        //xRightOffset: 600
+                        xRightOffset: 600
 
                     },
 

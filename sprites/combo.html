@@ -26,7 +26,7 @@
         renderingContext.save();
         renderingContext.scale(0.75, 0.75);
         renderingContext.translate(400, 250);
-        SpriteLibrary.bachelorBen({
+        SpriteLibrary.bachelorBen.draw({
           renderingContext: renderingContext,
           leftArmAngle: 97*Math.PI/180
         });
@@ -35,7 +35,7 @@
         renderingContext.save();
         renderingContext.scale(0.5, 0.5);
         renderingContext.translate(1200, 550);
-        SpriteLibrary.jojo({
+        SpriteLibrary.jojo.draw({
           renderingContext: renderingContext,
           leftArmAngle: 30*Math.PI/180,
           leftElbowAngle: 45*Math.PI/180
@@ -45,7 +45,7 @@
         renderingContext.save();
         renderingContext.translate(350,230);
         renderingContext.scale(0.5, 0.5);
-        SpriteLibrary.rose({
+        SpriteLibrary.rose.draw({
           renderingContext: renderingContext
         });
         renderingContext.restore();
@@ -53,9 +53,9 @@
         renderingContext.save();
         renderingContext.translate(850, 230);
         renderingContext.scale(.55,.55);
-        SpriteLibrary.olivia({
+        SpriteLibrary.olivia.draw({
           renderingContext: renderingContext,
-          mood: "shock",
+          mood: "shocked",
           leftArmAngle: 50*Math.PI/180,
           rightElbowAngle: -100 * Math.PI / 180,
           leftElbowAngle: 100*Math.PI / 180

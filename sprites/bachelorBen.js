@@ -128,6 +128,8 @@
 			}
 			renderingContext.restore()
 		}
-		return {draw: drawBen};
+		return {draw: drawBen,
+				loaded: function () { return tuxLoaded && bachelorLoaded; }
+		};
 	})();
 }());
