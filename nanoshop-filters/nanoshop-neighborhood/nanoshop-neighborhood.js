@@ -7,12 +7,22 @@ var NanoshopNeighborhood = {
      * A basic "darkener"---this one does not even use the entire pixel neighborhood;
      * just the exact current pixel like the original Nanoshop.
      */
-    darkener: function (x, y, rgbaNeighborhood) {
+    spriteEscape: function (x, y, rgbaNeighborhood) {
         return [
-            rgbaNeighborhood[4].r / 1.5,
-            rgbaNeighborhood[4].g * 0,
-            rgbaNeighborhood[4].b / 1.5,
-            rgbaNeighborhood[4].a * 2
+            rgbaNeighborhood[4].r = rgbaNeighborhood[2].r,
+            rgbaNeighborhood[4].g = rgbaNeighborhood[2].g,
+            rgbaNeighborhood[4].b = rgbaNeighborhood[2].b,
+            rgbaNeighborhood[4].a
+        ];
+    },
+
+    jagged: function (x, y, rgbaNeighborhood) {
+        var index = x%4 + y%4;
+        return [
+            rgbaNeighborhood[index].r,
+            rgbaNeighborhood[index].g,
+            rgbaNeighborhood[index].b,
+            rgbaNeighborhood[index].a
         ];
     },
 
@@ -26,14 +36,14 @@ var NanoshopNeighborhood = {
         var bTotal = 0;
         var aTotal = 0;
 
-        for (var i = 0; i < 9; i += 1) {
+        for (var i = 0; i < 9; i += 1 ) {
             rTotal += rgbaNeighborhood[i].r;
             gTotal += rgbaNeighborhood[i].g;
             bTotal += rgbaNeighborhood[i].b;
             aTotal += rgbaNeighborhood[i].a;
         }
 
-        return [ rTotal / 9, gTotal / 9, bTotal / 9, aTotal / 9 ];
+        return [ rTotal/9, gTotal/9, bTotal/9, aTotal ];
     },
 
     /*

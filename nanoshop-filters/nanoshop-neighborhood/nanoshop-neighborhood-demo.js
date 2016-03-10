@@ -7,7 +7,6 @@
         renderingContext = canvas.getContext("2d"),
         gradient;
 
-
     var interval = setInterval(function () {
         if (SpriteLibrary.rose.loaded() && SpriteLibrary.jojo.loaded() && SpriteLibrary.olivia.loaded() && SpriteLibrary.bachelorBen.loaded()) {
             renderingContext.save();
@@ -54,9 +53,9 @@
             NanoshopNeighborhood.applyFilter(
                 renderingContext,
                 renderingContext.getImageData(0, 0, canvas.width, canvas.height),
-                NanoshopNeighborhood.darkener
-                //NanoshopNeighborhood.idk
-               // NanoshopNeighborhood.averager // Convenience comment for easy switching.
+                //NanoshopNeighborhood.darkener
+                NanoshopNeighborhood.jagged
+                //NanoshopNeighborhood.averager // Convenience comment for easy switching.
             ),
             0, 0
         );

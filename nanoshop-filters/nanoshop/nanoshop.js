@@ -6,8 +6,16 @@ var Nanoshop = {
     /*
      * A basic "darkener."
      */
-    darkener: function (x, y, r, g, b, a) {
-        return [ r / 2, g / 2, b / 2, a ];
+    brighten: function (x, y, r, g, b, a) {
+        return [ r + 5, g + 5, b + 5, a ];
+    },
+
+    thinkPink: function (x, y, r, g, b, a) {
+        return [ r + 10, g, b + 10, a ];
+    },
+
+    silhouette: function (x, y, r, g, b, a) {
+        return [ Math.random() , Math.random(), Math.random(), a ];
     },
 
     /*
