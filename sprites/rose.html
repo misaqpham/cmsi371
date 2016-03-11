@@ -18,18 +18,21 @@
       var renderingContext = canvas.getContext("2d");
 
       var drawScene = function(){
-        renderingContext.clearRect(0, 0, canvas.width, canvas.height);
+        var interval = setInterval(function () {
+          if (SpriteLibrary.olivia.loaded()) {
+            renderingContext.clearRect(0, 0, canvas.width, canvas.height);
 
-        renderingContext.save();
-        renderingContext.translate(50,100);
-        SpriteLibrary.rose.draw({
-          renderingContext: renderingContext
-        });
-        renderingContext.restore();
-
+            renderingContext.save();
+            renderingContext.translate(50,100);
+            SpriteLibrary.rose.draw({
+              renderingContext: renderingContext
+            });
+            renderingContext.restore();
+            clearInterval(interval);            
+          }
+        }, 50);
         window.requestAnimationFrame(drawScene);  
       };
-
       window.requestAnimationFrame(drawScene);
     }())    
     </script>

@@ -18,48 +18,52 @@
       var renderingContext = canvas.getContext("2d");
 
       var drawScene = function () {
-        renderingContext.clearRect(0,0, canvas.width, canvas.height);
+        var interval = setInterval(function () {
+          if (SpriteLibrary.olivia.loaded()) {
+            renderingContext.clearRect(0,0, canvas.width, canvas.height);
 
-        renderingContext.save();
-        renderingContext.translate(300, 200);
-        renderingContext.scale(.5,.5);
-        SpriteLibrary.olivia.draw({
-          renderingContext: renderingContext,
-          mood: "happy",
-          leftElbowAngle: -95*Math.PI/180,
-          leftArmAngle: 55*Math.PI / 180,
-        });
-        renderingContext.restore();
+            renderingContext.save();
+            renderingContext.translate(300, 200);
+            renderingContext.scale(.5,.5);
+            SpriteLibrary.olivia.draw({
+              renderingContext: renderingContext,
+              mood: "happy",
+              leftElbowAngle: -95*Math.PI/180,
+              leftArmAngle: 55*Math.PI / 180,
+            });
+            renderingContext.restore();
 
-        renderingContext.save();
-        renderingContext.translate(500, 200);
-        renderingContext.scale(.5,.5);
-        SpriteLibrary.olivia.draw({
-          renderingContext: renderingContext,
-          mood: "shocked",
-          rightArmAngle: -140*Math.PI / 180,
-          leftArmAngle: 140*Math.PI / 180,
-          rightElbowAngle: -40*Math.PI / 180,
-          leftElbowAngle: 40*Math.PI / 180,
-        });
-        renderingContext.restore();
+            renderingContext.save();
+            renderingContext.translate(500, 200);
+            renderingContext.scale(.5,.5);
+            SpriteLibrary.olivia.draw({
+              renderingContext: renderingContext,
+              mood: "shocked",
+              rightArmAngle: -140*Math.PI / 180,
+              leftArmAngle: 140*Math.PI / 180,
+              rightElbowAngle: -40*Math.PI / 180,
+              leftElbowAngle: 40*Math.PI / 180,
+            });
+            renderingContext.restore();
 
-        renderingContext.save();
-        renderingContext.translate(700, 200);
-        renderingContext.scale(.5,.5);
-        SpriteLibrary.olivia.draw({
-          renderingContext: renderingContext,
-          mood: "mad",
-          rightArmAngle: -5*Math.PI/180,
-          rightElbowAngle: 110*Math.PI/180,
-          leftArmAngle: 10*Math.PI/180,
-          leftElbowAngle: -110*Math.PI/180,
-        });
-        renderingContext.restore();
+            renderingContext.save();
+            renderingContext.translate(700, 200);
+            renderingContext.scale(.5,.5);
+            SpriteLibrary.olivia.draw({
+              renderingContext: renderingContext,
+              mood: "mad",
+              rightArmAngle: -5*Math.PI/180,
+              rightElbowAngle: 110*Math.PI/180,
+              leftArmAngle: 10*Math.PI/180,
+              leftElbowAngle: -110*Math.PI/180,
+            });
+            renderingContext.restore();
 
+            clearInterval(interval);            
+          }
+        }, 50);
         window.requestAnimationFrame(drawScene);  
       };
-      
       window.requestAnimationFrame(drawScene);
     }())   
     </script>
