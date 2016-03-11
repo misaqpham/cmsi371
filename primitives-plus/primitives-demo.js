@@ -25,10 +25,10 @@
 
     // A few circles.
     Primitives.circleBres2(renderingContext, 105, 315, 100);
-    Primitives.circleTrig(renderingContext, 310, 315, 100,[0, 100, 255]);
+    //Primitives.circleTrig(renderingContext, 310, 315, 100,[0, 100, 255]);
     Primitives.circleDDA(renderingContext, 515, 315, 100, [120, 0, 0], [0, 255, 0]);
     Primitives.circleBres1(renderingContext, 720, 315, 100, [0, 0, 200], [0, 255, 0], [190, 140, 0]);
-    Primitives.circleBres3(renderingContext, 925, 315, 100, [255, 0, 0], [255, 255, 0], [0, 200, 0], [0, 0, 100]);
+     Primitives.circleBres3(renderingContext, 925, 315, 100, [255, 0, 0], [255, 255, 0], [0, 200, 0], [0, 0, 100]);
     // And finally...polygon fills!
     renderingContext.save();
     renderingContext.translate(5, 420);
