@@ -4,7 +4,7 @@
 
     window.SpriteLibrary.dialogue = (function () {
 
-        var drawBubble = function(renderingContext, size) {
+        var drawBubble = function (renderingContext, size) {
             if (size == "small") {
                 renderingContext.beginPath();
                 renderingContext.moveTo(75,25);
@@ -53,13 +53,13 @@
             }
           }
 
-        var writeText = function(renderingContext, text, font, xPosition, yPosition) {
+        var writeText = function (renderingContext, text, font, xPosition, yPosition) {
             renderingContext.font = font;
             renderingContext.fillStyle = "black";
             renderingContext.fillText(text, xPosition, yPosition/2 + 20);
         }
         
-        var drawDialogue = function(dialogueSpecification) { 
+        var drawDialogue = function (dialogueSpecification) { 
             var renderingContext = dialogueSpecification.renderingContext;
             var text = dialogueSpecification.text;
             var font = dialogueSpecification.font || "26px calibri";
