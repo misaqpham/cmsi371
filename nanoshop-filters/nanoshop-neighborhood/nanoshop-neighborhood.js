@@ -3,10 +3,7 @@
  * pixel-level image processing using a pixel's "neighborhood."
  */
 var NanoshopNeighborhood = {
-    /*
-     * A basic "darkener"---this one does not even use the entire pixel neighborhood;
-     * just the exact current pixel like the original Nanoshop.
-     */
+    
     spriteEscape: function (x, y, rgbaNeighborhood) {
         return [
             rgbaNeighborhood[4].r = rgbaNeighborhood[2].r,

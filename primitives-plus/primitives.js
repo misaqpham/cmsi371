@@ -272,20 +272,199 @@ var Primitives = {
      * permutations of that eighth's coordinates.  So we define a helper
      * function that all of the circle implementations will use...
      */
-    plotCirclePoints: function (context, xc, yc, x, y, color) {
-        color = color || [0, 0, 0];
-        this.setPixel(context, xc + x, yc + y, color[0], color[1], color[2]);
-        this.setPixel(context, xc + x, yc - y, color[0], color[1], color[2]);
-        this.setPixel(context, xc + y, yc + x, color[0], color[1], color[2]);
-        this.setPixel(context, xc + y, yc - x, color[0], color[1], color[2]);
-        this.setPixel(context, xc - x, yc + y, color[0], color[1], color[2]);
-        this.setPixel(context, xc - x, yc - y, color[0], color[1], color[2]);
-        this.setPixel(context, xc - y, yc + x, color[0], color[1], color[2]);
-        this.setPixel(context, xc - y, yc - x, color[0], color[1], color[2]);
-    },
 
+    plotCirclePoints: function (context, xc, yc, x, y, r, color, color2) {
+        color = color || [0, 0, 0];
+        color2 = color2 || color;
+        x = Math.ceil(x);
+        y = Math.ceil(y);
+        var module = this,
+            i,
+            k,
+            posX = (r+x)/(2*r),
+            negX = (r-x)/(2*r),
+            negY = (r-y)/(2*r),
+            posY = (r+y)/(2*r),
+            c1 = [
+                (color[0] * negY + color2[0] * posY), 
+                (color[1] * negY + color2[1] * posY), 
+                (color[2] * negY + color2[2] * posY), 
+            ],
+            c2 = [
+                (color[0] * posY + color2[0] * negY), 
+                (color[1] * posY + color2[1] * negY), 
+                (color[2] * posY + color2[2] * negY),  
+            ],
+            c3 = [
+                (color[0] * negX + color2[0] * posX), 
+                (color[1] * negX + color2[1] * posX), 
+                (color[2] * negX + color2[2] * posX),
+            ],
+            c4 = [
+                (color[0] * posX + color2[0] * negX), 
+                (color[1] * posX + color2[1] * negX), 
+                (color[2] * posX + color2[2] * negX),
+            ];
+            
+        for (i = -x; i < x; i += 1) {
+            
+            //var ratio2 = (i+x)/(2*x);
+            //console.log(ratio, (color[0] * (1-ratio)) + (color2[0] * ratio))
+            module.setPixel(context, xc - i, yc + y, ...c1);
+            module.setPixel(context, xc - i, yc - y, ...c2);
+       }
+
+       for (k = -y; k < y; k+=1) {
+            module.setPixel(context, xc + k, yc + x, ...c3);
+            module.setPixel(context, xc + k, yc - x, ...c4);
+        }
+
+
+    },
+    //fillRect: function (context, x, y, w, h, c1, c2, c3, c4) {
+    
+
+    /*plotCirclePoints: function (context, xc, yc, x, y, r, c1, c2, c3, c4) {
+        x = Math.floor(x);
+        y = Math.floor(y);
+        var w = r*2;
+        var h = r*2;
+        var module = this,
+            i,
+            j,
+            colors,
+            bottom = y + yc,
+            right = x + xc,
+            leftColor = c1 ? [c1[0], c1[1], c1[2]] : c1,
+            rightColor = c2 ? [c2[0], c2[1], c2[2]] : c2,
+            leftVDelta,
+            rightVDelta,
+            hDelta,
+            currentColor,
+
+            // We have four subcases: zero, one, two, or four colors
+            // supplied.  The three-color case will be treated as if
+            // the third and fourth colors are the same.  Instead of
+            // embedding different logic into a single loop, we just
+            // break them up.  This allows each case to be "optimal"
+            // and simplifies reading the code.  There *is* some
+            // duplicate code, but in this case the benefits outweigh
+            // the cost.
+            // Should do nothing.
+            fillRectNoColor = function () {
+                // The rendering context will just ignore the
+                // undefined colors in this case.
+                for (i = 0; i < bottom - y; i += 1) {
+                    for (j = 0; j < right - x; j += 1) {
+                        colors[j][i] = [,,];
+                    }
+                }
+            },
+
+            fillRectOneColor = function () {
+                // Single color all the way through.
+                for (i = 0; i < bottom - y; i += 1) {
+                    for (j = 0; j < right - x; j += 1) {
+                        colors[j][i] = [...c1];
+                    }
+                }
+            },
+
+            fillRectTwoColors = function () {
+                // This modifies the color vertically only.
+                for (i = 0; i < w; i += 1) {
+                    for (j = 0; j < h; j += 1) {
+                        //console.log(i, j, bottom - y, right - x, colors[0].length);
+                        colors[j][i] = [leftColor];
+                    }
+
+                    // Move to the next level of the gradient.
+                    leftColor[0] += leftVDelta[0];
+                    leftColor[1] += leftVDelta[1];
+                    leftColor[2] += leftVDelta[2];
+                }
+            },
+
+            fillRectFourColors = function () {
+                for (i = 0; i < bottom - y; i += 1) {
+                    // Move to the next "vertical" color level.
+                    currentColor = [leftColor[0], leftColor[1], leftColor[2]];
+                    hDelta = [(rightColor[0] - leftColor[0]) / w,
+                              (rightColor[1] - leftColor[1]) / w,
+                              (rightColor[2] - leftColor[2]) / w];
+
+                    for (j = 0; j < right - x; j += 1) {
+                        colors[j][i] = [...currentColor];
+
+                        // Move to the next color horizontally.
+                        currentColor[0] += hDelta[0];
+                        currentColor[1] += hDelta[1];
+                        currentColor[2] += hDelta[2];
+                    }
+
+                    // The color on each side "grades" at different rates.
+                    leftColor[0] += leftVDelta[0];
+                    leftColor[1] += leftVDelta[1];
+                    leftColor[2] += leftVDelta[2];
+                    rightColor[0] += rightVDelta[0];
+                    rightColor[1] += rightVDelta[1];
+                    rightColor[2] += rightVDelta[2];
+                }
+            };
+            //console.log(x)
+        colors = new Array(2*x+1);
+        for(var k = 0; k < colors.length; k += 1) {
+            colors[k] = new Array(2*y+1);
+            for(var k2 = 0; k2<colors[k].length; k2+=1) {
+                colors[k][k2] = [NaN,NaN,NaN];
+            }
+        }
+
+        // Depending on which colors are supplied, we call a different
+        // version of the fill code.
+        if (!c1) {
+            fillRectNoColor();
+        } else if (!c2) {
+            fillRectOneColor();
+        } else if (!c3) {
+            // For this case, we set up the left vertical deltas.
+            leftVDelta = [(c2[0] - c1[0]) / h,
+                      (c2[1] - c1[1]) / h,
+                      (c2[2] - c1[2]) / h];
+            fillRectTwoColors();
+            
+        } else {
+            // The four-color case, with a quick assignment in case
+            // there are only three colors.
+            c4 = c4 || c3;
+
+            // In primitives, one tends to see repeated code more
+            // often than function calls, because this is the rare
+            // situation where function call overhead costs more
+            // than repeated code.
+            leftVDelta = [(c3[0] - c1[0]) / h,
+                      (c3[1] - c1[1]) / h,
+                      (c3[2] - c1[2]) / h];
+            rightVDelta = [(c4[0] - c2[0]) / h,
+                      (c4[1] - c2[1]) / h,
+                      (c4[2] - c2[2]) / h];
+            fillRectFourColors();
+        }
+        //console.log(colors[0][0].length);
+        for (i = -x; i < x; i += 1) {
+            //console.log(colors[i+x][2*y]);
+
+            module.setPixel(context, xc - i, yc + y, ...colors[i+x][0]);
+            module.setPixel(context, xc - i, yc - y, ...colors[i+x][2*y]);
+       }
+
+       for (k = -y; k < y; k+=1) {
+            //module.setPixel(context, xc + k, yc + x, colors[]);
+            //module.setPixel(context, xc + k, yc - x, ...color);
+        }
+    },*/
     // First, the most naive possible implementation: circle by trigonometry.
-    circleTrig: function (context, xc, yc, r, color) {
+    circleTrig: function (context, xc, yc, r, c1, c2, c3, c4) {
         var theta = 1 / r,
 
             // At the very least, we compute our sine and cosine just once.
@@ -297,33 +476,33 @@ var Primitives = {
             y = 0;
 
         while (x >= y) {
-            this.plotCirclePoints(context, xc, yc, x, y, color);
+            this.plotCirclePoints(context, xc, yc, x, y, r, c1, c2, c3, c4);
             x = x * c - y * s;
             y = x * s + y * c;
         }
     },
 
     // Now DDA.
-    circleDDA: function (context, xc, yc, r, color) {
+    circleDDA: function (context, xc, yc, r, c1, c2, c3, c4) {
         var epsilon = 1 / r,
             x = r,
             y = 0;
 
         while (x >= y) {
-            this.plotCirclePoints(context, xc, yc, x, y, color);
+            this.plotCirclePoints(context, xc, yc, x, y, r, c1, c2, c3, c4);
             x = x - (epsilon * y);
             y = y + (epsilon * x);
         }
     },
 
     // One of three Bresenham-like approaches.
-    circleBres1: function (context, xc, yc, r, color) {
+    circleBres1: function (context, xc, yc, r, c1, c2, c3, c4) {
         var p = 3 - 2 * r,
             x = 0,
             y = r;
 
         while (x < y) {
-            this.plotCirclePoints(context, xc, yc, x, y, color);
+            this.plotCirclePoints(context, xc, yc, x, y, r, c1, c2, c3, c4);
             if (p < 0) {
                 p = p + 4 * x + 6;
             } else {
@@ -333,12 +512,12 @@ var Primitives = {
             x += 1;
         }
         if (x === y) {
-            this.plotCirclePoints(context, xc, yc, x, y, color);
+            this.plotCirclePoints(context, xc, yc, x, y, r, c1, c2, c3, c4);
         }
     },
 
     // And another...
-    circleBres2: function (context, xc, yc, r, color) {
+    circleBres2: function (context, xc, yc, r, c1, c2, c3, c4) {
         var x = 0,
             y = r,
             e = 1 - r,
@@ -346,7 +525,7 @@ var Primitives = {
             v = e - r;
 
         while (x <= y) {
-            this.plotCirclePoints(context, xc, yc, x, y, color);
+            this.plotCirclePoints(context, xc, yc, x, y, r, c1, c2, c3, c4);
             if (e < 0) {
                 x += 1;
                 u += 2;
@@ -363,13 +542,13 @@ var Primitives = {
     },
 
     // Last but not least...
-    circleBres3: function (context, xc, yc, r, color) {
+    circleBres3: function (context, xc, yc, r, c1, c2, c3, c4) {
         var x = r,
             y = 0,
             e = 0;
 
         while (y <= x) {
-            this.plotCirclePoints(context, xc, yc, x, y, color);
+            this.plotCirclePoints(context, xc, yc, x, y, r, c1, c2, c3, c4);
             y += 1;
             e += (2 * y - 1);
             if (e > x) {

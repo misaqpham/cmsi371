@@ -4,8 +4,7 @@
  */
 (function () {
     var canvas = $("#picture")[0],
-        renderingContext = canvas.getContext("2d"),
-        gradient;
+        renderingContext = canvas.getContext("2d");
 
     var interval = setInterval(function () {
         if (SpriteLibrary.rose.loaded() && SpriteLibrary.jojo.loaded() && SpriteLibrary.olivia.loaded() && SpriteLibrary.bachelorBen.loaded()) {
@@ -53,8 +52,8 @@
             NanoshopNeighborhood.applyFilter(
                 renderingContext,
                 renderingContext.getImageData(0, 0, canvas.width, canvas.height),
-                //NanoshopNeighborhood.darkener
-                NanoshopNeighborhood.jagged
+                NanoshopNeighborhood.spriteEscape
+                //NanoshopNeighborhood.jagged
                 //NanoshopNeighborhood.averager // Convenience comment for easy switching.
             ),
             0, 0

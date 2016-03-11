@@ -39,25 +39,25 @@
         sprites = [
                 {
         //title
-                        draw: title,
-                        keyframes: [
-                            {
-                                frame: 0,
-                                tx: 100,
-                                ty: 50,
-                                sx: .5, 
-                                sy: .5,
-                                ease: KeyframeTweener.linear,
-                            },
+                    draw: title,
+                    keyframes: [
+                        {
+                            frame: 0,
+                            tx: 100,
+                            ty: 50,
+                            sx: .5, 
+                            sy: .5,
+                            ease: KeyframeTweener.linear,
+                        },
 
-                            {
-                                frame: 75,
-                                tx: 75,
-                                ty: 50,
-                                sx: .5, 
-                                sy: .5,
-                            }
-                        ]
+                        {
+                            frame: 75,
+                            tx: 75,
+                            ty: 50,
+                            sx: .5, 
+                            sy: .5,
+                        }
+                    ]
                 },
 
                 {
@@ -290,12 +290,12 @@
                         mood: "shocked",
                         rightArmAngle: -140*Math.PI / 180,
                         leftArmAngle: 140*Math.PI / 180,
-                        rightElbowAngle: -50*Math.PI / 180,
-                        leftElbowAngle: 50*Math.PI / 180,
+                        rightElbowAngle: -60*Math.PI / 180,
+                        leftElbowAngle: 60*Math.PI / 180,
                     },
 
                     {
-                        frame: 1320,
+                        frame: 1120,
                         tx: 1000,
                         ty: 345,
                         sx: .5, 
@@ -306,32 +306,140 @@
                         rightElbowAngle: -40*Math.PI / 180,
                         leftElbowAngle: 40*Math.PI / 180,
                     },
-                    //enlarged mad olivia
-                    // {
-                    //     frame: 1100,
-                    //     tx: 1000,
-                    //     ty: 400,
-                    //     sx: 1.5, 
-                    //     sy: 1.5,
-                    //     mood: "shocked",
-                    //     rightArmAngle: -140*Math.PI / 180,
-                    //     leftArmAngle: 140*Math.PI / 180,
-                    //     rightElbowAngle: -50*Math.PI / 180,
-                    //     leftElbowAngle: 50*Math.PI / 180,
-                    // },
 
-                    // {
-                    //     frame: 2020,
-                    //     tx: 1000,
-                    //     ty: 400,
-                    //     sx: 1.5, 
-                    //     sy: 1.5,
-                    //     mood: "shocked",
-                    //     rightArmAngle: -140*Math.PI / 180,
-                    //     leftArmAngle: 140*Math.PI / 180,
-                    //     rightElbowAngle: -40*Math.PI / 180,
-                    //     leftElbowAngle: 40*Math.PI / 180,
-                    // },
+                    {
+                        frame: 1130,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -60*Math.PI / 180,
+                        leftElbowAngle: 60*Math.PI / 180,
+                    },
+
+                     {
+                        frame: 1140,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -40*Math.PI / 180,
+                        leftElbowAngle: 40*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 1150,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -60*Math.PI / 180,
+                        leftElbowAngle: 60*Math.PI / 180,
+                    },
+                    
+
+                    {
+                        frame: 1160,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -40*Math.PI / 180,
+                        leftElbowAngle: 40*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 1170,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -60*Math.PI / 180,
+                        leftElbowAngle: 60*Math.PI / 180,
+                    },
+                    
+
+                    {
+                        frame: 1180,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -40*Math.PI / 180,
+                        leftElbowAngle: 40*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 1190,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -60*Math.PI / 180,
+                        leftElbowAngle: 60*Math.PI / 180,
+                    },
+                    
+
+                    {
+                        frame: 1200,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -40*Math.PI / 180,
+                        leftElbowAngle: 40*Math.PI / 180,
+                    },
+              
+                   //enlarged mad olivia
+                    {
+                        frame: 1220,
+                        tx: 1000,
+                        ty: 345,
+                        sx: .5, 
+                        sy: .5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -50*Math.PI / 180,
+                        leftElbowAngle: 50*Math.PI / 180,
+                    },
+
+                    {
+                        frame: 1450,
+                        tx: 1000,
+                        ty: 500,
+                        sx: 1.5, 
+                        sy: 1.5,
+                        mood: "shocked",
+                        rightArmAngle: -140*Math.PI / 180,
+                        leftArmAngle: 140*Math.PI / 180,
+                        rightElbowAngle: -40*Math.PI / 180,
+                        leftElbowAngle: 40*Math.PI / 180,
+                    },
 
                 ]
             },
@@ -539,19 +647,6 @@
                         rightArmAngle: -10*Math.PI/180
                     },
 
-                    // //raise arm to jump
-                    //  {
-                    //     frame: 1220,
-                    //     tx: 650,
-                    //     ty: 390,
-                    //     sx: .45, 
-                    //     sy: .45,
-                    //     leftArmAngle: 110*Math.PI/180,
-                    //     leftElbowAngle: 35*Math.PI/180,
-                    //     rightElbowAngle: -45*Math.PI/180,
-                    //     rightArmAngle: -10*Math.PI/180
-                    // },
-                        
                     //celebrate
                     {
                         frame: 1200,
@@ -602,7 +697,7 @@
                     },
 
                     {
-                        frame: 1420,
+                        frame: 1500,
                         tx: 630,
                         ty: 390,
                         sx: .45, 
@@ -972,7 +1067,7 @@
                     },
 
                     {
-                        frame: 1480,
+                        frame: 1500,
                         tx: 585,
                         ty: 360,
                         sx: .5, 
@@ -1195,36 +1290,36 @@
                 draw: SpriteLibrary.dialogue.draw,
                 keyframes: [ 
 
+                    // {
+                    //     frame: 1220,
+                    //     tx: 990,
+                    //     ty: 90,
+                    //     text: "NOOOOOOO!!",
+                    //     bubbleSize: "medium",
+                    //     speakerPosition: "right",
+                    //     RightOffset: 200
+
+                    // },
+
                     {
-                        frame: 1220,
-                        tx: 990,
-                        ty: 90,
-                        text: "This isn't happening, its not real!",
+                        frame: 1230,
+                        tx: 900,
+                        ty: 100,
+                        text: "Ben is suppose to be mine!!",
                         bubbleSize: "large",
                         speakerPosition: "right",
-                        RightOffset: 1000
+                        //xRightOffset: 600
 
                     },
 
                     {
                         frame: 1260,
-                        tx: 990,
-                        ty: 90,
+                        tx: 900,
+                        ty: 100,
                         text: "Ben is suppose to be mine!!",
                         bubbleSize: "large",
                         speakerPosition: "right",
-                        xRightOffset: 600
-
-                    },
-
-                    {
-                        frame: 1300,
-                        tx: 990,
-                        ty: 90,
-                        text: "Ben is suppose to be mine!!",
-                        bubbleSize: "large",
-                        speakerPosition: "right",
-                        xRightOffset: 600
+                        //xRightOffset: 600
 
                     },
 
@@ -1232,27 +1327,288 @@
             },
 
 //heart
-            // {
-            //     draw: heart,
-            //     keyframes: [
-            //         {
-            //             frame: 150,
-            //             tx: 500,
-            //             ty: 350,
-            //             sx: .75, 
-            //             sy: .75,
-            //             ease: KeyframeTweener.quadEaseInAndOut
-            //         },
+            {
+                draw: heart,
+                keyframes: [
+                    {
+                        frame: 1250,
+                        tx: 250,
+                        ty: 500,
+                        sx: .25, 
+                        sy: .25,
+                        ease: KeyframeTweener.quadEaseInAndOut
+                    },
 
-            //         {
-            //             frame: 250,
-            //             tx: 500,
-            //             ty: 200,
-            //             sx: .5, 
-            //             sy: .5,
-            //         }
-            //     ]
-            // },
+                    {
+                        frame: 1270,
+                        tx: 200,
+                        ty: 450,
+                        sx: .25, 
+                        sy: .25,
+                    },
+
+                    {
+                        frame: 1290,
+                        tx: 250,
+                        ty: 400,
+                        sx: .35, 
+                        sy: .35,
+                    },
+
+                    {
+                        frame: 1300,
+                        tx: 200,
+                        ty: 350,
+                        sx: .45, 
+                        sy: .45,
+                    },
+
+                    {
+                        frame: 1310,
+                        tx: 250,
+                        ty: 300,
+                        sx: .55, 
+                        sy: .55,
+                    },
+
+                    {
+                        frame: 1320,
+                        tx: 200,
+                        ty: 250,
+                        sx: .65, 
+                        sy: .65,
+                    },
+
+                    {
+                        frame: 1330,
+                        tx: 250,
+                        ty: 200,
+                        sx: .75, 
+                        sy: .75,
+                    },
+
+                    {
+                        frame: 1340,
+                        tx: 200,
+                        ty: 150,
+                        sx: .85, 
+                        sy: .85,
+                    },
+
+                    {
+                        frame: 1350,
+                        tx: 250,
+                        ty: 100,
+                        sx: .95, 
+                        sy: .95,
+                    },
+
+                    {
+                        frame: 1360,
+                        tx: 200,
+                        ty: 50,
+                        sx: 1, 
+                        sy: 1,
+                    },
+
+                    {
+                        frame: 1370,
+                        tx: 200,
+                        ty: 0,
+                        sx: 1, 
+                        sy: 1,
+                    }
+                ]
+            },
+
+            {
+                draw: heart,
+                keyframes: [
+                    {
+                        frame: 1250,
+                        tx: 650,
+                        ty: 500,
+                        sx: .25, 
+                        sy: .25,
+                        ease: KeyframeTweener.quadEaseInAndOut
+                    },
+
+                    {
+                        frame: 1270,
+                        tx: 600,
+                        ty: 450,
+                        sx: .25, 
+                        sy: .25,
+                    },
+
+                    {
+                        frame: 1290,
+                        tx: 650,
+                        ty: 400,
+                        sx: .35, 
+                        sy: .35,
+                    },
+
+                    {
+                        frame: 1300,
+                        tx: 600,
+                        ty: 350,
+                        sx: .45, 
+                        sy: .45,
+                    },
+
+                    {
+                        frame: 1310,
+                        tx: 650,
+                        ty: 300,
+                        sx: .55, 
+                        sy: .55,
+                    },
+
+                    {
+                        frame: 1320,
+                        tx: 600,
+                        ty: 250,
+                        sx: .65, 
+                        sy: .65,
+                    },
+
+                    {
+                        frame: 1330,
+                        tx: 650,
+                        ty: 200,
+                        sx: .75, 
+                        sy: .75,
+                    },
+
+                    {
+                        frame: 1340,
+                        tx: 600,
+                        ty: 150,
+                        sx: .85, 
+                        sy: .85,
+                    },
+
+                    {
+                        frame: 1350,
+                        tx: 650,
+                        ty: 100,
+                        sx: .95, 
+                        sy: .95,
+                    },
+
+                    {
+                        frame: 1360,
+                        tx: 600,
+                        ty: 50,
+                        sx: 1, 
+                        sy: 1,
+                    },
+
+                    {
+                        frame: 1370,
+                        tx: 600,
+                        ty: 0,
+                        sx: 1, 
+                        sy: 1,
+                    }
+                ]
+            },
+
+            {
+                draw: heart,
+                keyframes: [
+                    {
+                        frame: 1250,
+                        tx: 450,
+                        ty: 350,
+                        sx: .25, 
+                        sy: .25,
+                        ease: KeyframeTweener.quadEaseInAndOut
+                    },
+
+                    {
+                        frame: 1270,
+                        tx: 400,
+                        ty: 300,
+                        sx: .25, 
+                        sy: .25,
+                    },
+
+                    {
+                        frame: 1290,
+                        tx: 450,
+                        ty: 250,
+                        sx: .35, 
+                        sy: .35,
+                    },
+
+                    {
+                        frame: 1300,
+                        tx: 400,
+                        ty: 200,
+                        sx: .45, 
+                        sy: .45,
+                    },
+
+                    {
+                        frame: 1310,
+                        tx: 450,
+                        ty: 150,
+                        sx: .55, 
+                        sy: .55,
+                    },
+
+                    {
+                        frame: 1320,
+                        tx: 400,
+                        ty: 100,
+                        sx: .65, 
+                        sy: .65,
+                    },
+
+                    {
+                        frame: 1330,
+                        tx: 450,
+                        ty: 50,
+                        sx: .75, 
+                        sy: .75,
+                    },
+
+                    {
+                        frame: 1340,
+                        tx: 400,
+                        ty: 25,
+                        sx: .85, 
+                        sy: .85,
+                    },
+
+                    {
+                        frame: 1350,
+                        tx: 450,
+                        ty: 15,
+                        sx: .95, 
+                        sy: .95,
+                    },
+
+                    {
+                        frame: 1360,
+                        tx: 400,
+                        ty: 5,
+                        sx: .95, 
+                        sy: .95,
+                    },
+
+                    {
+                        frame: 1370,
+                        tx: 400,
+                        ty: 5,
+                        sx: .95, 
+                        sy: .95,
+                    },
+
+                ]
+            },
         ];
 
     // Finally, we initialize the engine.  Mainly, it needs
