@@ -1,11 +1,15 @@
 var Matrix = (function () {
     // Define the constructor.
     var matrix = function () {
-        this.elements = [].slice.call(arguments): 
-            [ 1, 0, 0, 0,
-            0, 1, 0, 0,
-            0, 0, 1, 0,
-            0, 0, 0, 1 ];
+        if (arguments.length > 0) {
+            this.elements = [].slice.call(arguments);
+        } else {
+            this.elements = [ 1, 0, 0, 0,
+                              0, 1, 0, 0,
+                              0, 0, 1, 0,
+                              0, 0, 0, 1 ];
+        }
+        
     },
     
         // A private method for checking dimensions,
@@ -39,9 +43,9 @@ var Matrix = (function () {
             for (column = 0, max = 4; column < 4; column +=1) {  
                 total = 0;
                 for (i = 0; i < 4; i++) {
-                    total += this.elements[i + row * 4] * matrix2.elements[i * 4 + col];
+                    total += this.elements[i + row * 4] * matrix2.elements[i * 4 + column];
                 }
-                result.elements[row * 4 + col] = sum;
+                result.elements[row * 4 + column] = total;
             }
         }
         return result;
@@ -129,5 +133,7 @@ var Matrix = (function () {
 
         return columnsForWebGL
     }
+
+    return matrix;
 
 })();
