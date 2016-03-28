@@ -29,6 +29,16 @@ var Matrix = (function () {
         return this.elements;
     };
 
+    matrix.prototype.convertForWebGL = function () {
+        var columnsForWebGL = [],
+            i;
+
+        for (i = 0; i<4; i++) {
+            columnsForWebGL.push(this.elements[i], this.elements[i + 4], this.elements[i + 8], this.elements[i + 12])
+        }
+
+        return columnsForWebGL
+    }
 
     matrix.prototype.multiply = function (matrix2) {
         var result = new Matrix(),
@@ -66,7 +76,7 @@ var Matrix = (function () {
                                       0, 0, 1, tz,
                                       0, 0, 0, 1 );
 
-        return tranlation;
+        return translation;
     };
 
     matrix.getRotationMatrix = function (angle, x, y, z) {
@@ -122,17 +132,6 @@ var Matrix = (function () {
                                     );
         return projection;
     };
-
-    matrix.convertForWebGL = function () {
-        var columnsForWebGL = [],
-            i;
-
-        for (i = 0; i<4; i++) {
-            columnsForWebGL.push(this.elements(i), this.elements(i + 4), this.elements(i + 8), this.elements(i + 12))
-        }
-
-        return columnsForWebGL
-    }
 
     return matrix;
 
