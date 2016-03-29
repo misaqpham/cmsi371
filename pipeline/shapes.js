@@ -53,18 +53,19 @@ var Shapes = {
         };
     },
 
-    sphere: function (){
+    sphere: function () {
         var vertices = [],
-            indices = []
+            indices = [],
+            radius = 1
 
         for (var i = 0; i <= 20; i += 1) {
-            var theta = (i * Math.PI) / 20;
+            theta = (i * Math.PI) / 20;
             for (var j = 0; j <= 20; j += 1) {
                 var phi = (j * 2 * Math.PI) / 20;
                
-                var x = Math.cos(phi) *  Math.sin(theta);
-                var y = Math.cos(theta);
-                var z = Math.sin(phi) *  Math.sin(theta);
+                var x = radius * Math.cos(phi) *  Math.sin(theta);
+                var y = radius * Math.cos(theta);
+                var z = radius * Math.sin(phi) *  Math.sin(theta);
 
                 vertices.push([x, y, z]);
             }
@@ -86,6 +87,87 @@ var Shapes = {
             indices: indices
         };
 
+    },
+
+    pyramid: function () {
+        return {
+            vertices: [
+                [-0.5, 0.5, 0.0],
+                [-0.5, -0.5, 0.0],
+                [0.5, -0.5, 0.0],
+                [0.5, 0.5, 0.0],
+                [0.0,0.0, 0.75]
+            ],
+
+            indices: [
+                //bottom
+                [ 0, 1, 2 ],
+                [ 0, 2, 3 ],
+
+                //pyramid faces
+                [ 0, 4, 1 ],
+                [ 0, 4, 3 ],
+                [ 3, 4, 2 ],
+                [ 2, 4, 1 ]
+               
+            ]
+        };
+    },
+
+    diamond: function () {
+        //draw pyramid first and then this to achieve the diamond
+        return {
+            vertices: [
+                [-0.5, 0.5, 0.0],
+                [-0.5, -0.5, 0.0],
+                [0.5, -0.5, 0.0],
+                [0.5, 0.5, 0.0],
+                [0.0, 0.0, -1.5]
+            ],
+
+            indices: [
+                //bottom
+                [ 0, 1, 2 ],
+                [ 0, 2, 3 ],
+
+                //pyramid faces
+                [ 0, 4, 1 ],
+                [ 0, 4, 3 ],
+                [ 3, 4, 2 ],
+                [ 2, 4, 1 ]
+               
+            ]
+        };
+    },
+
+    cube: function () {
+        return {
+            vertices: [
+                [ 0.5, 0.5, 0.5 ],
+                [ 0.5, 0.5, -0.5 ],
+                [ -0.5, 0.5, -0.5 ],
+                [ -0.5, 0.5, 0.5 ],
+                [ 0.5, -0.5, 0.5 ],
+                [ 0.5, -0.5, -0.5 ],
+                [ -0.5, -0.5, -0.5 ],
+                [ -0.5, -0.5, 0.5 ]
+            ],
+
+            indices: [
+                [ 0, 1, 3 ],
+                [ 2, 3, 1 ],
+                [ 0, 3, 4 ],
+                [ 7, 4, 3 ],
+                [ 0, 4, 1 ],
+                [ 5, 1, 4 ],
+                [ 1, 5, 6 ],
+                [ 2, 1, 6 ],
+                [ 2, 7, 3 ],
+                [ 6, 7, 2 ],
+                [ 4, 7, 6 ],
+                [ 5, 4, 6 ]
+            ]
+        };
     },
 
     /*

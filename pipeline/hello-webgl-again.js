@@ -126,8 +126,16 @@
 
         {
             color: { r: 1, g: 0, b: 0.4 },
-            vertices: Shapes.toRawTriangleArray(Shapes.sphere()),
-            mode: gl.LINE_LOOP
+            vertices: Shapes.toRawLineArray(Shapes.sphere()),
+            axis: { x: 1.0, y: 1.0, z: 1.0},
+            mode: gl.LINES
+        },
+
+        {
+            color: { r: 0, g: 0, b: 0.5 },
+            vertices: Shapes.toRawTriangleArray(Shapes.cube()),
+            axis: { x: 5.0, y: 1.0, z: 1.0},
+            mode: gl.TRIANGLES
         }
     ];
 
