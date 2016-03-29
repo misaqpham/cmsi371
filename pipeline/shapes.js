@@ -3,15 +3,11 @@
  * The "shapes" are returned as indexed vertices, with utility functions for
  * converting these into "raw" coordinate arrays.
  */
+var Shapes = {
     /*
      * Returns the vertices for a small icosahedron.
      */
-
-(function () {
-    window.ShapeLibrary = window.ShapeLibrary || {}; //do this instead using OR
-    window.ShapeLibrary.Shapes = (function() {
-    
-    var icosahedron = function () {
+    icosahedron: function () {
         // These variables are actually "constants" for icosahedron coordinates.
         var X = 0.525731112119133606;
         var Z = 0.850650808352039932;
@@ -57,11 +53,46 @@
         };
     },
 
+    sphere: function (){
+        var vertices = [],
+            indices = []
+
+        for (var i = 0; i <= 20; i += 1) {
+            var theta = (i * Math.PI) / 20;
+            for (var j = 0; j <= 20; j += 1) {
+                var phi = (j * 2 * Math.PI) / 20;
+               
+                var x = Math.cos(phi) *  Math.sin(theta);
+                var y = Math.cos(theta);
+                var z = Math.sin(phi) *  Math.sin(theta);
+
+                vertices.push([x, y, z]);
+            }
+        }
+
+        for (var i = 0; i <= 20; i += 1) {
+
+            for (var j = 0; j <= 20; j += 1) {
+                var top = (i * (20 + 1)) + j;
+                var bottom = top + 20 + 1;
+
+                indices.push([top, bottom, top + 1]);
+                indices.push([bottom, bottom + 1, top + 1]);
+            }
+        }
+
+        return {
+            vertices: vertices,
+            indices: indices
+        };
+
+    },
+
     /*
      * Utility function for turning indexed vertices into a "raw" coordinate array
      * arranged as triangles.
      */
-    var toRawTriangleArray =  function (indexedVertices) {
+    toRawTriangleArray: function (indexedVertices) {
         var result = [];
 
         for (var i = 0, maxi = indexedVertices.indices.length; i < maxi; i += 1) {
@@ -81,7 +112,7 @@
      * Utility function for turning indexed vertices into a "raw" coordinate array
      * arranged as line segments.
      */
-    var toRawLineArray = function (indexedVertices) {
+    toRawLineArray: function (indexedVertices) {
         var result = [];
 
         for (var i = 0, maxi = indexedVertices.indices.length; i < maxi; i += 1) {
@@ -100,8 +131,5 @@
 
         return result;
     }
-        // return {draw: drawBen,
-        //         loaded: function () { return tuxLoaded && bachelorLoaded; }
-        // };
-    })();
-}());
+
+};

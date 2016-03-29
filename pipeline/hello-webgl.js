@@ -107,7 +107,7 @@
         // Shape library demonstration.
         {
             color: { r: 1, g: 0.5, b: 0 },
-            vertices: Shapes.toRawLineArray(Shapes.icosahedron()),
+            vertices: Shapes.toRawTriangleArray(Shapes.sphere()),
             mode: gl.LINES
         }
     ];
