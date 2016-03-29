@@ -1,24 +1,17 @@
 var Matrix = (function () {
     // Define the constructor.
     var matrix = function () {
-        if (arguments.length > 0) {
+        if (arguments.length > 0 && arguments.length === 16) {
             this.elements = [].slice.call(arguments);
+        } else if (arguments.length > 0 && arguments.length !== 16) {
+            throw "Invalid number of arguments. Matrix cannot be created"
         } else {
             this.elements = [ 1, 0, 0, 0,
                               0, 1, 0, 0,
                               0, 0, 1, 0,
                               0, 0, 0, 1 ];
-        }
-        
-    },
-    
-        // A private method for checking dimensions,
-        // throwing an exception when different.
-        checkDimensions = function (m1, m2) {
-            if (m1.dimensions() !== m2.dimensions()) {
-                throw "Matrices have different dimensions";
-            }
-        };
+        } 
+    }
 
     // Basic methods.
     matrix.prototype.dimensions = function () {
@@ -46,8 +39,6 @@ var Matrix = (function () {
             row,
             total,
             max;
-
-        checkDimensions(this, matrix2);
 
         for (row = 0, max = 4; row < max; row += 1) {
             for (column = 0, max = 4; column < 4; column +=1) {  
