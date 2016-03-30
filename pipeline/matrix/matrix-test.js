@@ -297,25 +297,19 @@ $(function () {
     });
 
     test("Rotation Matrix", function () {
-        var m1 = Matrix.getRotationMatrix(0, x, y, z);
-        
-        equal(m1.elements[0], 1, "First element by index");
-        equal(m1.elements[1], 0, "Second element by index");
-        equal(m1.elements[2], 0, "Third element by index");
-        equal(m1.elements[3], 0, "Fourth element by index");
-        equal(m1.elements[4], 0, "Fifth element by index");
-        equal(m1.elements[5], 1, "Sixth element by index");
-        equal(m1.elements[6], 0, "Sementh element by index");
-        equal(m1.elements[7], 0, "Eight element by index");
-        equal(m1.elements[8], 0, "Ninth element by index");
-        equal(m1.elements[9], 0, "Tenth element by index");
-        equal(m1.elements[10], 1, "Eleventh element by index");
-        equal(m1.elements[11], 0, "Twelfth element by index");
-        equal(m1.elements[12], 0, "Thirteenth element by index");
-        equal(m1.elements[13], 0, "Fourteenth element by index");
-        equal(m1.elements[14], 0, "Fifteenth element by index");
-        equal(m1.elements[15], 1, "Sixteenth element by index");
+        var m1 = Matrix.getRotationMatrix(0, 1, 0, 0);
+        var m2 = new Matrix();
 
+        deepEqual(m1,m2);
+
+        m1 = Matrix.getRotationMatrix(0, 0, 1, 0);
+        
+        deepEqual(m1,m2);
+
+        m1 = Matrix.getRotationMatrix(0, 0, 0, 1);
+        
+        deepEqual(m1,m2);
+        
     });
 
 });
