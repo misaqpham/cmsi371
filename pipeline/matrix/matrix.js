@@ -31,7 +31,7 @@ var Matrix = (function () {
         }
 
         return columnsForWebGL
-    }
+    };
 
     matrix.prototype.multiply = function (matrix2) {
         var result = new Matrix(),

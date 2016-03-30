@@ -214,12 +214,12 @@
             axis: { x: 1.0, y: 0.0, z: 1.0 }
         },
 
-        {
-            color: { r: 0.0, g: 0.5, b: 0.0 },
-            vertices: Shapes.toRawLineArray(Shapes.sphere()),
-            mode: gl.LINES,
-            axis: { x: 0.0, y: 1.0, z: 1.0 }
-        },
+        // {
+        //     color: { r: 0.0, g: 0.5, b: 0.0 },
+        //     vertices: Shapes.toRawLineArray(Shapes.sphere()),
+        //     mode: gl.LINES,
+        //     axis: { x: 0.0, y: 1.0, z: 1.0 }
+        // },
 
         // Something that would have been clipped before.
         {
@@ -239,7 +239,7 @@
 
         // Show off the new shape.
         {
-            vertices: Shapes.toRawTriangleArray(Shapes.pyramid()),
+            vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
             // 12 triangles in all.
             color: { r: 1.0, g: 0, b: 0.5 },
             mode: gl.TRIANGLES,
@@ -247,7 +247,7 @@
         },
 
         {
-            vertices: Shapes.toRawTriangleArray(Shapes.diamond()),
+            vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
             // 12 triangles in all.
             
             color: { r: 1.0, g: 0, b: 0.5 },
@@ -256,7 +256,7 @@
         }
 
         // {
-        //     vertices: Shapes.toRawTriangleArray(Shapes.cube()),
+        //     vertices: new Shape(Shape.cube()).toRawTriangleArray(),
         //     // 12 triangles in all.
             
         //     color: { r: 1.0, g: 0, b: 0.5 },

@@ -3,11 +3,35 @@
  * The "shapes" are returned as indexed vertices, with utility functions for
  * converting these into "raw" coordinate arrays.
  */
-var Shapes = {
+(function() {
+
+    window.ShapeLibrary = window.ShapeLibrary || {}; //do this instead using OR
+        
+    Shape = function (properties) {
+        this.vertices = properties.vertices;
+        this.indices = properties.indices;
+        this.children = [];
+    };
+
+    Shape.prototype.getVertices = function() {
+        return this.vertices;
+    };
+
+    Shape.prototype.setVertices = function (vertices) {
+        this.vertices = vertices;
+    };
+
+    Shape.prototype.getIndices = function() {
+        return this.indices;
+    };
+
+    Shape.prototype.setIndices = function (indices) {
+        this.indices = indices;
+    };
     /*
      * Returns the vertices for a small icosahedron.
      */
-    icosahedron: function () {
+    Shape.icosahedron = function() {
         // These variables are actually "constants" for icosahedron coordinates.
         var X = 0.525731112119133606;
         var Z = 0.850650808352039932;
@@ -27,7 +51,6 @@ var Shapes = {
                 [ Z, -X, 0.0 ],
                 [ -Z, -X, 0.0 ]
             ],
-
             indices: [
                 [ 1, 4, 0 ],
                 [ 4, 9, 0 ],
@@ -51,9 +74,9 @@ var Shapes = {
                 [ 11, 2, 7 ]
             ]
         };
-    },
+    };
 
-    sphere: function () {
+    Shape.sphere = function () {
         var vertices = [],
             indices = [],
             radius = 1
@@ -87,9 +110,9 @@ var Shapes = {
             indices: indices
         };
 
-    },
+    };
 
-    pyramid: function () {
+    Shape.pyramid = function () {
         return {
             vertices: [
                 [-0.5, 0.5, 0.0],
@@ -114,7 +137,7 @@ var Shapes = {
         };
     },
 
-    diamond: function () {
+    Shape.diamond = function () {
         //draw pyramid first and then this to achieve the diamond
         return {
             vertices: [
@@ -140,7 +163,7 @@ var Shapes = {
         };
     },
 
-    cube: function () {
+    Shape.cube = function () {
         return {
             vertices: [
                 [ 0.5, 0.5, 0.5 ],
@@ -168,50 +191,48 @@ var Shapes = {
                 [ 5, 4, 6 ]
             ]
         };
-    },
+    };
 
     /*
      * Utility function for turning indexed vertices into a "raw" coordinate array
      * arranged as triangles.
      */
-    toRawTriangleArray: function (indexedVertices) {
+    Shape.prototype.toRawTriangleArray = function () {
         var result = [];
 
-        for (var i = 0, maxi = indexedVertices.indices.length; i < maxi; i += 1) {
-            for (var j = 0, maxj = indexedVertices.indices[i].length; j < maxj; j += 1) {
+        for (var i = 0, maxi = this.indices.length; i < maxi; i += 1) {
+            for (var j = 0, maxj = this.indices[i].length; j < maxj; j += 1) {
                 result = result.concat(
-                    indexedVertices.vertices[
-                        indexedVertices.indices[i][j]
+                    this.vertices[
+                        this.indices[i][j]
                     ]
                 );
             }
         }
 
         return result;
-    },
+    };
 
     /*
      * Utility function for turning indexed vertices into a "raw" coordinate array
      * arranged as line segments.
      */
-    toRawLineArray: function (indexedVertices) {
+    Shape.prototype.toRawLineArray = function () {
         var result = [];
 
-        for (var i = 0, maxi = indexedVertices.indices.length; i < maxi; i += 1) {
-            for (var j = 0, maxj = indexedVertices.indices[i].length; j < maxj; j += 1) {
+        for (var i = 0, maxi = this.indices.length; i < maxi; i += 1) {
+            for (var j = 0, maxj = this.indices[i].length; j < maxj; j += 1) {
                 result = result.concat(
-                    indexedVertices.vertices[
-                        indexedVertices.indices[i][j]
+                    this.vertices[
+                        this.indices[i][j]
                     ],
 
-                    indexedVertices.vertices[
-                        indexedVertices.indices[i][(j + 1) % maxj]
+                    this.vertices[
+                        this.indices[i][(j + 1) % maxj]
                     ]
                 );
             }
         }
-
         return result;
-    }
-
-};
+    };
+}());
