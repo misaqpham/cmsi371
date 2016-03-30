@@ -13,21 +13,6 @@
         this.children = [];
     };
 
-    Shape.prototype.getVertices = function() {
-        return this.vertices;
-    };
-
-    Shape.prototype.setVertices = function (vertices) {
-        this.vertices = vertices;
-    };
-
-    Shape.prototype.getIndices = function() {
-        return this.indices;
-    };
-
-    Shape.prototype.setIndices = function (indices) {
-        this.indices = indices;
-    };
     /*
      * Returns the vertices for a small icosahedron.
      */
@@ -131,8 +116,7 @@
                 [ 0, 4, 1 ],
                 [ 0, 4, 3 ],
                 [ 3, 4, 2 ],
-                [ 2, 4, 1 ]
-               
+                [ 2, 4, 1 ]  
             ]
         };
     },
@@ -158,7 +142,6 @@
                 [ 0, 4, 3 ],
                 [ 3, 4, 2 ],
                 [ 2, 4, 1 ]
-               
             ]
         };
     },
@@ -209,7 +192,6 @@
                 );
             }
         }
-
         return result;
     };
 

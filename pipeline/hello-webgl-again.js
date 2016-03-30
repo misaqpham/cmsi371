@@ -79,87 +79,104 @@
 
     // Build the objects to display.
     var objectsToDraw = [
-        {
-            vertices: [].concat(
-                [ 0.0, 0.0, 0.0 ],
-                [ 0.5, 0.0, -0.75 ],
-                [ 0.0, 0.5, 0.0 ]
-            ),
-            colors: [].concat(
-                [ 1.0, 0.0, 0.0 ],
-                [ 0.0, 1.0, 0.0 ],
-                [ 0.0, 0.0, 1.0 ]
-            ),
-            mode: gl.TRIANGLES
-        },
+        // {
+        //     vertices: [].concat(
+        //         [ 0.0, 0.0, 0.0 ],
+        //         [ 0.5, 0.0, -0.75 ],
+        //         [ 0.0, 0.5, 0.0 ]
+        //     ),
+        //     colors: [].concat(
+        //         [ 1.0, 0.0, 0.0 ],
+        //         [ 0.0, 1.0, 0.0 ],
+        //         [ 0.0, 0.0, 1.0 ]
+        //     ),
+        //     mode: gl.TRIANGLES
+        // },
 
-        {
-            color: { r: 0.0, g: 1.0, b: 0 },
-            vertices: [].concat(
-                [ 0.25, 0.0, -0.5 ],
-                [ 0.75, 0.0, -0.5 ],
-                [ 0.25, 0.5, -0.5 ]
-            ),
-            mode: gl.TRIANGLES
-        },
+        // {
+        //     color: { r: 0.0, g: 1.0, b: 0 },
+        //     vertices: [].concat(
+        //         [ 0.25, 0.0, -0.5 ],
+        //         [ 0.75, 0.0, -0.5 ],
+        //         [ 0.25, 0.5, -0.5 ]
+        //     ),
+        //     mode: gl.TRIANGLES
+        // },
 
-        {
-            color: { r: 0.0, g: 0.0, b: 1.0 },
-            vertices: [].concat(
-                [ -0.25, 0.0, 0.5 ],
-                [ 0.5, 0.0, 0.5 ],
-                [ -0.25, 0.5, 0.5 ]
-            ),
-            mode: gl.TRIANGLES
-        },
+        // {
+        //     color: { r: 0.0, g: 0.0, b: 1.0 },
+        //     vertices: [].concat(
+        //         [ -0.25, 0.0, 0.5 ],
+        //         [ 0.5, 0.0, 0.5 ],
+        //         [ -0.25, 0.5, 0.5 ]
+        //     ),
+        //     mode: gl.TRIANGLES
+        // },
 
-        {
-            color: { r: 0.0, g: 0.0, b: 1.0 },
-            vertices: [].concat(
-                [ -1.0, -1.0, 0.75 ],
-                [ -1.0, -0.1, -1.0 ],
-                [ -0.1, -0.1, -1.0 ],
-                [ -0.1, -1.0, 0.75 ]
-            ),
-            mode: gl.LINE_LOOP
-        },
+        // {
+        //     color: { r: 0.0, g: 0.0, b: 1.0 },
+        //     vertices: [].concat(
+        //         [ -1.0, -1.0, 0.75 ],
+        //         [ -1.0, -0.1, -1.0 ],
+        //         [ -0.1, -0.1, -1.0 ],
+        //         [ -0.1, -1.0, 0.75 ]
+        //     ),
+        //     mode: gl.LINE_LOOP
+        // },
 
         {
             color: { r: 1, g: 0, b: 0.4 },
-            vertices: Shapes.toRawLineArray(Shapes.sphere()),
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
             axis: { x: 1.0, y: 1.0, z: 1.0},
             mode: gl.LINES
         },
 
         {
             color: { r: 0, g: 0, b: 0.5 },
-            vertices: Shapes.toRawTriangleArray(Shapes.cube()),
-            axis: { x: 5.0, y: 1.0, z: 1.0},
+            vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
+            axis: { x: 1.0, y: 1.0, z: 1.0},
             mode: gl.TRIANGLES
+        },
+
+        {
+            vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
+            color: { r: 0, g: 1.0, b: 0.4 },
+            mode: gl.TRIANGLES,
+            axis: { x: 1.0, y: 1.0, z: 1.0 },
+            children: [{ 
+                vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
+                color: { r: 0, g: 0, b: 1.0 },
+                mode: gl.TRIANGLES,
+                axis: { x: 7.0, y: 1.0, z: 1.0 }
+                }]
         }
     ];
 
     // Pass the vertices to WebGL.
-    for (var i = 0, maxi = objectsToDraw.length; i < maxi; i += 1) {
-        objectsToDraw[i].buffer = GLSLUtilities.initVertexBuffer(gl,
-                objectsToDraw[i].vertices);
+    var passVertices = function (objectsToDraw) {
+        for (var i = 0, maxi = objectsToDraw.length; i < maxi; i += 1) {
+            objectsToDraw[i].buffer = GLSLUtilities.initVertexBuffer(gl,
+                    objectsToDraw[i].vertices);
 
-        if (!objectsToDraw[i].colors) {
-            // If we have a single color, we expand that into an array
-            // of the same color over and over.
-            objectsToDraw[i].colors = [];
-            for (var j = 0, maxj = objectsToDraw[i].vertices.length / 3;
-                    j < maxj; j += 1) {
-                objectsToDraw[i].colors = objectsToDraw[i].colors.concat(
-                    objectsToDraw[i].color.r,
-                    objectsToDraw[i].color.g,
-                    objectsToDraw[i].color.b
-                );
+            if (!objectsToDraw[i].colors) {
+                // If we have a single color, we expand that into an array
+                // of the same color over and over.
+                objectsToDraw[i].colors = [];
+                for (var j = 0, maxj = objectsToDraw[i].vertices.length / 3;
+                        j < maxj; j += 1) {
+                    objectsToDraw[i].colors = objectsToDraw[i].colors.concat(
+                        objectsToDraw[i].color.r,
+                        objectsToDraw[i].color.g,
+                        objectsToDraw[i].color.b
+                    );
+                }
+            } else if (objectsToDraw[i].children && (objectsToDraw[i].children.length != 0)) {
+                passVertices(objectsToDraw[i].children);
             }
+            objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,
+                    objectsToDraw[i].colors);
         }
-        objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,
-                objectsToDraw[i].colors);
-    }
+    };
 
     // Initialize the shaders.
     var abort = false;
@@ -197,7 +214,6 @@
     var vertexColor = gl.getAttribLocation(shaderProgram, "vertexColor");
     gl.enableVertexAttribArray(vertexColor);
     var rotationMatrix = gl.getUniformLocation(shaderProgram, "rotationMatrix");
-
     /*
      * Displays an individual object.
      */
@@ -231,6 +247,7 @@
         gl.flush();
     };
 
+    passVertices(objectsToDraw);
     /*
      * Animates the scene.
      */

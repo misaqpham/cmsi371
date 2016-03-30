@@ -240,7 +240,6 @@
         // Show off the new shape.
         {
             vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
-            // 12 triangles in all.
             color: { r: 1.0, g: 0, b: 0.5 },
             mode: gl.TRIANGLES,
             axis: { x: 7.0, y: 1.0, z: 1.0 },
@@ -272,169 +271,30 @@
     ];
 
     // Pass the vertices to WebGL.
-    for (i = 0, maxi = objectsToDraw.length; i < maxi; i += 1) {
-        objectsToDraw[i].buffer = GLSLUtilities.initVertexBuffer(gl,
-                objectsToDraw[i].vertices);
-
-        if (!objectsToDraw[i].colors) {
-            // If we have a single color, we expand that into an array
-            // of the same color over and over.
-            objectsToDraw[i].colors = [];
-            for (j = 0, maxj = objectsToDraw[i].vertices.length / 3;
-                    j < maxj; j += 1) {
-                objectsToDraw[i].colors = objectsToDraw[i].colors.concat(
-                    objectsToDraw[i].color.r,
-                    objectsToDraw[i].color.g,
-                    objectsToDraw[i].color.b
-                );
-            }
-        }
-        
-        objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,
-                objectsToDraw[i].colors);
-    }
-
-    // Initialize the shaders.
-    shaderProgram = GLSLUtilities.initSimpleShaderProgram(
-        gl,
-        $("#vertex-shader").text(),
-        $("#fragment-shader").text(),
-
-        // Very cursory error-checking here...
-        function (shader) {
-            abort = true;
-            alert("Shader problem: " + gl.getShaderInfoLog(shader));
-        },
-
-        // Another simplistic error check: we don't even access the faulty
-        // shader program.
-        function (shaderProgram) {
-            abort = true;
-            alert("Could not link shaders...sorry.");
-        }
-    );
-
-    // If the abort variable is true here, we can't continue.
-    if (abort) {
-        alert("Fatal errors encountered; we cannot continue.");
-        return;
-    }
-
-    // All done --- tell WebGL to use the shader program from now on.
-    gl.useProgram(shaderProgram);
-
-    // Hold on to the important variables within the shaders.
-    vertexPosition = gl.getAttribLocation(shaderProgram, "vertexPosition");
-    gl.enableVertexAttribArray(vertexPosition);
-    vertexColor = gl.getAttribLocation(shaderProgram, "vertexColor");
-    gl.enableVertexAttribArray(vertexColor);
-
-    // Finally, we come to the typical setup for transformation matrices:
-    // model-view and projection, managed separately.
-    modelViewMatrix = gl.getUniformLocation(shaderProgram, "modelViewMatrix");
-    projectionMatrix = gl.getUniformLocation(shaderProgram, "projectionMatrix");
-
-    /*
-     * Displays an individual object, including a transformation that now varies
-     * for each object drawn.
-     */
-    drawObject = function (object) {
-        // Set the varying colors.
-        gl.bindBuffer(gl.ARRAY_BUFFER, object.colorBuffer);
-        gl.vertexAttribPointer(vertexColor, 3, gl.FLOAT, false, 0, 0);
-
-        // Set up the model-view matrix, if an axis is included.  If not, we
-        // specify the identity matrix.
-        gl.uniformMatrix4fv(modelViewMatrix, gl.FALSE, new Float32Array(object.axis ?
-                getRotationMatrix(currentRotation, object.axis.x, object.axis.y, object.axis.z) :
-                [1, 0, 0, 0, // N.B. In a full-fledged matrix library, the identity
-                 0, 1, 0, 0, //      matrix should be available as a function.
-                 0, 0, 1, 0,
-                 0, 0, 0, 1]
-            ));
-
-        // Set the varying vertex coordinates.
-        gl.bindBuffer(gl.ARRAY_BUFFER, object.buffer);
-        gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
-        gl.drawArrays(object.mode, 0, object.vertices.length / 3);
-    };
-
-    /*
-     * Displays the scene.
-     */
-    drawScene = function () {
-        // Clear the display.
-        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-        // Display the objects.
+    var passVertices = function () {
         for (i = 0, maxi = objectsToDraw.length; i < maxi; i += 1) {
-            drawObject(objectsToDraw[i]);
+            objectsToDraw[i].buffer = GLSLUtilities.initVertexBuffer(gl,
+                    objectsToDraw[i].vertices);
+
+            if (!objectsToDraw[i].colors) {
+                // If we have a single color, we expand that into an array
+                // of the same color over and over.
+                objectsToDraw[i].colors = [];
+                for (j = 0, maxj = objectsToDraw[i].vertices.length / 3;
+                        j < maxj; j += 1) {
+                    objectsToDraw[i].colors = objectsToDraw[i].colors.concat(
+                        objectsToDraw[i].color.r,
+                        objectsToDraw[i].color.g,
+                        objectsToDraw[i].color.b
+                    );
+                }
+            } else if (objectsToDraw[i].hasOwnProperty(children)) {
+                    passVertices(objectsToDraw[i].children);
+            }
+
+            objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,
+                    objectsToDraw[i].colors);
         }
-
-        // All done.
-        gl.flush();
-    };
-
-    // Because our canvas element will not change size (in this program),
-    // we can set up the projection matrix once, and leave it at that.
-    // Note how this finally allows us to "see" a greater coordinate range.
-    // We keep the vertical range fixed, but change the horizontal range
-    // according to the aspect ratio of the canvas.  We can also expand
-    // the z range now.
-    gl.uniformMatrix4fv(projectionMatrix, gl.FALSE, new Float32Array(getOrthoMatrix(
-        -2 * (canvas.width / canvas.height),
-        2 * (canvas.width / canvas.height),
-        -2,
-        2,
-        -10,
-        10
-    )));
-
-    // Animation initialization/support.
-    previousTimestamp = null;
-    advanceScene = function (timestamp) {
-        // Check if the user has turned things off.
-        if (!animationActive) {
-            return;
-        }
-
-        // Initialize the timestamp.
-        if (!previousTimestamp) {
-            previousTimestamp = timestamp;
-            window.requestAnimationFrame(advanceScene);
-            return;
-        }
-
-        // Check if it's time to advance.
-        var progress = timestamp - previousTimestamp;
-        if (progress < 30) {
-            // Do nothing if it's too soon.
-            window.requestAnimationFrame(advanceScene);
-            return;
-        }
-
-        // All clear.
-        currentRotation += 0.033 * progress;
-        drawScene();
-        if (currentRotation >= 360.0) {
-            currentRotation -= 360.0;
-        }
-
-        // Request the next frame.
-        previousTimestamp = timestamp;
-        window.requestAnimationFrame(advanceScene);
-    };
-
-    // Draw the initial scene.
-    drawScene();
-
-    // Set up the rotation toggle: clicking on the canvas does it.
-    $(canvas).click(function () {
-        animationActive = !animationActive;
-        if (animationActive) {
-            previousTimestamp = null;
-            window.requestAnimationFrame(advanceScene);
-        }
-    });
+    }
 
 }(document.getElementById("matrices-webgl")));
