@@ -79,16 +79,16 @@
     Shape.sphere = function () {
         var vertices = [],
             indices = [],
-            radius = 1
+            theta
 
         for (var i = 0; i <= 20; i += 1) {
             theta = (i * Math.PI) / 20;
             for (var j = 0; j <= 20; j += 1) {
                 var phi = (j * 2 * Math.PI) / 20;
                
-                var x = radius * Math.cos(phi) *  Math.sin(theta);
-                var y = radius * Math.cos(theta);
-                var z = radius * Math.sin(phi) *  Math.sin(theta);
+                var x = Math.cos(phi) *  Math.sin(theta);
+                var y = Math.cos(theta);
+                var z = Math.sin(phi) *  Math.sin(theta);
 
                 vertices.push([x, y, z]);
             }

@@ -243,17 +243,23 @@
             // 12 triangles in all.
             color: { r: 1.0, g: 0, b: 0.5 },
             mode: gl.TRIANGLES,
-            axis: { x: 7.0, y: 1.0, z: 1.0 }
-        },
-
-        {
-            vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
-            // 12 triangles in all.
-            
-            color: { r: 1.0, g: 0, b: 0.5 },
-            mode: gl.TRIANGLES,
-            axis: { x: 7.0, y: 1.0, z: 1.0 }
+            axis: { x: 7.0, y: 1.0, z: 1.0 },
+            children: [{ 
+                vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
+                color: { r: 0, g: 0, b: 1.0 },
+                mode: gl.TRIANGLES,
+                axis: { x: 7.0, y: 1.0, z: 1.0 }
+                }]
         }
+
+        // {
+        //     vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
+        //     // 12 triangles in all.
+            
+        //     color: { r: 1.0, g: 0, b: 0.5 },
+        //     mode: gl.TRIANGLES,
+        //     axis: { x: 7.0, y: 1.0, z: 1.0 }
+        // }
 
         // {
         //     vertices: new Shape(Shape.cube()).toRawTriangleArray(),
@@ -283,6 +289,7 @@
                 );
             }
         }
+        
         objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,
                 objectsToDraw[i].colors);
     }
