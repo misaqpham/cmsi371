@@ -5,11 +5,14 @@
  */
 (function() {
 
-    window.ShapeLibrary = window.ShapeLibrary || {}; //do this instead using OR
+    window.ShapeLibrary = window.ShapeLibrary || {};
         
     Shape = function (properties) {
         this.vertices = properties.vertices;
         this.indices = properties.indices;
+        this.color = properties.color;
+        this.axis = properties.axis;
+        this.mode = properties.mode;
         this.children = [];
     };
 

@@ -124,30 +124,36 @@
         //     mode: gl.LINE_LOOP
         // },
 
-        {
-            color: { r: 1, g: 0, b: 0.4 },
+        // {
+        //     color: { r: 1, g: 0, b: 0.4 },
+        //     vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
+        //     axis: { x: 1.0, y: 1.0, z: 1.0},
+        //     mode: gl.LINES
+        // },
+
+        // {
+        //     color: { r: 0, g: 0, b: 0.5 },
+        //     vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
+        //     axis: { x: 1.0, y: 1.0, z: 1.0},
+        //     mode: gl.TRIANGLES
+        // },
+
+        { 
             vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
-            axis: { x: 1.0, y: 1.0, z: 1.0},
-            mode: gl.LINES
-        },
-
-        {
-            color: { r: 0, g: 0, b: 0.5 },
-            vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
-            axis: { x: 1.0, y: 1.0, z: 1.0},
-            mode: gl.TRIANGLES
-        },
-
-        {
-            vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
             color: { r: 0, g: 1.0, b: 0.4 },
-            mode: gl.TRIANGLES,
+            mode: gl.LINES,
             axis: { x: 1.0, y: 1.0, z: 1.0 },
             children: [{ 
-                vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
+                vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
                 color: { r: 0, g: 0, b: 1.0 },
                 mode: gl.TRIANGLES,
-                axis: { x: 7.0, y: 1.0, z: 1.0 }
+                axis: { x: 1.0, y: 1.0, z: 1.0 },
+                children: [{ 
+                    vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
+                    color: { r: 1.0, g: 0, b: 1.0 },
+                    mode: gl.TRIANGLES,
+                    axis: { x: 1.0, y: 1.0, z: 1.0 }
+                    }]
                 }]
         }
     ];
@@ -170,9 +176,12 @@
                         objectsToDraw[i].color.b
                     );
                 }
-            } else if (objectsToDraw[i].children && (objectsToDraw[i].children.length != 0)) {
-                passVertices(objectsToDraw[i].children);
+            } 
+
+            if (objectsToDraw[i].children) {
+                    passVertices(objectsToDraw[i].children);
             }
+
             objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,
                     objectsToDraw[i].colors);
         }
@@ -226,6 +235,12 @@
         gl.bindBuffer(gl.ARRAY_BUFFER, object.buffer);
         gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
         gl.drawArrays(object.mode, 0, object.vertices.length / 3);
+
+        if(object.children){
+            for (i = 0; i < object.children.length; i++) {
+                drawObject(object.children[i]);
+            }
+        }
     };
 
     /*
@@ -246,7 +261,7 @@
         // All done.
         gl.flush();
     };
-
+    
     passVertices(objectsToDraw);
     /*
      * Animates the scene.
@@ -254,6 +269,7 @@
     var animationActive = false;
     var currentRotation = 0.0;
     var previousTimestamp = null;
+
 
     var advanceScene = function (timestamp) {
         // Check if the user has turned things off.
