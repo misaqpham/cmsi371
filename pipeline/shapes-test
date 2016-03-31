@@ -1,0 +1,63 @@
+/*
+ * Unit tests for our matrix object.
+ */
+$(function () {
+
+    test("Adding Children", function () {
+        var s1 = new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        });
+
+        deepEqual(s1.children.length, 0);
+
+        s1.addChildren(new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        }));
+        deepEqual(s1.children.length, 1);
+
+        s1.addChildren(new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        }));
+        s1.addChildren(new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        }));
+        s1.addChildren(new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        }));
+        s1.addChildren(new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        }));
+
+        deepEqual(s1.children.length, 5);
+
+    });
+
+    test("Removing Children", function () {
+        var s1 = new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        });
+        s1.addChildren(new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        }));
+        s1.addChildren(new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        }));
+        s1.addChildren(new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        }));
+        s1.addChildren(new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        }));
+        s1.addChildren(new Shape({
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray()
+        }));
+
+        deepEqual(s1.children.length, 6);
+
+        s1.removeChildren();
+
+        deepEqual(s1.children.length, 5);
+        
+    });
+
+});

@@ -8,11 +8,16 @@
     window.ShapeLibrary = window.ShapeLibrary || {};
         
     Shape = function (properties) {
-        this.vertices = properties.vertices;
-        this.indices = properties.indices;
-        this.color = properties.color;
-        this.axis = properties.axis;
-        this.mode = properties.mode;
+        this.vertices = properties.vertices || [];
+        this.indices = properties.indices || [];
+        this.colors = properties.colors || null;
+        this.color = properties.color || {r: 1.0, g: 0.0, b: 1.0};
+        this.axis = properties.axis || { x: 1.0, y: 1.0, z: 1.0};
+        this.x = properties.x;
+        this.y = properties.y;
+        this.z = properties.z;
+        this.mode = properties.mode || "gl.LINES";
+        this.instanceTransformation = properties.instanceTransformation;
         this.children = [];
     };
 
@@ -178,6 +183,16 @@
             ]
         };
     };
+
+    Shape.prototype.addChildren = function (kidShape) {
+        this.children.push(kidShape);
+    }
+
+    Shape.prototype.removeChildren = function () {
+        if (this.children.length > 0) {
+            this.children.pop();
+        }
+    }
 
     /*
      * Utility function for turning indexed vertices into a "raw" coordinate array
