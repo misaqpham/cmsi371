@@ -23,14 +23,20 @@ var Matrix = (function () {
     };
 
     matrix.prototype.convertForWebGL = function () {
+        //var columnsForWebGL = new Matrix();
         var columnsForWebGL = [],
             i;
 
         for (i = 0; i<4; i++) {
+            // when i tried to return as a matrix instead of an array, was not working
+        //for (i = 0; i<16; i+=4) {
+            // columnsForWebGL.elements[i] = this.elements[i];
+            // columnsForWebGL.elements[i+1] = this.elements[i+4];
+            // columnsForWebGL.elements[i+2] = this.elements[i+8];
+            // columnsForWebGL.elements[i+3] = this.elements[i+12];
             columnsForWebGL.push(this.elements[i], this.elements[i + 4], this.elements[i + 8], this.elements[i + 12])
         }
-
-        return columnsForWebGL
+        return columnsForWebGL;
     };
 
     matrix.prototype.multiply = function (matrix2) {
