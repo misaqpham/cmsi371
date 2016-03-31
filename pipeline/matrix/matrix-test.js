@@ -1,5 +1,5 @@
 /*
- * Unit tests for our mector object.
+ * Unit tests for our matrix object.
  */
 $(function () {
 
