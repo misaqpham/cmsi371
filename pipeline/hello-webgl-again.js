@@ -80,44 +80,44 @@
     // Build the objects to display.
     var objectsToDraw = [
 
-        new Shape({ 
-            color: { r: 1.0, g: 0, b: 0.5 },
-            vertices: new Shape(Shape.cube()).toRawTriangleArray(),
-            axis: { x: 1.0, y: 6.0, z: 1.0},
-            scale: {sx: 2, sy: 2, sz: 2},
-            translate: {tx: 7, ty: 0, tz: 0},
-            mode: gl.TRIANGLES
-        }),
-
-        new Shape({ 
-            color: { r: 0, g: 0.5, b: 0.5 },
-            vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
-            axis: { x: 1.0, y: 1.0, z: 1.0},
-            scale: {sx: .2, sy: .2, sz: .2},
-            mode: gl.LINES
-        }),
-
+        // new Shape({ 
+        //     color: { r: 1.0, g: 0, b: 0.5 },
+        //     vertices: new Shape(Shape.cube()).toRawTriangleArray(),
+        //     axis: { x: 1.0, y: 6.0, z: 1.0},
+        //     scale: {sx: 2, sy: 2, sz: 2},
+        //     translate: {tx: 7, ty: 0, tz: 0},
+        //     mode: gl.TRIANGLES
+        // }),
 
         // new Shape({ 
+        //     color: { r: 0, g: 0.5, b: 0.5 },
         //     vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
-        //     color: { r: 0, g: 1.0, b: 0.4 },
-        //     mode: gl.LINES,
-        //     axis: { x: 1.0, y: 1.0, z: 1.0 },
-        //     scale: {sx: 0.1, sy: 0.1, sz: 0.1},
-        //     children: [ new Shape({ 
-        //         vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
-        //         color: { r: 0, g: 0, b: 1.0 },
-        //         mode: gl.TRIANGLES,
-        //         axis: { x: 1.0, y: 1.0, z: 1.0 },
-        //         rotate: {angle: Math.PI/4, x: 0, y: 0, z: 0},
-        //         children: [ new Shape({ 
-        //             vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
-        //             color: { r: 1.0, g: 0, b: 1.0 },
-        //             mode: gl.TRIANGLES,
-        //             axis: { x: 1.0, y: 1.0, z: 1.0 },
-        //         })]
-        //     })]
-        // })
+        //     axis: { x: 1.0, y: 1.0, z: 1.0},
+        //     scale: {sx: .2, sy: .2, sz: .2},
+        //     mode: gl.LINES
+        // }),
+
+
+        new Shape({ 
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
+            color: { r: 0, g: 1.0, b: 0.4 },
+            mode: gl.LINES,
+            axis: { x: 1.0, y: 1.0, z: 1.0 },
+            scale: {sx: 0.1, sy: 0.1, sz: 0.1},
+            children: [ new Shape({ 
+                vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
+                color: { r: 0, g: 0, b: 1.0 },
+                mode: gl.TRIANGLES,
+                axis: { x: 1.0, y: 1.0, z: 1.0 },
+                rotate: {angle: Math.PI/4, x: 0, y: 0, z: 0},
+                children: [ new Shape({ 
+                    vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
+                    color: { r: 1.0, g: 0, b: 1.0 },
+                    mode: gl.TRIANGLES,
+                    axis: { x: 1.0, y: 1.0, z: 1.0 },
+                })]
+            })]
+        })
     ];
 
     // Pass the vertices to WebGL.
@@ -241,17 +241,13 @@
                     )
                 )
             );
-
-            //gl.uniformMatrix4fv(instanceMatrix, gl.FALSE, new Float32Array(instanceMatrix.convertForWebGL()));
-
-            console.log(instanceMatrix);
+            //console.log(instanceMatrix);
             
             gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "instanceMatrix"),
                 gl.FALSE,
                 new Float32Array(instanceMatrix.convertForWebGL())
             );
 
-            //console.log(instanceMatrix);
             if(object.children.length !=0){
                 for (i = 0; i < object.children.length; i++) {
                     drawObject(object.children[i]);
