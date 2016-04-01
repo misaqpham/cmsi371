@@ -81,35 +81,43 @@
     var objectsToDraw = [
 
         new Shape({ 
-            color: { r: 0, g: 0, b: 0.5 },
+            color: { r: 1.0, g: 0, b: 0.5 },
             vertices: new Shape(Shape.cube()).toRawTriangleArray(),
+            axis: { x: 1.0, y: 6.0, z: 1.0},
+            scale: {sx: 2, sy: 2, sz: 2},
+            translate: {tx: 7, ty: 0, tz: 0},
+            mode: gl.TRIANGLES
+        }),
+
+        new Shape({ 
+            color: { r: 0, g: 0.5, b: 0.5 },
+            vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
             axis: { x: 1.0, y: 1.0, z: 1.0},
-            scale: Matrix.getScaleMatrix(1.5,1.5,1.5),
-            tranlate: Matrix.getTranslationMatrix(2, 2, 2),
+            scale: {sx: .2, sy: .2, sz: .2},
             mode: gl.LINES
         }),
 
 
-        new Shape({ 
-            vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
-            color: { r: 0, g: 1.0, b: 0.4 },
-            mode: gl.LINES,
-            axis: { x: 1.0, y: 1.0, z: 1.0 },
-            scale: Matrix.getScaleMatrix(1.5,1.5,1.5),            
-            children: [ new Shape({ 
-                vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
-                color: { r: 0, g: 0, b: 1.0 },
-                mode: gl.TRIANGLES,
-                axis: { x: 1.0, y: 1.0, z: 1.0 },
-                rotate: Matrix.getRotationMatrix(Math.PI/2, 1, 1, 1),
-                children: [ new Shape({ 
-                    vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
-                    color: { r: 1.0, g: 0, b: 1.0 },
-                    mode: gl.TRIANGLES,
-                    axis: { x: 1.0, y: 1.0, z: 1.0 },
-                })]
-            })]
-        })
+        // new Shape({ 
+        //     vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
+        //     color: { r: 0, g: 1.0, b: 0.4 },
+        //     mode: gl.LINES,
+        //     axis: { x: 1.0, y: 1.0, z: 1.0 },
+        //     scale: {sx: 0.1, sy: 0.1, sz: 0.1},
+        //     children: [ new Shape({ 
+        //         vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
+        //         color: { r: 0, g: 0, b: 1.0 },
+        //         mode: gl.TRIANGLES,
+        //         axis: { x: 1.0, y: 1.0, z: 1.0 },
+        //         rotate: {angle: Math.PI/4, x: 0, y: 0, z: 0},
+        //         children: [ new Shape({ 
+        //             vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
+        //             color: { r: 1.0, g: 0, b: 1.0 },
+        //             mode: gl.TRIANGLES,
+        //             axis: { x: 1.0, y: 1.0, z: 1.0 },
+        //         })]
+        //     })]
+        // })
     ];
 
     // Pass the vertices to WebGL.
@@ -131,13 +139,11 @@
                     );
                 }
             } 
+            objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,objectsToDraw[i].colors);
 
             if (objectsToDraw[i].children) {
-                    passVertices(objectsToDraw[i].children);
+                passVertices(objectsToDraw[i].children);
             }
-
-            objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,
-                    objectsToDraw[i].colors);
         }
     };
 
@@ -184,12 +190,13 @@
     var orthogonalMatrix = gl.getUniformLocation(shaderProgram, "orthogonalMatrix");
     var projectionMatrix = gl.getUniformLocation(shaderProgram, "projectionMatrix");
     var instanceMatrix = gl.getUniformLocation(shaderProgram, "instanceMatrix");
-
+    var modelViewMatrix = gl.getUniformLocation(shaderProgram, "modelViewMatrix");
+    
     // // Set up the scale matrix.
-    // gl.uniformMatrix4fv(scaleMatrix, gl.FALSE, new Float32Array(Matrix.getScaleMatrix(0, 1, 0).convertForWebGL()));
+    // gl.uniformMatrix4fv(scaleMatrix, gl.FALSE, new Float32Array(Matrix.getScaleMatrix(0.5, 0.5, 0.5).convertForWebGL()));
 
     // // Set up the transformation matrix.
-    // gl.uniformMatrix4fv(translationMatrix, gl.FALSE, new Float32Array(Matrix.getTranslationMatrix(0, 1, 0).convertForWebGL()));
+    // gl.uniformMatrix4fv(translationMatrix, gl.FALSE, new Float32Array(Matrix.getTranslationMatrix(0, 0, 0).convertForWebGL()));
 
     // Set up the perspective (frustum) projection matrix.
     gl.uniformMatrix4fv(projectionMatrix, gl.FALSE, new Float32Array(Matrix.getPerspectiveProjectionMatrix(2, -2, 2, -2, 2000, 20).convertForWebGL()));
@@ -198,52 +205,58 @@
      * Displays an individual object.
      */
     var drawObject = function (object) {
-        
-        for (var i = 0; i < objectsToDraw.length; i++) {
             // Set the varying colors.
             gl.bindBuffer(gl.ARRAY_BUFFER, object.colorBuffer);
             gl.vertexAttribPointer(vertexColor, 3, gl.FLOAT, false, 0, 0);
 
-            // Set the varying vertex coordinates.
+             // Set the varying vertex coordinates.
             gl.bindBuffer(gl.ARRAY_BUFFER, object.buffer);
             gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
             gl.drawArrays(object.mode, 0, object.vertices.length / 3);
 
-            var instanceMatrix = new Matrix();
+            gl.uniformMatrix4fv(modelViewMatrix, gl.FALSE, new Float32Array(object.axis ?
+                Matrix.getRotationMatrix(currentRotation, object.axis.x, object.axis.y, object.axis.z).elements : 
+                new Matrix().elements
+            ));
+
+            instanceMatrix = new Matrix();
 
             instanceMatrix = instanceMatrix.multiply(
                 Matrix.getTranslationMatrix(
-                    objectsToDraw[i].translate.tx, 
-                    objectsToDraw[i].translate.ty, 
-                    objectsToDraw[i].translate.tz
+                    object.translate.tx, 
+                    object.translate.ty, 
+                    object.translate.tz
                 ).multiply(
                     Matrix.getScaleMatrix(
-                        objectsToDraw[i].scale.sx, 
-                        objectsToDraw[i].scale.sy, 
-                        objectsToDraw[i].scale.sz
+                        object.scale.sx, 
+                        object.scale.sy, 
+                        object.scale.sz
                     ).multiply(
                         Matrix.getRotationMatrix(
-                            objectsToDraw[i].rotate.angle, 
-                            objectsToDraw[i].rotate.rx, 
-                            objectsToDraw[i].rotate.ry, 
-                            objectsToDraw[i].rotate.rz
+                            object.rotate.angle, 
+                            object.rotate.rx, 
+                            object.rotate.ry, 
+                            object.rotate.rz
                         )
                     )
                 )
             );
-            //console.log(instanceMatrix);
+
+            //gl.uniformMatrix4fv(instanceMatrix, gl.FALSE, new Float32Array(instanceMatrix.convertForWebGL()));
+
+            console.log(instanceMatrix);
             
             gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "instanceMatrix"),
                 gl.FALSE,
                 new Float32Array(instanceMatrix.convertForWebGL())
             );
-            console.log(instanceMatrix);
+
+            //console.log(instanceMatrix);
             if(object.children.length !=0){
                 for (i = 0; i < object.children.length; i++) {
-                    drawObject(object.children[i], object.children[i].instanceTransformation);
+                    drawObject(object.children[i]);
                 }
             }
-        }
     };
 
     /*
@@ -254,13 +267,22 @@
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         // Set up the rotation matrix.
-        gl.uniformMatrix4fv(rotationMatrix, gl.FALSE, new Float32Array(Matrix.getRotationMatrix(currentRotation, 0, 1, 0).convertForWebGL()));
+        gl.uniformMatrix4fv(
+            rotationMatrix, 
+            gl.FALSE, 
+            new Float32Array(Matrix.getRotationMatrix(currentRotation, 0, 1, 0).convertForWebGL()));
 
-         // Set up the scale matrix.
-        gl.uniformMatrix4fv(scaleMatrix, gl.FALSE, new Float32Array(Matrix.getScaleMatrix(0, 1, 0).convertForWebGL()));
+        // Set up the scale matrix.
+        gl.uniformMatrix4fv(
+            scaleMatrix, 
+            gl.FALSE, 
+            new Float32Array(Matrix.getScaleMatrix(0, 1, 0).convertForWebGL()));
 
         // Set up the transformation matrix.
-        gl.uniformMatrix4fv(translationMatrix, gl.FALSE, new Float32Array(Matrix.getTranslationMatrix(0, 1, 0).convertForWebGL()));
+        gl.uniformMatrix4fv(
+            translationMatrix, 
+            gl.FALSE, 
+            new Float32Array(Matrix.getTranslationMatrix(0, 1, 0).convertForWebGL()));
 
         // Display the objects.
         for (var i = 0, maxi = objectsToDraw.length; i < maxi; i += 1) {
@@ -278,7 +300,7 @@
         2,
         -10,
         10
-    )));
+    ).convertForWebGL()));
     
     passVertices(objectsToDraw);
     /*
