@@ -35,8 +35,9 @@
         new Shape({ 
             color: { r: 1.0, g: 0, b: 0.5 },
             vertices: new Shape(Shape.cube()).toRawLineArray(),
-            axis: { x: 1.0, y: 1.0, z: 1.0},
-            //scale: {sx: 2.0, sy: 2.0, sz: 2.0},
+            //axis: { x: 1.0, y: 1.0, z: 1.0},
+            scale: {sx: 2.0, sy: 2.0, sz: 2.0},
+            rotate: {angle: Math.PI, rx: 5, ry: 10, rz: -10},
             translate: {tx: 4, ty: 0, tz: -10},
             mode: gl.LINES
         }),
@@ -58,7 +59,7 @@
             scale: {sx: 0.5, sy: 0.5, sz: 0.5},
             // JD: Note, something wrong with rotate even if angle = 0.0. Look more closely
             //     at the matrix and the code.
-            rotate: {angle: Math.PI/4, rx: 1.0, ry: 1.0, rz: 1.0},
+            rotate: {angle: 0, rx: 0.0, ry: 1.0, rz: 0.0},
             translate: {tx: 0, ty: 0, tz: -10},
 
             // JD: Children do not appear inside viewing volume because the code does not
@@ -183,10 +184,10 @@
             gl.bindBuffer(gl.ARRAY_BUFFER, object.colorBuffer);
             gl.vertexAttribPointer(vertexColor, 3, gl.FLOAT, false, 0, 0);
 
-            // gl.uniformMatrix4fv(modelViewMatrix, gl.FALSE, new Float32Array(object.axis ?
-            //     Matrix.getRotationMatrix(currentRotation, object.axis.x, object.axis.y, object.axis.z).elements : 
-            //     new Matrix().elements
-            // ));
+            gl.uniformMatrix4fv(rotationMatrix, gl.FALSE, new Float32Array(object.rotate ?
+                Matrix.getRotationMatrix(currentRotation, object.rotate.rx, object.rotate.ry, object.rotate.rz).elements : 
+                new Matrix().elements
+            ));
 
             instanceMatrix = new Matrix();
 
@@ -236,10 +237,10 @@
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         // Set up the rotation matrix.
-        gl.uniformMatrix4fv(
-            rotationMatrix, 
-            gl.FALSE, 
-            new Float32Array(Matrix.getRotationMatrix(currentRotation, 0, 1, 0).convertForWebGL()));
+        // gl.uniformMatrix4fv(
+        //     rotationMatrix, 
+        //     gl.FALSE, 
+        //     new Float32Array(Matrix.getRotationMatrix(currentRotation, 0, 1, 0));
 
         // Display the objects.
         for (var i = 0, maxi = objectsToDraw.length; i < maxi; i += 1) {
