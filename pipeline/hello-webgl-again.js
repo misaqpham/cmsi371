@@ -89,27 +89,20 @@
         //     mode: gl.TRIANGLES
         // }),
 
-        // new Shape({ 
-        //     color: { r: 0, g: 0.5, b: 0.5 },
-        //     vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
-        //     axis: { x: 1.0, y: 1.0, z: 1.0},
-        //     scale: {sx: .2, sy: .2, sz: .2},
-        //     mode: gl.LINES
-        // }),
-
-
         new Shape({ 
             vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
             color: { r: 0, g: 1.0, b: 0.4 },
             mode: gl.LINES,
-            axis: { x: 1.0, y: 1.0, z: 1.0 },
-            scale: {sx: 0.1, sy: 0.1, sz: 0.1},
+            axis: { x: 0.0, y: 0.0, z: 1.0 },
+            scale: {sx: 0.5, sy: 0.5, sz: 0.5},
+            rotate: {angle: 200.0, x: 0.0, y: 2.0, z: 0.0},
+            translate: {tx: 0, ty: 0, tz: -10},
             children: [ new Shape({ 
                 vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
                 color: { r: 0, g: 0, b: 1.0 },
                 mode: gl.TRIANGLES,
                 axis: { x: 1.0, y: 1.0, z: 1.0 },
-                rotate: {angle: Math.PI/4, x: 0, y: 0, z: 0},
+                rotate: {angle: Math.PI/4, x: 0, y: 0, z: 10},
                 children: [ new Shape({ 
                     vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
                     color: { r: 1.0, g: 0, b: 1.0 },
@@ -192,14 +185,20 @@
     var instanceMatrix = gl.getUniformLocation(shaderProgram, "instanceMatrix");
     var modelViewMatrix = gl.getUniformLocation(shaderProgram, "modelViewMatrix");
     
-    // // Set up the scale matrix.
-    // gl.uniformMatrix4fv(scaleMatrix, gl.FALSE, new Float32Array(Matrix.getScaleMatrix(0.5, 0.5, 0.5).convertForWebGL()));
+    // Set up the scale matrix.
+    gl.uniformMatrix4fv(scaleMatrix, 
+        gl.FALSE, 
+        new Float32Array(Matrix.getScaleMatrix(1.0, 1.0, 1.0).convertForWebGL()));
 
-    // // Set up the transformation matrix.
-    // gl.uniformMatrix4fv(translationMatrix, gl.FALSE, new Float32Array(Matrix.getTranslationMatrix(0, 0, 0).convertForWebGL()));
+    // Set up the transformation matrix.
+    gl.uniformMatrix4fv(translationMatrix, 
+        gl.FALSE, 
+        new Float32Array(Matrix.getTranslationMatrix(0, 0, 0).convertForWebGL()));
 
     // Set up the perspective (frustum) projection matrix.
-    gl.uniformMatrix4fv(projectionMatrix, gl.FALSE, new Float32Array(Matrix.getPerspectiveProjectionMatrix(2, -2, 2, -2, 2000, 20).convertForWebGL()));
+    gl.uniformMatrix4fv(projectionMatrix, 
+        gl.FALSE, 
+        new Float32Array(Matrix.getPerspectiveProjectionMatrix(4, -4, 2, -2, 2, -2).convertForWebGL()));
 
     /*
      * Displays an individual object.
@@ -214,10 +213,10 @@
             gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
             gl.drawArrays(object.mode, 0, object.vertices.length / 3);
 
-            gl.uniformMatrix4fv(modelViewMatrix, gl.FALSE, new Float32Array(object.axis ?
-                Matrix.getRotationMatrix(currentRotation, object.axis.x, object.axis.y, object.axis.z).elements : 
-                new Matrix().elements
-            ));
+            // gl.uniformMatrix4fv(modelViewMatrix, gl.FALSE, new Float32Array(object.axis ?
+            //     Matrix.getRotationMatrix(currentRotation, object.axis.x, object.axis.y, object.axis.z).elements : 
+            //     new Matrix().elements
+            // ));
 
             instanceMatrix = new Matrix();
 
@@ -241,9 +240,8 @@
                     )
                 )
             );
-            //console.log(instanceMatrix);
             
-            gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "instanceMatrix"),
+            gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "modelViewMatrix"),
                 gl.FALSE,
                 new Float32Array(instanceMatrix.convertForWebGL())
             );
@@ -268,18 +266,6 @@
             gl.FALSE, 
             new Float32Array(Matrix.getRotationMatrix(currentRotation, 0, 1, 0).convertForWebGL()));
 
-        // Set up the scale matrix.
-        gl.uniformMatrix4fv(
-            scaleMatrix, 
-            gl.FALSE, 
-            new Float32Array(Matrix.getScaleMatrix(0, 1, 0).convertForWebGL()));
-
-        // Set up the transformation matrix.
-        gl.uniformMatrix4fv(
-            translationMatrix, 
-            gl.FALSE, 
-            new Float32Array(Matrix.getTranslationMatrix(0, 1, 0).convertForWebGL()));
-
         // Display the objects.
         for (var i = 0, maxi = objectsToDraw.length; i < maxi; i += 1) {
             drawObject(objectsToDraw[i]);
@@ -289,14 +275,14 @@
         gl.flush();
     };
 
-    gl.uniformMatrix4fv(projectionMatrix, gl.FALSE, new Float32Array(Matrix.getOrthogonalMatrix(
-        -2 * (canvas.width / canvas.height),
-        2 * (canvas.width / canvas.height),
-        -2,
-        2,
-        -10,
-        10
-    ).convertForWebGL()));
+    // gl.uniformMatrix4fv(orthogonalMatrix, gl.FALSE, new Float32Array(Matrix.getOrthogonalMatrix(
+    //     -2 * (canvas.width / canvas.height),
+    //     2 * (canvas.width / canvas.height),
+    //     -2,
+    //     2,
+    //     -10,
+    //     10
+    // ).convertForWebGL()));
     
     passVertices(objectsToDraw);
     /*
