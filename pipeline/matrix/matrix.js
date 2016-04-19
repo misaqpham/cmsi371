@@ -28,12 +28,6 @@ var Matrix = (function () {
             i;
 
         for (i = 0; i<4; i++) {
-            // when i tried to return as a matrix instead of an array, was not working
-        //for (i = 0; i<16; i+=4) {
-            // columnsForWebGL.elements[i] = this.elements[i];
-            // columnsForWebGL.elements[i+1] = this.elements[i+4];
-            // columnsForWebGL.elements[i+2] = this.elements[i+8];
-            // columnsForWebGL.elements[i+3] = this.elements[i+12];
             columnsForWebGL.push(this.elements[i], this.elements[i + 4], this.elements[i + 8], this.elements[i + 12])
         }
         return columnsForWebGL;
@@ -103,10 +97,25 @@ var Matrix = (function () {
 
         // GL expects its matrices in column major order.
         var rotation = new Matrix (
-            (x2 * oneMinusC) + c,   (xy * oneMinusC) + zs,  (xz * oneMinusC) - ys,  0.0,
-            (xy * oneMinusC) - zs,  (y2 * oneMinusC) + c,   (yz * oneMinusC) + xs,  0.0,
-            (xz * oneMinusC) + ys,  (yz * oneMinusC) - xs,  (z2 * oneMinusC) + c,   0.0,
-            0.0,                    0.0,                    0.0,                    1.0
+            (x2 * oneMinusC) + c,
+            (xy * oneMinusC) + zs,
+            (xz * oneMinusC) - ys,
+            0.0,
+
+            (xy * oneMinusC) - zs,
+            (y2 * oneMinusC) + c,
+            (yz * oneMinusC) + xs,
+            0.0,
+
+            (xz * oneMinusC) + ys,
+            (yz * oneMinusC) - xs,
+            (z2 * oneMinusC) + c,
+            0.0,
+
+            0.0,
+            0.0,
+            0.0,
+            1.0
         );
 
         return rotation;
