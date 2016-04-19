@@ -16,9 +16,9 @@
         this.x = properties.x || 0;
         this.y = properties.y || 0;
         this.z = properties.z || 0;
-        this.translate = properties.translate || {tx: 0, ty: 0, tz: 0}; // Matrix.getTranslationMatrix(0,0,0);
-        this.scale = properties.scale || {sx: 1, sy: 1, sz: 1}; // Matrix.getScaleMatrix (1, 1, 1);
-        this.rotate = properties.rotate || {angle: 0, rx: 1, ry: 1, rz: 1} // Matrix.getRotationMatrix(0,1,1,1);
+        this.translate = properties.translate || {tx: 0, ty: 0, tz: 0}; 
+        this.scale = properties.scale || {sx: 1, sy: 1, sz: 1}; 
+        this.rotate = properties.rotate || {angle: 0, rx: 1, ry: 1, rz: 1}
         this.mode = properties.mode || "gl.LINES";
         this.children = properties.children || [];
     };

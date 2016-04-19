@@ -32,24 +32,33 @@
     // Build the objects to display.
     var objectsToDraw = [
 
-        // new Shape({ 
-        //     color: { r: 1.0, g: 0, b: 0.5 },
-        //     vertices: new Shape(Shape.cube()).toRawTriangleArray(),
-        //     axis: { x: 1.0, y: 6.0, z: 1.0},
-        //     scale: {sx: 2, sy: 2, sz: 2},
-        //     translate: {tx: 7, ty: 0, tz: 0},
-        //     mode: gl.TRIANGLES
-        // }),
+        new Shape({ 
+            color: { r: 1.0, g: 0, b: 0.5 },
+            vertices: new Shape(Shape.cube()).toRawLineArray(),
+            axis: { x: 1.0, y: 1.0, z: 1.0},
+            //scale: {sx: 2.0, sy: 2.0, sz: 2.0},
+            translate: {tx: 4, ty: 0, tz: -10},
+            mode: gl.LINES
+        }),
+
+         new Shape({ 
+            color: { r: 1.0, g: 0, b: 0.5 },
+            vertices: new Shape(Shape.icosahedron()).toRawLineArray(),
+            axis: { x: 1.0, y: 1.0, z: 1.0},
+            //scale: {sx: 2.0, sy: 2.0, sz: 2.0},
+            translate: {tx: -6, ty: 0, tz: -10},
+            mode: gl.LINES
+        }),
 
         new Shape({ 
             vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
             color: { r: 0, g: 1.0, b: 0.4 },
             mode: gl.LINES,
             axis: { x: 0.0, y: 0.0, z: 1.0 },
-            //scale: {sx: 1, sy: 0.5, sz: 0.5},
+            scale: {sx: 0.5, sy: 0.5, sz: 0.5},
             // JD: Note, something wrong with rotate even if angle = 0.0. Look more closely
             //     at the matrix and the code.
-//            rotate: {angle: 200.0, x: 0.0, y: 2.0, z: 0.0},
+            rotate: {angle: Math.PI/4, rx: 1.0, ry: 1.0, rz: 1.0},
             translate: {tx: 0, ty: 0, tz: -10},
 
             // JD: Children do not appear inside viewing volume because the code does not
@@ -64,14 +73,15 @@
                 vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
                 color: { r: 0, g: 0, b: 1.0 },
                 mode: gl.TRIANGLES,
-                axis: { x: 1.0, y: 1.0, z: 1.0 },
-                rotate: {angle: Math.PI/4, x: 0, y: 0, z: 10},
-                translate: {tx: 0, ty: 0, tz: -10},
+                // axis: { x: 1.0, y: 1.0, z: 1.0 },
+                // rotate: {angle: Math.PI/4, rx: 0, ry: 0, rz: 10},
+                //translate: {tx: 0, ty: 2, tz: -10},
                 children: [ new Shape({ 
                     vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
                     color: { r: 1.0, g: 0, b: 1.0 },
                     mode: gl.TRIANGLES,
-                    axis: { x: 1.0, y: 1.0, z: 1.0 },
+                    //translate: {tx: 0, ty: 2, tz: -10},
+                    //axis: { x: 1.0, y: 1.0, z: 1.0 },
                 })]
             })]
         })
@@ -98,7 +108,7 @@
             } 
             objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,objectsToDraw[i].colors);
 
-            if (objectsToDraw[i].children) {
+            if (objectsToDraw[i].children.length > 0) {
                 passVertices(objectsToDraw[i].children);
             }
         }
@@ -154,7 +164,7 @@
         gl.FALSE, 
         new Float32Array(Matrix.getScaleMatrix(1.0, 1.0, 1.0).convertForWebGL()));
 
-    // Set up the transformation matrix.
+    // Set up the transformation/translation matrix.
     gl.uniformMatrix4fv(translationMatrix, 
         gl.FALSE, 
         new Float32Array(Matrix.getTranslationMatrix(0, 0, 0).convertForWebGL()));
@@ -206,16 +216,16 @@
                 new Float32Array(instanceMatrix.convertForWebGL())
             );
 
-             // Set the varying vertex coordinates.
+            // Set the varying vertex coordinates.
             gl.bindBuffer(gl.ARRAY_BUFFER, object.buffer);
             gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
             gl.drawArrays(object.mode, 0, object.vertices.length / 3);
 
-            if(object.children.length !=0){
+            if(object.children.length > 0){
                 for (i = 0; i < object.children.length; i++) {
                     drawObject(object.children[i]);
                 }
-            }
+            }       
     };
 
     /*
