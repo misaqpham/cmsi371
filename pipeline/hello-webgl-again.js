@@ -95,8 +95,19 @@
             mode: gl.LINES,
             axis: { x: 0.0, y: 0.0, z: 1.0 },
             scale: {sx: 0.5, sy: 0.5, sz: 0.5},
-            rotate: {angle: 200.0, x: 0.0, y: 2.0, z: 0.0},
+            // JD: Note, something wrong with rotate even if angle = 0.0. Look more closely
+            //     at the matrix and the code.
+//            rotate: {angle: 200.0, x: 0.0, y: 2.0, z: 0.0},
             translate: {tx: 0, ty: 0, tz: -10},
+
+            // JD: Children do not appear inside viewing volume because the code does not
+            //     (yet) propagate the parent's transform onto the children. Thus, the
+            //     translate being done above, which is necessary to place the sphere
+            //     inside the viewing volume, is not being applied to the children.
+            //
+            //     As an experiment, you can temporarily give the children a translate
+            //     property. See what happens. After that, you need to implement the
+            //     propagation of the parent transform to its children.
             children: [ new Shape({ 
                 vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
                 color: { r: 0, g: 0, b: 1.0 },
@@ -209,11 +220,6 @@
             gl.bindBuffer(gl.ARRAY_BUFFER, object.colorBuffer);
             gl.vertexAttribPointer(vertexColor, 3, gl.FLOAT, false, 0, 0);
 
-             // Set the varying vertex coordinates.
-            gl.bindBuffer(gl.ARRAY_BUFFER, object.buffer);
-            gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
-            gl.drawArrays(object.mode, 0, object.vertices.length / 3);
-
             // gl.uniformMatrix4fv(modelViewMatrix, gl.FALSE, new Float32Array(object.axis ?
             //     Matrix.getRotationMatrix(currentRotation, object.axis.x, object.axis.y, object.axis.z).elements : 
             //     new Matrix().elements
@@ -246,6 +252,11 @@
                 gl.FALSE,
                 new Float32Array(instanceMatrix.convertForWebGL())
             );
+
+             // Set the varying vertex coordinates.
+            gl.bindBuffer(gl.ARRAY_BUFFER, object.buffer);
+            gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
+            gl.drawArrays(object.mode, 0, object.vertices.length / 3);
 
             if(object.children.length !=0){
                 for (i = 0; i < object.children.length; i++) {
