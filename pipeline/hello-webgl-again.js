@@ -195,10 +195,11 @@
         gl.FALSE, 
         new Float32Array(Matrix.getTranslationMatrix(0, 0, 0).convertForWebGL()));
 
-    // Set up the perspective (frustum) projection matrix.
+    // Set up the perspective (frustum) projection matrix. 
+    //r, l, t, b, f, n
     gl.uniformMatrix4fv(projectionMatrix, 
         gl.FALSE, 
-        new Float32Array(Matrix.getPerspectiveProjectionMatrix(4, -4, 2, -2, 2, -2).convertForWebGL()));
+        new Float32Array(Matrix.getPerspectiveProjectionMatrix(4, -4, 2, -2, 1000, 5).convertForWebGL()));
 
     /*
      * Displays an individual object.
