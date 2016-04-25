@@ -28,20 +28,9 @@
     gl.enable(gl.DEPTH_TEST);
     gl.clearColor(0.0, 0.0, 0.0, 0.0);
     gl.viewport(0, 0, canvas.width, canvas.height);
-
+    
     // Build the objects to display.
     var objectsToDraw = [
-
-        new Shape({ 
-            color: { r: 1.0, g: 0, b: 0.5 },
-            vertices: new Shape(Shape.cube()).toRawLineArray(),
-            //axis: { x: 1.0, y: 1.0, z: 1.0},
-            scale: {sx: 2.0, sy: 2.0, sz: 2.0},
-            rotate: {angle: Math.PI, rx: 5, ry: 10, rz: -10},
-            translate: {tx: 4, ty: 0, tz: -10},
-            mode: gl.LINES
-        }),
-
          new Shape({ 
             color: { r: 1.0, g: 0, b: 0.5 },
             vertices: new Shape(Shape.icosahedron()).toRawLineArray(),
@@ -52,39 +41,45 @@
         }),
 
         new Shape({ 
+            color: { r: .75, g: 0.0, b: 0.5 },
+            vertices: new Shape(Shape.cube()).toRawLineArray(),
+            //axis: { x: 1.0, y: 1.0, z: 1.0},
+            scale: {sx: 2.0, sy: 2.0, sz: 2.0},
+            //rotate: {angle: Math.PI, rx: 5, ry: 10, rz: 0},
+            translate: {tx: 4, ty: 1, tz: -10},
+            mode: gl.LINES
+        }),
+
+        new Shape({ 
             vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
             color: { r: 0, g: 1.0, b: 0.4 },
             mode: gl.LINES,
-            axis: { x: 0.0, y: 0.0, z: 1.0 },
-            scale: {sx: 0.5, sy: 0.5, sz: 0.5},
-            // JD: Note, something wrong with rotate even if angle = 0.0. Look more closely
-            //     at the matrix and the code.
-            rotate: {angle: 0, rx: 0.0, ry: 1.0, rz: 0.0},
+            scale: {sx: 2, sy: 2, sz: 2},
+            //rotate: {angle:  0.0, rx: 0.0, ry: 1.0, rz: 0.0},
             translate: {tx: 0, ty: 0, tz: -10},
-
-            // JD: Children do not appear inside viewing volume because the code does not
-            //     (yet) propagate the parent's transform onto the children. Thus, the
-            //     translate being done above, which is necessary to place the sphere
-            //     inside the viewing volume, is not being applied to the children.
-            //
-            //     As an experiment, you can temporarily give the children a translate
-            //     property. See what happens. After that, you need to implement the
-            //     propagation of the parent transform to its children.
-            children: [ new Shape({ 
-                vertices: new Shape(Shape.pyramid()).toRawTriangleArray(),
-                color: { r: 0, g: 0, b: 1.0 },
-                mode: gl.TRIANGLES,
-                // axis: { x: 1.0, y: 1.0, z: 1.0 },
-                // rotate: {angle: Math.PI/4, rx: 0, ry: 0, rz: 10},
-                //translate: {tx: 0, ty: 2, tz: -10},
-                children: [ new Shape({ 
-                    vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
-                    color: { r: 1.0, g: 0, b: 1.0 },
-                    mode: gl.TRIANGLES,
-                    //translate: {tx: 0, ty: 2, tz: -10},
-                    //axis: { x: 1.0, y: 1.0, z: 1.0 },
+            children: [
+                new Shape({ 
+                color: { r: 1.0, g: 0, b: 0.5 },
+                vertices: new Shape(Shape.icosahedron()).toRawLineArray(),
+                axis: { x: 1.0, y: 1.0, z: 1.0},
+                scale: {sx: 1.5, sy: 1.5, sz: 1.5},
+                mode: gl.LINES
                 })]
-            })]
+        }),
+
+        new Shape({ 
+            vertices: new Shape(Shape.diamond()).toRawLineArray(),
+            color: { r: 0, g: 0, b: 1.0 },
+            mode: gl.LINES,
+            axis: {x: 0, y: 0, z: 1},
+            rotate: {rotate: Math.PI, rx: 5, ry: 5, rz: 0},
+            translate: {tx: 4, ty: -2, tz: -10},
+            // children: [ new Shape({ 
+            //     vertices: new Shape(Shape.cube()).toRawTriangleArray(),
+            //     axis: {x: 0, y: 0, z: 0},
+            //     color: { r: 1.0, g: 0, b: 1.0 },
+            //     mode: gl.TRIANGLES,
+            // })]
         })
     ];
 
@@ -107,6 +102,7 @@
                     );
                 }
             } 
+
             objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,objectsToDraw[i].colors);
 
             if (objectsToDraw[i].children.length > 0) {
@@ -153,23 +149,9 @@
     
     //matrices
     var rotationMatrix = gl.getUniformLocation(shaderProgram, "rotationMatrix");
-    var scaleMatrix = gl.getUniformLocation(shaderProgram, "scaleMatrix");
-    var translationMatrix = gl.getUniformLocation(shaderProgram, "translationMatrix");
     var orthogonalMatrix = gl.getUniformLocation(shaderProgram, "orthogonalMatrix");
     var projectionMatrix = gl.getUniformLocation(shaderProgram, "projectionMatrix");
-    var instanceMatrix = gl.getUniformLocation(shaderProgram, "instanceMatrix");
-    var modelViewMatrix = gl.getUniformLocation(shaderProgram, "modelViewMatrix");
     
-    // Set up the scale matrix.
-    gl.uniformMatrix4fv(scaleMatrix, 
-        gl.FALSE, 
-        new Float32Array(Matrix.getScaleMatrix(1.0, 1.0, 1.0).convertForWebGL()));
-
-    // Set up the transformation/translation matrix.
-    gl.uniformMatrix4fv(translationMatrix, 
-        gl.FALSE, 
-        new Float32Array(Matrix.getTranslationMatrix(0, 0, 0).convertForWebGL()));
-
     // Set up the perspective (frustum) projection matrix. 
     //r, l, t, b, f, n
     gl.uniformMatrix4fv(projectionMatrix, 
@@ -179,55 +161,62 @@
     /*
      * Displays an individual object.
      */
-    var drawObject = function (object) {
-            // Set the varying colors.
-            gl.bindBuffer(gl.ARRAY_BUFFER, object.colorBuffer);
-            gl.vertexAttribPointer(vertexColor, 3, gl.FLOAT, false, 0, 0);
+    var drawObject = function (object, parentMatrix) {
+        // Set the varying colors.
+        gl.bindBuffer(gl.ARRAY_BUFFER, object.colorBuffer);
+        gl.vertexAttribPointer(vertexColor, 3, gl.FLOAT, false, 0, 0);
 
-            gl.uniformMatrix4fv(rotationMatrix, gl.FALSE, new Float32Array(object.rotate ?
-                Matrix.getRotationMatrix(currentRotation, object.rotate.rx, object.rotate.ry, object.rotate.rz).elements : 
-                new Matrix().elements
-            ));
+        object.rotate.angle = currentRotation;
 
-            instanceMatrix = new Matrix();
+        var currentMatrix = getInstanceMatrix(object);
 
-            instanceMatrix = instanceMatrix.multiply(
-                Matrix.getTranslationMatrix(
-                    object.translate.tx, 
-                    object.translate.ty, 
-                    object.translate.tz
+        if (parentMatrix) {
+            currentMatrix = parentMatrix.multiply(currentMatrix);
+        }
+
+        gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "modelViewMatrix"),
+            gl.FALSE,
+            new Float32Array(currentMatrix.convertForWebGL())
+        );
+
+       // Set the varying vertex coordinates.
+        gl.bindBuffer(gl.ARRAY_BUFFER, object.buffer);
+        gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
+        gl.drawArrays(object.mode, 0, object.vertices.length / 3);
+
+        if(object.children.length > 0){
+            for (var i = 0; i < object.children.length; i++) {
+                drawObject(object.children[i], currentMatrix);
+            }
+        }       
+    };
+
+    var getInstanceMatrix = function(object) {
+        instanceMatrix = new Matrix();
+
+        instanceMatrix = instanceMatrix.multiply(
+            Matrix.getTranslationMatrix(
+                object.translate.tx, 
+                object.translate.ty, 
+                object.translate.tz
+            ).multiply(
+                Matrix.getScaleMatrix(
+                    object.scale.sx, 
+                    object.scale.sy, 
+                    object.scale.sz
                 ).multiply(
-                    Matrix.getScaleMatrix(
-                        object.scale.sx, 
-                        object.scale.sy, 
-                        object.scale.sz
-                    ).multiply(
-                        Matrix.getRotationMatrix(
-                            object.rotate.angle, 
-                            object.rotate.rx, 
-                            object.rotate.ry, 
-                            object.rotate.rz
-                        )
+                    Matrix.getRotationMatrix(
+                        object.rotate.angle, 
+                        object.rotate.rx, 
+                        object.rotate.ry, 
+                        object.rotate.rz
                     )
                 )
-            );
-            
-            gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "modelViewMatrix"),
-                gl.FALSE,
-                new Float32Array(instanceMatrix.convertForWebGL())
-            );
+            )
+        );
 
-            // Set the varying vertex coordinates.
-            gl.bindBuffer(gl.ARRAY_BUFFER, object.buffer);
-            gl.vertexAttribPointer(vertexPosition, 3, gl.FLOAT, false, 0, 0);
-            gl.drawArrays(object.mode, 0, object.vertices.length / 3);
-
-            if(object.children.length > 0){
-                for (i = 0; i < object.children.length; i++) {
-                    drawObject(object.children[i]);
-                }
-            }       
-    };
+        return instanceMatrix;
+    }
 
     /*
      * Displays the scene.
@@ -236,11 +225,10 @@
         // Clear the display.
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        // Set up the rotation matrix.
-        // gl.uniformMatrix4fv(
-        //     rotationMatrix, 
-        //     gl.FALSE, 
-        //     new Float32Array(Matrix.getRotationMatrix(currentRotation, 0, 1, 0));
+      //set the rotation matrix
+        gl.uniformMatrix4fv(rotationMatrix, gl.FALSE, new Float32Array(
+            Matrix.getRotationMatrix(0, 0, 1, 0).elements
+        ));
 
         // Display the objects.
         for (var i = 0, maxi = objectsToDraw.length; i < maxi; i += 1) {

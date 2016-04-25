@@ -52,9 +52,10 @@
       uniform mat4 projectionMatrix;
       uniform mat4 orthogonalMatrix;
       uniform mat4 modelViewMatrix;
+      uniform mat4 cameraMatrix;
 
       void main(void) {
-          gl_Position = rotationMatrix * projectionMatrix * modelViewMatrix * vec4(vertexPosition, 1.0);
+          gl_Position = projectionMatrix * rotationMatrix * cameraMatrix * modelViewMatrix * vec4(vertexPosition, 1.0);
           finalVertexColor = vec4(vertexColor, 1.0);
       }
     </script>
