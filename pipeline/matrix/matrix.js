@@ -52,6 +52,24 @@ var Matrix = (function () {
         return result;
     };
 
+    matrix.lookAt = function (px, py, pz, qx, qy, qz, upx, upy, upz) {
+        var p = new Vector(px, py, pz),
+            q = new Vector(qx, qy, qz),
+            up = new Vector(upx, upy, upz);
+
+        var ze = p.subtract(q).unit(),
+            ye = up.subtract(up.projection(ze)).unit(),
+            xe = ye.cross(ze);
+
+        var camera = new Matrix(
+            xe.x(), xe.y(), xe.z(), -p.dot(xe),
+            ye.x(), ye.y(), ye.z(), -p.dot(ye),
+            ze.x(), ze.y(), ze.z(), -p.dot(ze),
+            0, 0, 0, 1
+        );
+        return camera;
+    };
+
     matrix.getScaleMatrix = function (sx, sy, sz) {
         var scale = new Matrix( sx, 0, 0, 0,
                                 0, sy, 0, 0,

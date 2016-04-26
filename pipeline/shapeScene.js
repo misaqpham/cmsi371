@@ -151,6 +151,7 @@
     var rotationMatrix = gl.getUniformLocation(shaderProgram, "rotationMatrix");
     var orthogonalMatrix = gl.getUniformLocation(shaderProgram, "orthogonalMatrix");
     var projectionMatrix = gl.getUniformLocation(shaderProgram, "projectionMatrix");
+    var cameraMatrix = gl.getUniformLocation(shaderProgram, "cameraMatrix");
     
     // Set up the perspective (frustum) projection matrix. 
     //r, l, t, b, f, n
@@ -158,6 +159,12 @@
         gl.FALSE, 
         new Float32Array(Matrix.getPerspectiveProjectionMatrix(4, -4, 2, -2, 1000, 5).convertForWebGL()));
 
+    //set up camera matrix
+    //px, py, pz, qx, qy, qz, upx, upy, upz 
+    //vertical camera up (0,1,0)
+     gl.uniformMatrix4fv(cameraMatrix,
+        gl.FALSE,
+        new Float32Array(Matrix.lookAt(0, 0, 10, 0, 0, 0, 100, 0, 0).convertForWebGL()));
     /*
      * Displays an individual object.
      */
@@ -302,4 +309,4 @@
         }
     });
 
-}(document.getElementById("hello-webgl")));
+}(document.getElementById("shapeScene")));
