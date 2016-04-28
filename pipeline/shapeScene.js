@@ -33,54 +33,73 @@
     var objectsToDraw = [
          new Shape({ 
             color: { r: 1.0, g: 0, b: 0.5 },
-            vertices: new Shape(Shape.icosahedron()).toRawLineArray(),
+            vertices: new Shape(Shape.icosahedron()).toRawTriangleArray(),
             axis: { x: 1.0, y: 1.0, z: 1.0},
             //scale: {sx: 2.0, sy: 2.0, sz: 2.0},
             translate: {tx: -6, ty: 0, tz: -10},
-            mode: gl.LINES
+            normals: new Shape(Shape.icosahedron()).toNormalArray(),
+            mode: gl.TRIANGLES
         }),
 
         new Shape({ 
             color: { r: .75, g: 0.0, b: 0.5 },
-            vertices: new Shape(Shape.cube()).toRawLineArray(),
+            vertices: new Shape(Shape.cube()).toRawTriangleArray(),
             //axis: { x: 1.0, y: 1.0, z: 1.0},
             scale: {sx: 2.0, sy: 2.0, sz: 2.0},
             //rotate: {angle: Math.PI, rx: 5, ry: 10, rz: 0},
             translate: {tx: 4, ty: 1, tz: -10},
-            mode: gl.LINES
+            normals: new Shape(Shape.cube()).toNormalArray(),
+            mode: gl.TRIANGLES
         }),
 
-        new Shape({ 
-            vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
-            color: { r: 0, g: 1.0, b: 0.4 },
-            mode: gl.LINES,
-            scale: {sx: 2, sy: 2, sz: 2},
-            //rotate: {angle:  0.0, rx: 0.0, ry: 1.0, rz: 0.0},
-            translate: {tx: 0, ty: 0, tz: -10},
-            children: [
-                new Shape({ 
-                color: { r: 1.0, g: 0, b: 0.5 },
-                vertices: new Shape(Shape.icosahedron()).toRawLineArray(),
-                axis: { x: 1.0, y: 1.0, z: 1.0},
-                scale: {sx: 1.5, sy: 1.5, sz: 1.5},
-                mode: gl.LINES
-                })]
-        }),
+        // new Shape({ 
+        //     vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
+        //     color: { r: 0, g: 1.0, b: 0.4 },
+        //     mode: gl.TRIANGLES,
+        //     scale: {sx: 2, sy: 2, sz: 2},
+        //     //rotate: {angle:  0.0, rx: 0.0, ry: 1.0, rz: 0.0},
+        //     translate: {tx: 0.0, ty: 0.0, tz: -10},
+        //     normals: new Shape(Shape.sphere()).toNormalArray(),
+        //     // children: [
+        //     //     new Shape({ 
+        //     //     color: { r: 1.0, g: 0, b: 0.5 },
+        //     //     vertices: new Shape(Shape.icosahedron()).toRawTriangleArray(),
+        //     //     axis: { x: 1.0, y: 1.0, z: 1.0},
+        //     //     scale: {sx: 1.5, sy: 1.5, sz: 1.5},
+        //     //     normals: new Shape(Shape.icosahedron()).toNormalArray(),
+        //     //     mode: gl.TRIANGLES
+        //     //     })]
+        // }),
 
         new Shape({ 
-            vertices: new Shape(Shape.diamond()).toRawLineArray(),
+            vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
             color: { r: 0, g: 0, b: 1.0 },
-            mode: gl.LINES,
+            mode: gl.TRIANGLES,
             axis: {x: 0, y: 0, z: 1},
             rotate: {rotate: Math.PI, rx: 5, ry: 5, rz: 0},
             translate: {tx: 4, ty: -2, tz: -10},
+            normals: new Shape(Shape.diamond()).toNormalArray(),
             // children: [ new Shape({ 
             //     vertices: new Shape(Shape.cube()).toRawTriangleArray(),
             //     axis: {x: 0, y: 0, z: 0},
             //     color: { r: 1.0, g: 0, b: 1.0 },
             //     mode: gl.TRIANGLES,
             // })]
-        })
+        }),
+
+        // new Shape({ 
+        //     vertices: new Shape(Shape.icosahedron()).toRawTriangleArray(),
+        //     color: { r: 1.0, g: 0.0, b: 0.0 },
+
+        //     // We make the specular reflection be white.
+        //     // specularColor: { r: 1.0, g: 0.0, b: 1.0 },
+        //     shininess: 16,
+
+        //     // Like colors, one normal per vertex.  This can be simplified
+        //     // with helper functions, of course.
+        //     normals: new Shape(Shape.icosahedron()).toNormalArray(),
+        //     mode: gl.TRIANGLES
+        // }),
     ];
 
     // Pass the vertices to WebGL.
@@ -89,6 +108,7 @@
             objectsToDraw[i].buffer = GLSLUtilities.initVertexBuffer(gl,
                     objectsToDraw[i].vertices);
 
+            //Solid color
             if (!objectsToDraw[i].colors) {
                 // If we have a single color, we expand that into an array
                 // of the same color over and over.
@@ -105,6 +125,25 @@
 
             objectsToDraw[i].colorBuffer = GLSLUtilities.initVertexBuffer(gl,objectsToDraw[i].colors);
 
+            // Specular colors.
+            if (!objectsToDraw[i].specularColors) {
+            // Future refactor: helper function to convert a single value or
+            // array into an array of copies of itself.
+                objectsToDraw[i].specularColors = [];
+                for (var j = 0, maxj = objectsToDraw[i].vertices.length / 3; j < maxj; j += 1) {
+                    objectsToDraw[i].specularColors = objectsToDraw[i].specularColors.concat(
+                        objectsToDraw[i].specularColor.r,
+                        objectsToDraw[i].specularColor.g,
+                        objectsToDraw[i].specularColor.b
+                    );
+                }
+            }
+        
+        objectsToDraw[i].specularBuffer = GLSLUtilities.initVertexBuffer(gl, objectsToDraw[i].specularColors);
+
+        // One more buffer: normals.
+        objectsToDraw[i].normalBuffer = GLSLUtilities.initVertexBuffer(gl, objectsToDraw[i].normals);
+            
             if (objectsToDraw[i].children.length > 0) {
                 passVertices(objectsToDraw[i].children);
             }
@@ -144,15 +183,30 @@
     // Hold on to the important variables within the shaders.
     var vertexPosition = gl.getAttribLocation(shaderProgram, "vertexPosition");
     gl.enableVertexAttribArray(vertexPosition);
-    var vertexColor = gl.getAttribLocation(shaderProgram, "vertexColor");
-    gl.enableVertexAttribArray(vertexColor);
-    
+    var vertexDiffuseColor = gl.getAttribLocation(shaderProgram, "vertexDiffuseColor");
+    gl.enableVertexAttribArray(vertexDiffuseColor);
+    var vertexSpecularColor = gl.getAttribLocation(shaderProgram, "vertexSpecularColor");
+    gl.enableVertexAttribArray(vertexSpecularColor);
+    var normalVector = gl.getAttribLocation(shaderProgram, "normalVector");
+    gl.enableVertexAttribArray(normalVector);
+
     //matrices
     var rotationMatrix = gl.getUniformLocation(shaderProgram, "rotationMatrix");
     var orthogonalMatrix = gl.getUniformLocation(shaderProgram, "orthogonalMatrix");
     var projectionMatrix = gl.getUniformLocation(shaderProgram, "projectionMatrix");
     var cameraMatrix = gl.getUniformLocation(shaderProgram, "cameraMatrix");
-    
+
+    //lighting variables
+    var lightPosition = gl.getUniformLocation(shaderProgram, "lightPosition");
+    var lightDiffuse = gl.getUniformLocation(shaderProgram, "lightDiffuse");
+    var lightSpecular = gl.getUniformLocation(shaderProgram, "lightSpecular");
+    var shininess = gl.getUniformLocation(shaderProgram, "shininess");
+
+    gl.uniform4fv(lightPosition, [0, 150, 0, 1.0]);
+    gl.uniform3fv(lightDiffuse, [1, 1, 1]);
+    gl.uniform3fv(lightSpecular, [1, 1, 1]);
+    gl.uniform1f(gl.getUniformLocation(shaderProgram, "shininess"), 0);
+
     // Set up the perspective (frustum) projection matrix. 
     //r, l, t, b, f, n
     gl.uniformMatrix4fv(projectionMatrix, 
@@ -164,14 +218,20 @@
     //vertical camera up (0,1,0)
      gl.uniformMatrix4fv(cameraMatrix,
         gl.FALSE,
-        new Float32Array(Matrix.lookAt(0, 0, 10, 0, 0, 0, 100, 0, 0).convertForWebGL()));
+        new Float32Array(Matrix.lookAt(0, 0, 10, 0, 0, 0, 0, 1, 0).convertForWebGL()));
     /*
      * Displays an individual object.
      */
     var drawObject = function (object, parentMatrix) {
         // Set the varying colors.
         gl.bindBuffer(gl.ARRAY_BUFFER, object.colorBuffer);
-        gl.vertexAttribPointer(vertexColor, 3, gl.FLOAT, false, 0, 0);
+        gl.vertexAttribPointer(vertexDiffuseColor, 3, gl.FLOAT, false, 0, 0);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, object.specularBuffer);
+        gl.vertexAttribPointer(vertexSpecularColor, 3, gl.FLOAT, false, 0, 0);
+
+        // Set the shininess.
+        gl.uniform1f(shininess, object.shininess);
 
         object.rotate.angle = currentRotation;
 
@@ -185,6 +245,10 @@
             gl.FALSE,
             new Float32Array(currentMatrix.convertForWebGL())
         );
+
+        // Set the varying normal vectors.
+        gl.bindBuffer(gl.ARRAY_BUFFER, object.normalBuffer);
+        gl.vertexAttribPointer(normalVector, 3, gl.FLOAT, false, 0, 0);
 
        // Set the varying vertex coordinates.
         gl.bindBuffer(gl.ARRAY_BUFFER, object.buffer);
@@ -221,7 +285,6 @@
                 )
             )
         );
-
         return instanceMatrix;
     }
 
@@ -254,6 +317,12 @@
     //     -10,
     //     10
     // ).convertForWebGL()));
+
+    // Set up our one light source and its colors.
+    gl.uniform4fv(lightPosition, [500.0, 1000.0, 100.0, 1.0]);
+    gl.uniform3fv(lightDiffuse, [1.0, 1.0, 1.0]);
+    gl.uniform3fv(lightSpecular, [1.0, 1.0, 1.0]);
+
     
     passVertices(objectsToDraw);
     /*
