@@ -79,27 +79,29 @@
             rotate: {rotate: Math.PI, rx: 5, ry: 5, rz: 0},
             translate: {tx: 4, ty: -2, tz: -10},
             normals: new Shape(Shape.diamond()).toNormalArray(),
-            // children: [ new Shape({ 
-            //     vertices: new Shape(Shape.cube()).toRawTriangleArray(),
-            //     axis: {x: 0, y: 0, z: 0},
-            //     color: { r: 1.0, g: 0, b: 1.0 },
-            //     mode: gl.TRIANGLES,
-            // })]
+            children: [ new Shape({ 
+                vertices: new Shape(Shape.cube()).toRawTriangleArray(),
+                axis: {x: 0, y: 0, z: 0},
+                color: { r: 1.0, g: 0, b: 1.0 },
+                translate: {tx: 4, ty: -4, tz: -10},
+                mode: gl.TRIANGLES,
+                normals: new Shape(Shape.cube()).toNormalArray(),
+            })]
         }),
 
-        // new Shape({ 
-        //     vertices: new Shape(Shape.icosahedron()).toRawTriangleArray(),
-        //     color: { r: 1.0, g: 0.0, b: 0.0 },
+        new Shape({ 
+            vertices: new Shape(Shape.icosahedron()).toRawTriangleArray(),
+            color: { r: 1.0, g: 0.0, b: 0.0 },
 
-        //     // We make the specular reflection be white.
-        //     // specularColor: { r: 1.0, g: 0.0, b: 1.0 },
-        //     shininess: 16,
+            // We make the specular reflection be white.
+            // specularColor: { r: 1.0, g: 0.0, b: 1.0 },
+            shininess: 16,
 
-        //     // Like colors, one normal per vertex.  This can be simplified
-        //     // with helper functions, of course.
-        //     normals: new Shape(Shape.icosahedron()).toNormalArray(),
-        //     mode: gl.TRIANGLES
-        // }),
+            // Like colors, one normal per vertex.  This can be simplified
+            // with helper functions, of course.
+            normals: new Shape(Shape.icosahedron()).toNormalArray(),
+            mode: gl.TRIANGLES
+        }),
     ];
 
     // Pass the vertices to WebGL.
