@@ -18,7 +18,7 @@
         this.z = properties.z || 0;
         this.translate = properties.translate || {tx: 0, ty: 0, tz: 0}; 
         this.scale = properties.scale || {sx: 1, sy: 1, sz: 1}; 
-        this.rotate = properties.rotate || {angle: 0, rx: 1, ry: 1, rz: 1}
+        this.rotate = properties.rotate || {angle: 0, rx: 0, ry: 1, rz: 0}
         this.mode = properties.mode || "gl.LINES";
         this.children = properties.children || [];
         this.specularColor = properties.specularColor || {r: 0.5, g: 0.5, b: 0.5};
