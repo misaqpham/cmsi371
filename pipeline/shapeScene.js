@@ -739,7 +739,6 @@
         if (e.keyCode == '38') {
             // up arrow
             if (deletedObjects.length > 0) {
-                console.log("here")
                 objectsToDraw[objectsToDraw.length - 1].addChildren(deletedObjects[deletedObjects.length - 1]);
                 deletedObjects.pop();
             }
