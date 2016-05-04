@@ -39,7 +39,7 @@
             vertices: icosahedron.toRawTriangleArray(),
             color: { r: 1.0, g: 0.0, b: 0.5 },
             specularColor: { r: 1.0, g: 1.0, b: 1.0 },
-            shininess: 16,
+            shininess: 100,
             translate: {tx: 0, ty: 1.5, tz: -10},
             normals: icosahedron.toNormalArray(),
             mode: gl.TRIANGLES,
@@ -49,7 +49,7 @@
             vertices: icosahedron.toRawTriangleArray(),
             color: { r: 1.0, g: 0.0, b: 0.5 },
             specularColor: { r: 1.0, g: 1.0, b: 1.0 },
-            shininess: 16,
+            shininess: 100,
             translate: {tx: 0, ty: 3.2, tz: -10},
             normals: icosahedron.toNormalArray(),
             mode: gl.TRIANGLES,
@@ -59,7 +59,7 @@
             vertices: icosahedron.toRawTriangleArray(),
             color: { r: 1.0, g: 0, b: 0.5 },
             specularColor: { r: 1.0, g: 1.0, b: 1.0 },
-            shininess: 16,
+            shininess: 100,
             translate: {tx: 0, ty: 0, tz: -10},
             normals: icosahedron.toNormalArray(),
             mode: gl.TRIANGLES,
@@ -406,13 +406,6 @@
             new Shape({ 
                 vertices: diamond.toRawTriangleArray(),
                 color: { r: 0.5, g: 0, b: 0.5 },
-                translate: {tx: 0, ty: -7, tz: 0},
-                mode: gl.TRIANGLES,
-                normals: diamond.toNormalArray(),
-            }),
-            new Shape({ 
-                vertices: diamond.toRawTriangleArray(),
-                color: { r: 0.5, g: 0, b: 0.5 },
                 translate: {tx: 0, ty: -1, tz: 0},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
@@ -434,14 +427,28 @@
             new Shape({ 
                 vertices: diamond.toRawTriangleArray(),
                 color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -7, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
                 translate: {tx: 0, ty: -9, tz: 0},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
             }),
-             new Shape({ 
+            new Shape({ 
                 vertices: diamond.toRawTriangleArray(),
                 color: { r: 0.5, g: 0, b: 0.5 },
                 translate: {tx: 0, ty: -11, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -13, tz: 0},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
             }),
@@ -549,9 +556,7 @@
     var lightSpecular = gl.getUniformLocation(shaderProgram, "lightSpecular");
     var shininess = gl.getUniformLocation(shaderProgram, "shininess");
 
-    gl.uniform4fv(lightPosition, [0, 150, 0, 1.0]);
-    gl.uniform3fv(lightDiffuse, [1, 1, 1]);
-    gl.uniform3fv(lightSpecular, [1, 1, 1]);
+    
     gl.uniform1f(gl.getUniformLocation(shaderProgram, "shininess"), 0);
 
     // Set up the perspective (frustum) projection matrix. 
@@ -723,5 +728,34 @@
             window.requestAnimationFrame(advanceScene);
         }
     });
+
+    document.onkeydown = checkKey;
+
+    var deletedObjects = [];
+
+    function checkKey(e) {
+        e = e || window.event;
+
+        if (e.keyCode == '38') {
+            // up arrow
+            if (deletedObjects.length > 0) {
+                console.log("here")
+                objectsToDraw[objectsToDraw.length - 1].addChildren(deletedObjects[deletedObjects.length - 1]);
+                deletedObjects.pop();
+            }
+        } else if (e.keyCode == '40') {
+            //down arrow
+            if (objectsToDraw[objectsToDraw.length - 1].children.length > 0) {
+                var index = objectsToDraw[objectsToDraw.length - 1].children.length;
+                var recentlyDeleted = objectsToDraw[objectsToDraw.length - 1].children[index - 1];
+                deletedObjects.push(recentlyDeleted);
+                objectsToDraw[objectsToDraw.length - 1].removeChildren();
+            } 
+            //else {
+            //     deletedObjects.push(objectsToDraw[objectsToDraw.length-1]);
+            //     objectsToDraw[objectsToDraw.length - 1].pop();
+            // }
+        }
+    }
 
 }(document.getElementById("shapeScene")));

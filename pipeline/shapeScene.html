@@ -61,9 +61,6 @@
 
 
       void main(void) {
-          // gl_Position = projectionMatrix * rotationMatrix * cameraMatrix * modelViewMatrix * vec4(vertexPosition, 1.0);
-          // finalVertexColor = vec4(vertexColor, 1.0);
-
             // We "merely" relay these vectors to the fragment shader.  However,
           // we get a cool trick: they get interpolated for us!
           fragmentNormal = normalVector;
@@ -134,22 +131,6 @@
           gl_FragColor = vec4(finalDiffuse.rgb + finalSpecular.rgb, 1.0);
       }
     </script>
-    <!-- The fragment shader produces a single unconditional color. 
-    <script id="fragment-shader" type="x-shader/x-fragment">
-      #ifdef GL_ES
-      precision highp float;
-      #endif
-
-      varying vec4 finalVertexColor;
-
-      void main(void) {
-          // We vary the color based on the fragment's z coordinate,
-          // which, at this point, ranges from 0 (near) to 1 (far).
-          // Note the ".rgb" subselector.
-          gl_FragColor = vec4((1.0 - gl_FragCoord.z) * finalVertexColor.rgb, 1.0);
-      }
-    </script> -->
-
     <!-- This script sets up the specific scene for this page. -->
     <script src="shapeScene.js"></script>
   </body>

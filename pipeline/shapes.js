@@ -21,7 +21,7 @@
         this.rotate = properties.rotate || {angle: 0, rx: 0, ry: 1, rz: 0}
         this.mode = properties.mode || "gl.LINES";
         this.children = properties.children || [];
-        this.specularColor = properties.specularColor || {r: 0.5, g: 0.5, b: 0.5};
+        this.specularColor = properties.specularColor || {r: 0.1, g: 0.25, b: 0.5};
         this.normals = properties.normals;
         this.shininess = properties.shininess || 0;
     };
