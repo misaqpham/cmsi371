@@ -35,47 +35,22 @@
     // Build the objects to display.
     var objectsToDraw = [
 
-        // new Shape({ 
-        //     vertices: new Shape(Shape.sphere()).toRawTriangleArray(),
-        //     color: { r: 0, g: 1.0, b: 0.4 },
-        //     mode: gl.TRIANGLES,
-        //     scale: {sx: 2, sy: 2, sz: 2},
-        //     //rotate: {angle:  0.0, rx: 0.0, ry: 1.0, rz: 0.0},
-        //     translate: {tx: 0.0, ty: 0.0, tz: -10},
-        //     normals: new Shape(Shape.sphere()).toNormalArray(),
-        //     // children: [
-        //     //     new Shape({ 
-        //     //     color: { r: 1.0, g: 0, b: 0.5 },
-        //     //     vertices: new Shape(Shape.icosahedron()).toRawTriangleArray(),
-        //     //     axis: { x: 1.0, y: 1.0, z: 1.0},
-        //     //     scale: {sx: 1.5, sy: 1.5, sz: 1.5},
-        //     //     normals: new Shape(Shape.icosahedron()).toNormalArray(),
-        //     //     mode: gl.TRIANGLES
-        //     //     })]
-        // }),
-
-        // new Shape({ 
-        //     vertices: diamond.toRawTriangleArray(),
-        //     color: { r: 0, g: 0, b: 1.0 },
-        //     mode: gl.TRIANGLES,
-        //     rotate: {rotate: Math.PI, rx: 0, ry: 1, rz: 0},
-        //     translate: {tx: 4, ty: -2, tz: -10},
-        //     normals: new Shape(Shape.diamond()).toNormalArray(),
-        //     children: [ new Shape({ 
-        //         vertices: new Shape(Shape.diamond()).toRawTriangleArray(),
-        //         //axis: {x: 0, y: 1, z: 0},
-        //         color: { r: 1.0, g: 0, b: 1.0 },
-        //         translate: {tx: 0, ty: 0, tz: -10},
-        //         mode: gl.TRIANGLES,
-        //         normals: new Shape(Shape.diamond()).toNormalArray(),
-        //     })]
-        // }),
         new Shape({ 
             vertices: icosahedron.toRawTriangleArray(),
             color: { r: 1.0, g: 0.0, b: 0.5 },
             specularColor: { r: 1.0, g: 1.0, b: 1.0 },
             shininess: 16,
-            translate: {tx: 0, ty: 3, tz: -10},
+            translate: {tx: 0, ty: 1.5, tz: -10},
+            normals: icosahedron.toNormalArray(),
+            mode: gl.TRIANGLES,
+        }),
+
+        new Shape({ 
+            vertices: icosahedron.toRawTriangleArray(),
+            color: { r: 1.0, g: 0.0, b: 0.5 },
+            specularColor: { r: 1.0, g: 1.0, b: 1.0 },
+            shininess: 16,
+            translate: {tx: 0, ty: 3.2, tz: -10},
             normals: icosahedron.toNormalArray(),
             mode: gl.TRIANGLES,
         }),
@@ -151,6 +126,34 @@
                 translate: {tx: -5, ty: 0, tz: 5.5},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
+                children: [ new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -2.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -4.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -6.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -8.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),]
             }),
             new Shape({ 
                 vertices: diamond.toRawTriangleArray(),
@@ -158,6 +161,34 @@
                 translate: {tx: -5, ty: 0, tz: -5.5},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
+                children: [ new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -2.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -4.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -6.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -8.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),]
             }),
             new Shape({ 
                 vertices: diamond.toRawTriangleArray(),
@@ -165,6 +196,34 @@
                 translate: {tx: 5, ty: 0, tz: 5.5},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
+                children: [ new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -2.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -4.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -6.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -8.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),]
             }),
             new Shape({ 
                 vertices: diamond.toRawTriangleArray(),
@@ -172,6 +231,34 @@
                 translate: {tx: 5, ty: 0, tz: -5.5},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
+                children: [ new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -2.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -4.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -6.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),
+                    new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -8.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),]
             }),
             new Shape({ 
                 vertices: diamond.toRawTriangleArray(),
@@ -179,6 +266,13 @@
                 translate: {tx: 7.5, ty: 0, tz: 1.5},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
+                children: [ new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -2.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),]
             }),
             new Shape({ 
                 vertices: diamond.toRawTriangleArray(),
@@ -186,6 +280,13 @@
                 translate: {tx: 7.5, ty: 0, tz: -1.5},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
+                children: [ new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -2.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),]
             }),
             new Shape({ 
                 vertices: diamond.toRawTriangleArray(),
@@ -193,6 +294,13 @@
                 translate: {tx: -7.5, ty: 0, tz: 1.5},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
+                children: [ new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -2.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),]
             }),
             new Shape({ 
                 vertices: diamond.toRawTriangleArray(),
@@ -200,9 +308,145 @@
                 translate: {tx: -7.5, ty: 0, tz: -1.5},
                 mode: gl.TRIANGLES,
                 normals: diamond.toNormalArray(),
-            })]
+                children: [ new Shape({ 
+                    vertices: diamond.toRawTriangleArray(),
+                    color: { r: 0.5, g: 0, b: 0.5 },
+                    translate: {tx: 0, ty: -2.5, tz: 0},
+                    mode: gl.TRIANGLES,
+                    normals: diamond.toNormalArray(),
+                    }),]
+            }),
+            //second chandelier tier
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -2.5, tz: -5},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -2.5, tz: 5},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 5, ty: -2.5, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: -5, ty: -2.5, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: -1.5, ty: -2.5, tz: 2.5},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: -1.5, ty: -2.5, tz: -2.5},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 1.5, ty: -2.5, tz: 2.5},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 1.5, ty: -2.5, tz: -2.5},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            //third tier
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -5, tz: -5},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -5, tz: 5},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 5, ty: -5, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: -5, ty: -5, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            //center
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -7, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -1, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -2.9, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -5, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -9, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+             new Shape({ 
+                vertices: diamond.toRawTriangleArray(),
+                color: { r: 0.5, g: 0, b: 0.5 },
+                translate: {tx: 0, ty: -11, tz: 0},
+                mode: gl.TRIANGLES,
+                normals: diamond.toNormalArray(),
+            }),
+            ]
         }),
-
     ];
 
     // Pass the vertices to WebGL.
@@ -321,7 +565,7 @@
     //vertical camera up (0,1,0)
      gl.uniformMatrix4fv(cameraMatrix,
         gl.FALSE,
-        new Float32Array(Matrix.lookAt(0, 0, 10, 0, 0, 0, 0, 1, 0).convertForWebGL()));
+        new Float32Array(Matrix.lookAt(0, 5, 20, 0, 0, 0, 0, 1, 0).convertForWebGL()));
     /*
      * Displays an individual object.
      */
