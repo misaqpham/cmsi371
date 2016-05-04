@@ -751,10 +751,6 @@
                 deletedObjects.push(recentlyDeleted);
                 objectsToDraw[objectsToDraw.length - 1].removeChildren();
             } 
-            //else {
-            //     deletedObjects.push(objectsToDraw[objectsToDraw.length-1]);
-            //     objectsToDraw[objectsToDraw.length - 1].pop();
-            // }
         }
     }
 
